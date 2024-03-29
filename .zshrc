@@ -1,6 +1,6 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
-export BROWSER="floorp"
+export BROWSER="brave-browser"
 export TERM="xterm-256color"
 export MANPAGER="less"
 export QT_QPA_PLATFORMTHEME=gnome
@@ -251,3 +251,5 @@ _dotnet_zsh_complete()
 compdef _dotnet_zsh_complete dotnet
 
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

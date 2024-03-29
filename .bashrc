@@ -8,16 +8,85 @@
 
 export PATH=$HOME/.local/bin:$HOME/bin:$HOME/latex-bin:$HOME/menu-scripts:$HOME/.cargo/bin:$PATH
 
-alias ls="ls -AF --color"
-alias ll="ls -AlFh --color"
+# color 
+blk='\[\033[01;30m\]'   # Black
+red='\[\033[01;31m\]'   # Red
+grn='\[\033[01;32m\]'   # Green
+ylw='\[\033[01;33m\]'   # Yellow
+blu='\[\033[01;34m\]'   # Blue
+pur='\[\033[01;35m\]'   # Purple
+cyn='\[\033[01;36m\]'   # Cyan
+wht='\[\033[01;37m\]'   # White
+clr='\[\033[00m\]'      # Reset
+
+# optinos
+bind 'set completion-ignore-case on' # case insensitive search 
+set -o vi # vimode
+HISTCONTROL=ignoredups # ignore duplicate commands in the history.
+
+# aliases
+alias vim=nvim
+
+# Move to the parent folder.
+alias ..='cd ..;pwd'
+# Move up two parent folders.
+alias ...='cd ../..;pwd'
+# Move up three parent folders.
+alias ....='cd ../../..;pwd'
+
+alias ls="exa -ahF --group-directories-first"
+alias ll="exa -alhF --group-directories-first"
 alias cls="clear"
 alias grep='grep --color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/my-dotfiles/ --work-tree=$HOME'
 
-PS1='\e[0m\e[1;32m\u\e[0m@\e[1;34m\h\e[0m \e[1;36m\w\e[0m\e[0m > '
 
+alias sb='source ~/.bashrc && echo "bashrc sourceed"'
+alias eb='nvim ~/.bashrc'
+
+# complition
+[[ -f /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
+
+# finctions
+#
+odf() {
+    dir="$(fdfind . $HOME/.dotfiles -t d --hidden | fzf)"
+
+    if [[ "${dir}" == "" ]]; then
+        echo "choose a directory"
+    else
+        cd ${dir}
+        nvim .
+    fi
+}
+
+sd() {
+    local dir
+    dir="$(fdfind . --type directory | fzf)"
+    cd ${dir}
+}
+
+vf() {
+    local file
+    file="$(fzf --height 75% --layout=reverse --border --preview 'batcat --style=numbers --color=always --line-range :500 {}')"
+    if [[ ${file} == "" ]]; then
+        echo 'please select one'
+    else
+        nvim ${file}
+    fi
+}
+
+ovc() {
+    cd $HOME/.config/nvim
+    nvim .
+}
+
+mkcd() {
+    mkdir -p "$@" && cd "$@" && pwd
+}
 
 # file extract
+#
 ex() {
     local file_name
     file_name="$(echo $1 | awk -F. '{print $1}')"
@@ -74,3 +143,17 @@ function _dotnet_bash_complete()
 complete -f -F _dotnet_bash_complete dotnet
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# prompt
+
+function git_branch() {
+    if [ -d .git ] ; then
+        printf "%s" "($(git branch 2> /dev/null | awk '/\*/{print $2}'))";
+    fi
+}
+function bash_prompt(){
+    # PS1='\e[0m\e[1;32m\u\e[0m@\e[1;34m\h\e[0m \e[1;36m\w\e[0m\e[0m > '
+    PS1=${pur}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${red}' $(git_branch)'${grn}' > '${clr}
+}
+
+bash_prompt
