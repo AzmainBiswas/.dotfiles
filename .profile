@@ -1,5 +1,7 @@
 export PATH=$HOME/.local/bin:$HOME/bin:$HOME/latex-bin:$HOME/menu-scripts:$HOME/.cargo/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
+
+export BROWSER=brave-browser
 export EDITOR=nvim
 export TERM=screen-256color
 export FZF_DEFAULT_OPTS='--height 70% --layout=reverse --border'
@@ -7,6 +9,16 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export media=/mnt/media
 export docs=/mnt/docs
 export book=/mnt/docs/Book
+
+# if running bash
+# if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+#    if [ -f "$HOME/.bashrc" ]; then
+#	. "$HOME/.bashrc"
+#    fi
+#fi
+
+[[ -f $HOME/.bashrc ]] && . ~/.bashrc
 
 # fzf
 export FZF_DEFAULT_OPTS=''

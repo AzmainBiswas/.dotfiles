@@ -19,7 +19,7 @@ config.default_cursor_style = "SteadyBar"
 config.color_scheme = "GitHub Dark"
 
 -- background
-config.window_background_opacity = 1.0
+config.window_background_opacity = 0.95
 
 -- dimensions
 config.initial_cols = 150

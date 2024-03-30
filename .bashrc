@@ -19,12 +19,25 @@ cyn='\[\033[01;36m\]'   # Cyan
 wht='\[\033[01;37m\]'   # White
 clr='\[\033[00m\]'      # Reset
 
-# optinos
-bind 'set completion-ignore-case on' # case insensitive search 
-set -o vi # vimode
-HISTCONTROL=ignoredups # ignore duplicate commands in the history.
+# shell options
 
+shopt -s autocd
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+
+#
 # aliases
+#
 alias vim=nvim
 
 # Move to the parent folder.
@@ -36,13 +49,28 @@ alias ....='cd ../../..;pwd'
 
 alias ls="exa -ahF --group-directories-first"
 alias ll="exa -alhF --group-directories-first"
+alias tree="exa -F --color=always --tree"
+
 alias cls="clear"
+alias spdl="spotdl --bitrate=320k" 
+alias tn="tmux new -s $(pwd | sed 's/.*\///g')"
+
 alias grep='grep --color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/my-dotfiles/ --work-tree=$HOME'
 
+alias merge="xrdb -merge ~/.Xresources"
 
 alias sb='source ~/.bashrc && echo "bashrc sourceed"'
 alias eb='nvim ~/.bashrc'
+
+#shell
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # complition
 [[ -f /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
@@ -153,7 +181,7 @@ function git_branch() {
 }
 function bash_prompt(){
     # PS1='\e[0m\e[1;32m\u\e[0m@\e[1;34m\h\e[0m \e[1;36m\w\e[0m\e[0m > '
-    PS1=${pur}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${red}' $(git_branch)'${grn}' > '${clr}
+    PS1=${blu}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${grn}' $(git_branch)'${grn}' > '${clr}
 }
 
 bash_prompt
