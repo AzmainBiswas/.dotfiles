@@ -42,6 +42,10 @@ alias ...='cd ../..;pwd'
 # Move up three parent folders.
 alias ....='cd ../../..;pwd'
 
+alias cp="cp -riv"
+alias mv="mv -iv"
+alias mkdir="mkdir -vp"
+
 alias ls="exa -ahF --group-directories-first"
 alias ll="exa -alhF --group-directories-first"
 alias tree="exa -F --color=always --tree"
@@ -166,21 +170,41 @@ complete -f -F _dotnet_bash_complete dotnet
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# prompt
+###------------------- PROMPT -----------------------###
 
-function git_branch() {
-	if [ -d .git ]; then
-		printf "%s" "($(git branch 2>/dev/null | awk '/\*/{print $2}'))"
-	fi
+function parse_git_dirty {
+  STATUS="$(git status 2> /dev/null)"
+  if [[ $? -ne 0 ]]; then printf ""; return; else printf " ["; fi
+  if echo ${STATUS} | grep -c "renamed:"         &> /dev/null; then printf " >"; else printf ""; fi
+  if echo ${STATUS} | grep -c "branch is ahead:" &> /dev/null; then printf " !"; else printf ""; fi
+  if echo ${STATUS} | grep -c "new file::"       &> /dev/null; then printf " +"; else printf ""; fi
+  if echo ${STATUS} | grep -c "Untracked files:" &> /dev/null; then printf " ?"; else printf ""; fi
+  if echo ${STATUS} | grep -c "modified:"        &> /dev/null; then printf " *"; else printf ""; fi
+  if echo ${STATUS} | grep -c "deleted:"         &> /dev/null; then printf " -"; else printf ""; fi
+  printf " ]"
 }
+
+parse_git_branch() {
+  # Long form
+  git rev-parse --abbrev-ref HEAD 2> /dev/null
+ # Short form
+  # git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/.*\/\(.*\)/\1/'
+}
+
+# function git_branch() {
+# 	if [ -d .git ]; then
+# 		printf "%s" "($(git branch 2>/dev/null | awk '/\*/{print $2}'))"
+# 	fi
+# }
+
 function bash_prompt() {
 	# PS1='\e[0m\e[1;32m\u\e[0m@\e[1;34m\h\e[0m \e[1;36m\w\e[0m\e[0m > '
-	PS1=${blu}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${grn}' $(git_branch)'${grn}' > '${clr}
+    PS1=${blu}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${grn}' $(parse_git_branch)'${red}'$(parse_git_dirty)'${grn}' > '${clr}
 }
 
-# bash_prompt
+bash_prompt
 
-eval "$(starship init bash)"
+# eval "$(starship init bash)"
 # eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
 
 export NVM_DIR="$HOME/.nvm"
