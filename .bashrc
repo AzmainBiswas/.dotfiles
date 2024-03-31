@@ -28,7 +28,7 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 #
 # aliases
@@ -172,34 +172,19 @@ complete -f -F _dotnet_bash_complete dotnet
 
 ###------------------- PROMPT -----------------------###
 
-function parse_git_dirty {
-  STATUS="$(git status 2> /dev/null)"
-  if [[ $? -ne 0 ]]; then printf ""; return; else printf " ["; fi
-  if echo ${STATUS} | grep -c "renamed:"         &> /dev/null; then printf " >"; else printf ""; fi
-  if echo ${STATUS} | grep -c "branch is ahead:" &> /dev/null; then printf " !"; else printf ""; fi
-  if echo ${STATUS} | grep -c "new file::"       &> /dev/null; then printf " +"; else printf ""; fi
-  if echo ${STATUS} | grep -c "Untracked files:" &> /dev/null; then printf " ?"; else printf ""; fi
-  if echo ${STATUS} | grep -c "modified:"        &> /dev/null; then printf " *"; else printf ""; fi
-  if echo ${STATUS} | grep -c "deleted:"         &> /dev/null; then printf " -"; else printf ""; fi
-  printf " ]"
-}
-
 parse_git_branch() {
-  # Long form
-  git rev-parse --abbrev-ref HEAD 2> /dev/null
- # Short form
-  # git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/.*\/\(.*\)/\1/'
+	# Long form
+	git rev-parse --abbrev-ref HEAD 2>/dev/null
+	# Short form
+	# git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/.*\/\(.*\)/\1/'
 }
-
-# function git_branch() {
-# 	if [ -d .git ]; then
-# 		printf "%s" "($(git branch 2>/dev/null | awk '/\*/{print $2}'))"
-# 	fi
-# }
 
 function bash_prompt() {
-	# PS1='\e[0m\e[1;32m\u\e[0m@\e[1;34m\h\e[0m \e[1;36m\w\e[0m\e[0m > '
-    PS1=${blu}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${grn}' $(parse_git_branch)'${red}'$(parse_git_dirty)'${grn}' > '${clr}
+	PS1='${debian_chroot:+($debian_chroot)}'
+	# with username
+	# PS1+=${blu}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${grn}' $(parse_git_branch)'${grn}' > '${clr}
+	# With distro logo
+	PS1+=${blu}' '${cyn}' \w'${ylw}' $(parse_git_branch)'${grn}' > '${clr}
 }
 
 bash_prompt
@@ -210,3 +195,7 @@ bash_prompt
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+# zoxide
+# install zoxide first
+[[ -x $HOME/.local/bin/zoxide ]] && eval "$(zoxide init bash)" && alias cd="z"

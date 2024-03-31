@@ -16,6 +16,7 @@ set echo-control-characters Off
 "\e[1;5C": forward-word
 
 # "\C-f":"cd ~/.config"
+"\C-l":"clear\n"
 "\C-b":"cd ..\n"
 "\C-h":"cd\n"
 "\es":"\C-asudo \C-e"
