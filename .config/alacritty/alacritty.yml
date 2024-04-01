@@ -1,5 +1,5 @@
 import:
-      - /home/azmain/.config/alacritty/themes/github_dark_default.yml
+      - /home/azmain/.config/alacritty/themes/catppuccin-mocha.yml
 
 window:
   padding:
@@ -15,7 +15,7 @@ window:
   dimensions:
     columns: 150
     lines: 35
-  opacity: 0.95
+  opacity: 1.0
   decorations: full
 scrolling:
   history: 50000
@@ -26,20 +26,20 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: JetBrainsMono Nerd Font
+    family: CaskaydiaCove Nerd Font
     style: Regular
   bold:
-    family: JetBrainsMono Nerd Font
+    family: CaskaydiaCove Nerd Font
     style: Bold
   italic:
-    family: JetBrainsMono Nerd Font
+    family: CaskaydiaCove Nerd Font
     style: Italic
   bold_italic:
-    family: JetBrainsMono Nerd Font 
+    family: CaskaydiaCove Nerd Font 
     style: Bold Italic
 
   # Point size
-  size: 12
+  size: 13
 draw_bold_text_with_bright_colors: false
 
 # Window title

@@ -5,8 +5,8 @@ local config = {}
 -- fonts
 -- config.font = wezterm.font("ComicShannsMono Nerd Font")
 -- config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font = wezterm.font("Fira Code")
--- config.font = wezterm.font("Iosevka Fixed")
+-- config.font = wezterm.font("Fira Code")
+config.font = wezterm.font("CaskaydiaCove Nerd Font")
 config.font_size = 13
 
 config.default_cursor_style = "SteadyBar"
@@ -15,11 +15,11 @@ config.default_cursor_style = "SteadyBar"
 -- color scheme
 -- config.color_scheme = "Ubuntu"
 -- config.color_scheme = "tokyonight_night"
--- config.color_scheme = "Dracula (Official)"
+-- config.color_scheme = "Catppuccin Mocha"
 config.color_scheme = "GitHub Dark"
 
 -- background
-config.window_background_opacity = 0.95
+config.window_background_opacity = 1
 
 -- dimensions
 config.initial_cols = 150

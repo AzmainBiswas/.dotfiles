@@ -12,7 +12,7 @@ export book=/mnt/docs/Book
 
 # if running bash
 # if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
+# include .bashrc if it exists
 #    if [ -f "$HOME/.bashrc" ]; then
 #	. "$HOME/.bashrc"
 #    fi
@@ -28,13 +28,14 @@ export FZF_ALT_C_COMMAND="fdfind --type d --strip-cwd-prefix --hidden --follow -
 
 # export SDL_VIDEODRIVER=wayland
 # export _JAVA_AWT_WM_NONREPARENTING=1
-export QT_QPA_PLATFORM=gnome
+export QT_QPA_PLATFORMTHEME=qt5ct
+# export QT_QPA_PLATFORM=gtk2
 # export XDG_CURRENT_DESKTOP=sway
 # export XDG_SESSION_DESKTOP=sway
 
 if [ -e /home/azmain/.nix-profile/etc/profile.d/nix.sh ]; then . /home/azmain/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-    export MOZ_ENABLE_WAYLAND=1
+	export MOZ_ENABLE_WAYLAND=1
 fi
 export QT_QPA_PLATFORMTHEME=gnome
