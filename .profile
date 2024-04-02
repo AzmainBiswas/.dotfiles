@@ -38,4 +38,3 @@ if [ -e /home/azmain/.nix-profile/etc/profile.d/nix.sh ]; then . /home/azmain/.n
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	export MOZ_ENABLE_WAYLAND=1
 fi
-export QT_QPA_PLATFORMTHEME=gnome

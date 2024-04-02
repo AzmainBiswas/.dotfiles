@@ -1,5 +1,5 @@
 import:
-      - /home/azmain/.config/alacritty/themes/catppuccin-mocha.yml
+      - /home/azmain/.config/alacritty/themes/github_dark_default.yml
 
 window:
   padding:
