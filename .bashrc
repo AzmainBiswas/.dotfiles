@@ -56,6 +56,7 @@ alias tn="tmux new -s $(pwd | sed 's/.*\///g')"
 
 alias grep='grep --color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/my-dotfiles/ --work-tree=$HOME'
+alias gitsafe='git config --global --add safe.directory "$(pwd)"'
 
 alias merge="xrdb -merge ~/.Xresources"
 
@@ -172,11 +173,32 @@ complete -f -F _dotnet_bash_complete dotnet
 
 ###------------------- PROMPT -----------------------###
 
-parse_git_branch() {
-	# Long form
-	git rev-parse --abbrev-ref HEAD 2>/dev/null
-	# Short form
-	# git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/.*\/\(.*\)/\1/'
+# parse_git_branch() {
+# 	# Long form
+# 	git rev-parse --abbrev-ref HEAD 2>/dev/null
+# 	# Short form
+# 	# git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/.*\/\(.*\)/\1/'
+# }
+
+# bash git prompt
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWUPSTREAM="verbose"
+
+__git_ps1_improved() {
+    local git_current_branch_name="\$(__git_ps1 '%s' | sed 's/ .\+//' | sed -e 's/[\\\\/&]/\\\\\\\\&/g')"
+    local git_status_substitutes=(
+        "s/$git_current_branch_name//;"            # remove branch temporarily
+        "s/u//;"                                   # upstream
+        "s/+\([0-9]\+\)/↑\1/;"                     # outgoing
+        "s/-\([0-9]\+\)/↓\1/;"                     # incoming
+        "s/%/? /;"                                  # untracked
+        "s/+/✓ /;"                                  # staged
+        "s/*/✕ /;"                                  # unstaged
+        "s/\(.*\)/ $git_current_branch_name\1/;"  # insert branch again
+    )
+
+    echo "\$(__git_ps1 '%s'| sed \"${git_status_substitutes[@]}\")"
 }
 
 function bash_prompt() {
@@ -184,7 +206,7 @@ function bash_prompt() {
 	# with username
 	# PS1+=${blu}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${grn}' $(parse_git_branch)'${grn}' > '${clr}
 	# With distro logo
-	PS1+=${blu}' '${cyn}' \w'${ylw}' $(parse_git_branch)'${grn}'  '${clr}
+    PS1+=${blu}' '${cyn}' \w'${ylw}" $(__git_ps1_improved)"${grn}'  '${clr}
 }
 
 bash_prompt
