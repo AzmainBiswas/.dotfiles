@@ -5,9 +5,9 @@ local config = {}
 -- fonts
 -- config.font = wezterm.font("ComicShannsMono Nerd Font")
 -- config.font = wezterm.font("JetBrainsMono Nerd Font")
--- config.font = wezterm.font("Fira Code")
-config.font = wezterm.font("CaskaydiaCove Nerd Font")
-config.font_size = 13
+config.font = wezterm.font("Fira Code")
+-- config.font = wezterm.font("CaskaydiaCove Nerd Font")
+config.font_size = 12.5
 
 config.default_cursor_style = "SteadyBar"
 -- SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, BlinkingBar

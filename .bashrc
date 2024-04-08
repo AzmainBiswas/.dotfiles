@@ -206,7 +206,8 @@ function bash_prompt() {
 	# with username
 	# PS1+=${blu}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${grn}' $(parse_git_branch)'${grn}' > '${clr}
 	# With distro logo
-    PS1+=${blu}' '${cyn}' \w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
+    # PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
+    PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
 }
 
 bash_prompt
@@ -220,4 +221,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # zoxide
 # install zoxide first
-[[ -x $HOME/.local/bin/zoxide ]] && eval "$(zoxide init bash)" && alias cd="z"
+[[ -x "/home/azmain/.local/bin" ]] && eval "$(zoxide init bash)" && alias cd="z"
