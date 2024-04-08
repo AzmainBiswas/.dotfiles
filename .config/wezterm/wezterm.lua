@@ -9,7 +9,7 @@ config.font = wezterm.font("Fira Code")
 -- config.font = wezterm.font("CaskaydiaCove Nerd Font")
 config.font_size = 12.5
 
-config.default_cursor_style = "SteadyBar"
+config.default_cursor_style = "SteadyBlock"
 -- SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, BlinkingBar
 
 -- color scheme
