@@ -222,4 +222,3 @@ export NVM_DIR="$HOME/.nvm"
 # zoxide
 # install zoxide first
 [[ -x "/home/azmain/.local/bin" ]] && eval "$(zoxide init bash)" && alias cd="z"
-. "$HOME/.cargo/env"

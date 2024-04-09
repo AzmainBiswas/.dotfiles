@@ -3,10 +3,12 @@ local wezterm = require("wezterm")
 local config = {}
 
 -- fonts
--- config.font = wezterm.font("ComicShannsMono Nerd Font")
--- config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font = wezterm.font("Fira Code")
--- config.font = wezterm.font("CaskaydiaCove Nerd Font")
+config.font = wezterm.font_with_fallback({
+    "JetBrainsMono Nerd Font",
+    "Fira Code",
+    "ComicShannsMono Nerd Font",
+    "CaskaydiaCove Nerd Font",
+})
 config.font_size = 12.5
 
 config.default_cursor_style = "SteadyBlock"
@@ -47,11 +49,11 @@ config.audible_bell = "Disabled"
 -- }
 
 config.keys = {
-	{
-		key = "F11",
-		-- mods = "SHIFT|CTRL",
-		action = wezterm.action.ToggleFullScreen,
-	},
+    {
+        key = "F11",
+        -- mods = "SHIFT|CTRL",
+        action = wezterm.action.ToggleFullScreen,
+    },
 }
 
 return config
