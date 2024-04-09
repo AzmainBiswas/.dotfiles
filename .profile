@@ -4,11 +4,13 @@ export PATH=$PATH:/usr/local/go/bin
 export BROWSER=brave-browser
 export EDITOR=nvim
 export TERM=screen-256color
-export FZF_DEFAULT_OPTS='--height 70% --layout=reverse --border'
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export media=/mnt/media
 export docs=/mnt/docs
 export book=/mnt/docs/Book
+
+# neovim as man page
+export MANPAGER="nvim +Man!"
 
 # if running bash
 # if [ -n "$BASH_VERSION" ]; then
@@ -21,7 +23,7 @@ export book=/mnt/docs/Book
 [[ -f $HOME/.bashrc ]] && . ~/.bashrc
 
 # fzf
-export FZF_DEFAULT_OPTS=''
+export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fdfind --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fdfind --type d --strip-cwd-prefix --hidden --follow --exclude .git"
@@ -29,6 +31,7 @@ export FZF_ALT_C_COMMAND="fdfind --type d --strip-cwd-prefix --hidden --follow -
 # export SDL_VIDEODRIVER=wayland
 # export _JAVA_AWT_WM_NONREPARENTING=1
 export QT_QPA_PLATFORMTHEME=gnome
+export QT_STYLE_OVERRIDE=kvantum
 # export QT_QPA_PLATFORM=gtk2
 # export XDG_CURRENT_DESKTOP=sway
 # export XDG_SESSION_DESKTOP=sway
@@ -38,3 +41,4 @@ if [ -e /home/azmain/.nix-profile/etc/profile.d/nix.sh ]; then . /home/azmain/.n
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 	export MOZ_ENABLE_WAYLAND=1
 fi
+. "$HOME/.cargo/env"

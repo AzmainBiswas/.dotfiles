@@ -15,7 +15,7 @@ window:
   dimensions:
     columns: 150
     lines: 35
-  opacity: 1.0
+  opacity: 0.95
   decorations: full
 scrolling:
   history: 50000
@@ -26,16 +26,16 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: JetBrainsMono Nerd Font
+    family: JetBrainsMono nerd Font
     style: Regular
   bold:
-    family: JetBrainsMono Nerd Font
+    family: JetBrainsMono nerd Font
     style: Bold
   italic:
-    family: JetBrainsMono Nerd Font
+    family: JetBrainsMono nerd Font
     style: Italic
   bold_italic:
-    family: JetBrainsMono Nerd Font 
+    family: JetBrainsMono nerd Font 
     style: Bold Italic
 
   # Point size

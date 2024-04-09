@@ -212,7 +212,7 @@ function bash_prompt() {
 
 bash_prompt
 
-# eval "$(starship init bash)"
+# eval "$(starship init bash)" #starship
 # eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
 
 export NVM_DIR="$HOME/.nvm"
@@ -222,3 +222,4 @@ export NVM_DIR="$HOME/.nvm"
 # zoxide
 # install zoxide first
 [[ -x "/home/azmain/.local/bin" ]] && eval "$(zoxide init bash)" && alias cd="z"
+. "$HOME/.cargo/env"
