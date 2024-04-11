@@ -1,13 +1,11 @@
-export PATH=$HOME/.local/bin:$HOME/bin:$HOME/latex-bin:$HOME/menu-scripts:$HOME/.cargo/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$PATH
 
 export BROWSER=brave-browser
 export EDITOR=nvim
 export TERM=screen-256color
+
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-export media=/mnt/media
-export docs=/mnt/docs
-export book=/mnt/docs/Book
 
 # neovim as man page
 export MANPAGER="nvim +Man!"

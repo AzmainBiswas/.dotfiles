@@ -8,6 +8,8 @@ set completion-query-items 1000
 
 set echo-control-characters Off
 
+# Map tab to cycle through all the possible completions.
+TAB: menu-complete
 
 "\e[A": history-search-backward
 "\e[B": history-search-foreward
@@ -15,10 +17,9 @@ set echo-control-characters Off
 "\e[1;5D": backward-word
 "\e[1;5C": forward-word
 
-# "\C-f":"cd ~/.config"
+"\C-f":"cd ~/.config"
 "\C-l":"clear\n"
 "\C-b":"cd ..\n"
 "\C-h":"cd\n"
 "\es":"\C-asudo \C-e"
 "\C-y":yank
-

@@ -2,8 +2,6 @@
 # ~/.bashrc
 #
 
-export PATH=$HOME/.local/bin:$HOME/bin:$HOME/latex-bin:$HOME/menu-scripts:$HOME/.cargo/bin:$PATH
-
 # color
 blk='\[\033[01;30m\]' # Black
 red='\[\033[01;31m\]' # Red
@@ -29,6 +27,8 @@ HISTFILESIZE=2000
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+# complition
+[[ -f /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
 
 #
 # aliases
@@ -71,9 +71,6 @@ alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# complition
-[[ -f /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
 
 # finctions
 #
@@ -169,7 +166,7 @@ function _dotnet_bash_complete() {
 
 complete -f -F _dotnet_bash_complete dotnet
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 ###------------------- PROMPT -----------------------###
 
@@ -186,19 +183,19 @@ GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWUPSTREAM="verbose"
 
 __git_ps1_improved() {
-    local git_current_branch_name="\$(__git_ps1 '%s' | sed 's/ .\+//' | sed -e 's/[\\\\/&]/\\\\\\\\&/g')"
-    local git_status_substitutes=(
-        "s/$git_current_branch_name//;"            # remove branch temporarily
-        "s/u//;"                                   # upstream
-        "s/+\([0-9]\+\)/↑\1/;"                     # outgoing
-        "s/-\([0-9]\+\)/↓\1/;"                     # incoming
-        "s/%/?/;"                                  # untracked
-        "s/+/+/;"                                  # staged
-        "s/*/✕/;"                                  # unstaged
-        "s/\(.*\)/ $git_current_branch_name\1/;"  # insert branch again
-    )
+	local git_current_branch_name="\$(__git_ps1 '%s' | sed 's/ .\+//' | sed -e 's/[\\\\/&]/\\\\\\\\&/g')"
+	local git_status_substitutes=(
+		"s/$git_current_branch_name//;"          # remove branch temporarily
+		"s/u//;"                                 # upstream
+		"s/+\([0-9]\+\)/↑\1/;"                   # outgoing
+		"s/-\([0-9]\+\)/↓\1/;"                   # incoming
+		"s/%/?/;"                                # untracked
+		"s/+/+/;"                                # staged
+		"s/*/✕/;"                                # unstaged
+		"s/\(.*\)/ $git_current_branch_name\1/;" # insert branch again
+	)
 
-    echo "\$(__git_ps1 '%s'| sed \"${git_status_substitutes[@]}\")"
+	echo "\$(__git_ps1 '%s'| sed \"${git_status_substitutes[@]}\")"
 }
 
 function bash_prompt() {
@@ -206,8 +203,8 @@ function bash_prompt() {
 	# with username
 	# PS1+=${blu}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${grn}' $(parse_git_branch)'${grn}' > '${clr}
 	# With distro logo
-    # PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
-    PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
+	# PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
+	PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
 }
 
 bash_prompt

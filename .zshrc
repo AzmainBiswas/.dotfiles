@@ -4,9 +4,10 @@ export BROWSER="brave-browser"
 export TERM="xterm-256color"
 export MANPAGER="less"
 export QT_QPA_PLATFORMTHEME=gnome
+export QT_STYLE_OVERRIDE=kvantum
 
 # fzf
-export FZF_DEFAULT_OPTS=''
+export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fdfind --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fdfind --type d --strip-cwd-prefix --hidden --follow --exclude .git"
@@ -16,7 +17,7 @@ export PF_INFO='ascii title os kernel shell uptime palette'
 
 ############### PATH ##########################
 export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/Documents/fetch-tools:$HOME/.dotnet/tools:$PATH"
-
+export PATH=$PATH:/usr/local/go/bin
 
 autoload -U colors; colors
 autoload -U compinit
@@ -41,9 +42,13 @@ zstyle ':completion:*' rehash true
 
 compinit
 
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+##### HISTORY
+HISTFILE=~/.zsh_history
+HISTSIZE=100000000
+SAVEHIST=100000000
+setopt INC_APPEND_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_DUPS
 bindkey -e
 
 ######### options ##############
@@ -52,8 +57,6 @@ setopt autocd extendedglob nomatch
 setopt share_history
 
 
-########### PROMT ####################
-PROMPT='%F{green}%B%n%f%F{red}@%f%F{blue}%m%b%f %F{gray}on%f %F{green}%B%2~%b%f %(?.%F{blue}>.%F{red}>)%f '
 
 #########################################
 ########### plugins #####################
@@ -120,7 +123,6 @@ bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-
 
 ###############################
 ######## alias ################
@@ -249,6 +251,10 @@ _dotnet_zsh_complete()
 }
 
 compdef _dotnet_zsh_complete dotnet
+
+
+########### PROMT ####################
+PROMPT='%F{green}%B%n%f%F{red}@%f%F{blue}%m%b%f %F{gray}on%f %F{green}%B%2~%b%f %(?.%F{blue}>.%F{red}>)%f '
 
 eval "$(starship init zsh)"
 
