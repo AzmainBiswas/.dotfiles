@@ -13,7 +13,7 @@ window:
     general: Alacritty
 
   dimensions:
-    columns: 150
+    columns: 175
     lines: 35
   opacity: 0.95
   decorations: full

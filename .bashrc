@@ -218,4 +218,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # zoxide
 # install zoxide first
-[[ -x "/home/azmain/.local/bin" ]] && eval "$(zoxide init bash)" && alias cd="z"
+[[ -x "/home/azmain/.local/bin/zoxide" ]] && eval "$(zoxide init bash)" && alias cd="z"

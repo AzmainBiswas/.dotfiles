@@ -252,7 +252,6 @@ mode "resize" {
 
 #Authentication dialog (polkit-gnome)
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id picom --config $HOME/.config/i3/picom.conf &
 exec_always $HOME/.config/i3/startup.sh
 
 #####################################################################################################################

@@ -8,5 +8,7 @@ mpd &
 clipmenud &
 numlockx & 
 kdeconnect-indicator &
-dunstify "hello $(whoami) wellcome" &
 flameshot &
+lxpolkit &
+# picom --config $HOME/.config/i3/picom.conf &
+picom &
