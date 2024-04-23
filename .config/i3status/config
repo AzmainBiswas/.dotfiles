@@ -21,7 +21,7 @@ order += "wireless _first_"
 order += "battery all"
 # order += "disk /"
 # order += "load"
-order += "memory"
+# order += "memory"
 # order += "cpu_temperature 0"
 order += "tztime local"
 
@@ -31,13 +31,13 @@ order += "tztime local"
 # }
 
 wireless _first_ {
-        format_up = " %essid  "
-        format_down = " Down  "
+        format_up = " %essid %quality "
+        format_down = "  Down  "
 }
 
 volume master {
-        format = " %volume  "
-        format_muted = " %volume  "
+        format = " %volume "
+        format_muted = " 0 "
         device = "default"
         mixer = "Master"
         mixer_idx = 0
@@ -74,11 +74,11 @@ load {
 }
 
 memory {
-        format = "   %used"
+        format = "  %used"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
 
 tztime local {
-        format = "   %a %d-%m-%Y    %I:%M %p  "
+        format = "  %a %d-%m-%Y  %I:%M %p "
 }

@@ -207,9 +207,9 @@ function bash_prompt() {
 	PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
 }
 
-bash_prompt
+# bash_prompt
 
-# eval "$(starship init bash)" #starship
+eval "$(starship init bash)" #starship
 # eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
 
 export NVM_DIR="$HOME/.nvm"
