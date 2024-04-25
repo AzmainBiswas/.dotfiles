@@ -209,6 +209,7 @@ function bash_prompt() {
 
 # bash_prompt
 
+neofetch
 eval "$(starship init bash)" #starship
 # eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
 

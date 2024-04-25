@@ -11,6 +11,6 @@ numlockx &
 # kdeconnect-indicator &
 flameshot &
 lxpolkit &
-# picom --config $HOME/.config/i3/picom.conf &
-picom &
+picom --config $HOME/.config/i3/picom.conf &
+# picom &
 copyq --start-server &

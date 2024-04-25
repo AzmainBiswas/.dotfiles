@@ -19,9 +19,10 @@ config.default_cursor_style = "SteadyBlock"
 -- config.color_scheme = "tokyonight_night"
 -- config.color_scheme = "Catppuccin Mocha"
 config.color_scheme = "GitHub Dark"
+config.color_scheme = 'Solarized Dark Higher Contrast'
 
 -- background
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.95
 
 -- dimensions
 config.initial_cols = 150

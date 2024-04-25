@@ -261,7 +261,7 @@ exec_always $HOME/.config/i3/startup.sh
 #####################################################################################################################
 
 bindsym $mod+Return exec wezterm;focus
-# bindsym $mod+Shift+Return exec alacritty;focus
+bindsym Ctrl+Return exec kitty;focus
 
 bindsym control+mod1+u exec --no-startup-id pavucontrol
 
@@ -317,8 +317,8 @@ bindsym $mod+i bar mode invisible
 #####################################################################################################################
 
 for_window [class="^.*"] border pixel 1
-gaps inner 1
-gaps outer 1
+# gaps inner 1
+# gaps outer 1
 #smart_gaps on
 #smart_borders on
 
@@ -389,7 +389,7 @@ exec_always --no-startup-id nitrogen --restore
 #####################################################################################################################
 
 bar {
-    height 30
+    # height 30
 	position bottom
     font pango:JetBrainsMono Nerd Font 12
 	status_command i3status
