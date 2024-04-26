@@ -47,7 +47,7 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
-truncation_length = 8
+truncation_length = 50
 format = ' [$path]($style)[$read_only]($read_only_style) '
 
 [battery]

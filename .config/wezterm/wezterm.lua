@@ -4,12 +4,13 @@ local config = {}
 
 -- fonts
 config.font = wezterm.font_with_fallback({
+    "Ubuntu Sans Mono",
     "Fira Code",
     "JetBrainsMono Nerd Font",
     "ComicShannsMono Nerd Font",
     "CaskaydiaCove Nerd Font",
 })
-config.font_size = 12.5
+config.font_size = 13
 
 config.default_cursor_style = "SteadyBlock"
 -- SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, BlinkingBar
@@ -22,7 +23,7 @@ config.color_scheme = "GitHub Dark"
 config.color_scheme = 'Solarized Dark Higher Contrast'
 
 -- background
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.9
 
 -- dimensions
 config.initial_cols = 150

@@ -17,7 +17,7 @@ export PF_INFO='ascii title os kernel shell uptime palette'
 
 ############### PATH ##########################
 export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/Documents/fetch-tools:$HOME/.dotnet/tools:$PATH"
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin:$PATH
 
 autoload -U colors; colors
 autoload -U compinit
@@ -49,6 +49,8 @@ SAVEHIST=100000000
 setopt INC_APPEND_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_DUPS
+setopt PROMPT_SUBST
+
 bindkey -e
 
 ######### options ##############
@@ -135,8 +137,8 @@ alias nivm="nvim"
 alias sz='source ~/.zshrc;echo "ZSH aliases sourced."'
 alias ez="nvim ~/.zshrc"
 
-alias ls="exa -aF --color=always --group-directories-first --icons"
-alias ll="exa -alF --color=always --group-directories-first --icons"
+alias ls="exa -aF --color=always --group-directories-first"
+alias ll="exa -alF --color=always --group-directories-first"
 alias tree="exa -F --color=always --tree"
 
 alias merge="xrdb -merge ~/.Xresources"
@@ -259,3 +261,7 @@ PROMPT='%F{green}%B%n%f%F{red}@%f%F{blue}%m%b%f %F{gray}on%f %F{green}%B%2~%b%f 
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
