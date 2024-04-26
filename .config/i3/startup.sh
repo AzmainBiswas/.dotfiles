@@ -2,7 +2,7 @@
 
 nm-applet &
 blueman-applet &
-dunst &
+dunst -config "$HOME/.config/dunst/dunstrc" &
 # emacs --daemon &
 # xfce3-power-manager &
 mpd &
