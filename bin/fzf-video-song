@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-
 # FIND="fd"
 FIND="fdfind"
 MENU="fzf --border=rounded --margin=5% --color=dark --reverse --prompt"
+
+video_player="devour mpv"
 
 ALL="/mnt/media/video/songs/"
 BENGALI="/mnt/media/video/songs/bengali/"
@@ -13,18 +14,19 @@ HINDI="/mnt/media/video/songs/hindi/"
 LANG=$(printf "ALL\nBENGALI\nENGLISH\nHINDI" | ${MENU} "Sclect Language > ")
 
 case "${LANG}" in
-    BENGALI)
-	mpv $($FIND . ${BENGALI} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
+BENGALI)
+	${video_player} $($FIND . ${BENGALI} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
 	;;
-    ENGLISH)
-	mpv $($FIND . ${ENGLISH} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
+ENGLISH)
+	${video_player} $($FIND . ${ENGLISH} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
 	;;
-    HINDI)
-	mpv $($FIND . ${HINDI} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
+HINDI)
+	${video_player} $($FIND . ${HINDI} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
 	;;
-    ALL)
-	mpv $($FIND . ${ALL} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
+ALL)
+	${video_player} $($FIND . ${ALL} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
 	;;
-    *)
+*)
 	printf "You choice in invalide. Run the script again" | ${MENU}
+	;;
 esac
