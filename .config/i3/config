@@ -253,7 +253,7 @@ mode "resize" {
 
 
 #Authentication dialog (polkit-gnome)
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec_always $HOME/.config/i3/startup.sh
 
 #####################################################################################################################
@@ -368,16 +368,6 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-
-#####################################################################################################################
-#################                          picom and wallpaper                                      #################
-#####################################################################################################################
-
-#if you want transparency on non-focused windows, ...
-exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
-exec_always --no-startup-id feh --bg-fill $HOME/.config/background
-# exec_always --no-startup-id ~/.config/i3/scripts/mouse.sh
 
 
 #####################################################################################################################

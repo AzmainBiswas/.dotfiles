@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+feh --bg-fill $HOME/.config/background &
 nm-applet &
 blueman-applet &
 dunst -config "$HOME/.config/dunst/dunstrc" &
@@ -12,5 +13,4 @@ numlockx &
 flameshot &
 lxpolkit &
 picom --config $HOME/.config/i3/picom.conf &
-# picom &
 copyq --start-server &
