@@ -254,7 +254,7 @@ mode "resize" {
 
 #Authentication dialog (polkit-gnome)
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec_always $HOME/.config/i3/startup.sh
+exec $HOME/.config/i3/startup.sh
 
 #####################################################################################################################
 #################                          applications keyboard shortcuts                          #################
@@ -317,8 +317,8 @@ bindsym $mod+i bar mode invisible
 #####################################################################################################################
 
 for_window [class="^.*"] border pixel 1
-# gaps inner 1
-# gaps outer 1
+gaps inner 3
+gaps outer 3
 #smart_gaps on
 #smart_borders on
 
