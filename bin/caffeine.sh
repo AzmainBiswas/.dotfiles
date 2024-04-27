@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-status=`xset -q | grep 'DPMS is' | awk '{ print $3 }'`
+status=$(xset -q | grep 'DPMS is' | awk '{ print $3 }')
 if [ $status == 'Enabled' ]; then
-    xset -dpms && \
-	dunstify 'Screen suspend is disabled.'
+	xset -dpms &&
+		notify-send 'caffeine' 'Screen suspend is disabled.'
 else
-    xset +dpms && \
-	dunstify 'Screen suspend is enabled.'
+	xset +dpms &&
+		notify-send 'caffeine' 'Screen suspend is enabled.'
 fi
