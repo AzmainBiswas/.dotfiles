@@ -15,7 +15,7 @@ window:
   dimensions:
     columns: 175
     lines: 35
-  opacity: 0.8
+  opacity: 0.85
   decorations: full
 scrolling:
   history: 50000
@@ -26,20 +26,20 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: JetBrainsMono nerd Font
+    family: Ubuntu Sans Mono
     style: Regular
   bold:
-    family: JetBrainsMono nerd Font
+    family: Ubuntu Sans Mono
     style: Bold
   italic:
-    family: JetBrainsMono nerd Font
+    family: Ubuntu Sans Mono
     style: Italic
   bold_italic:
-    family: JetBrainsMono nerd Font 
+    family: Ubuntu Sans Mono 
     style: Bold Italic
 
   # Point size
-  size: 8.5
+  size: 9
 draw_bold_text_with_bright_colors: false
 
 # Window title
