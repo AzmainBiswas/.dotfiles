@@ -3,7 +3,7 @@ import:
 
 window:
   padding:
-    x: 5
+    x: 2
     y: 5
 
   class:
