@@ -1,5 +1,5 @@
 import:
-      - /home/azmain/.config/alacritty/themes/github_dark_default.yml
+      - /home/azmain/.config/alacritty/themes/solarized_dark.yaml
 
 window:
   padding:
@@ -15,7 +15,7 @@ window:
   dimensions:
     columns: 175
     lines: 35
-  opacity: 0.95
+  opacity: 0.8
   decorations: full
 scrolling:
   history: 50000
@@ -39,7 +39,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 12
+  size: 8.5
 draw_bold_text_with_bright_colors: false
 
 # Window title

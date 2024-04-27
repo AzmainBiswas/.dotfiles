@@ -261,7 +261,7 @@ exec_always $HOME/.config/i3/startup.sh
 #####################################################################################################################
 
 bindsym $mod+Return exec wezterm;focus
-bindsym Ctrl+Return exec kitty;focus
+bindsym Ctrl+Return exec alacritty;focus
 
 bindsym control+mod1+u exec --no-startup-id pavucontrol
 
