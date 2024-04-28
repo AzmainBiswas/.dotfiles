@@ -14,6 +14,7 @@ general {
 }
 
 # order += "ipv6"
+# order += "weather"
 order += "volume master"
 order += "wireless _first_"
 # order += "ethernet _first_"

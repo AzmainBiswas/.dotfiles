@@ -1,15 +1,16 @@
 [colors]
-background = #282A2E
+background = #353641
 background-alt = #373B41
 foreground = #ffffff
 primary = #F0C674
 secondary = #8ABEB7
 alert = #A54242
 disabled = #979797
+orange = #FF5520
 
 [bar/mybar]
 width = 100%
-height = 27pt
+height = 20pt
 radius = 0
 
 ; dpi = 96
@@ -30,13 +31,13 @@ module-margin = 1
 separator = |
 separator-foreground = ${colors.disabled}
 
-font-0 = "JetBrainsMono Nerd Font:size=12;4"
-font-1 = "FontAwesome:size=14;4"
-font-2 = "Font Awesome v4 Compatibility;4"
-font-3 = "icomoon;4"
+font-0 = "Ubuntu Sans:size=14;4"
+font-1 = "JetBrainsMono Nerd Font:size=11;4"
+font-2 = "icomoon;4"
 
 modules-left = rofi xworkspaces xwindow
-modules-right = pulseaudio battery memory cpu wlan date powermenu
+# modules-right = pulseaudio battery memory cpu wlan date powermenu
+modules-right = weather pulseaudio battery wlan date powermenu
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -90,7 +91,7 @@ label-empty-padding = 1
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:25:...%
+label = %title:0:70:...%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -149,7 +150,7 @@ type = internal/date
 interval = 1
 date = %I:%M %p 
 date-alt = %d-%m-%Y %I:%M:%S %p
-label =  %date%
+label =   %date%
 label-foreground = ${colors.primary}
 
 [module/battery]
@@ -160,31 +161,31 @@ battery = BAT1
 adapter = ACAD
 poll-interval = 5
 time-format = %H:%M
-format-charging = <animation-charging>  <label-charging>
-format-discharging = <ramp-capacity>  <label-discharging>
- format-full = <ramp-capacity>  <label-full>
- format-low = <label-low>  <animation-low>
-label-charging = Charging %percentage%%
-label-discharging = Discharging %percentage%%
+format-charging = <animation-charging>   <label-charging>
+format-discharging = <ramp-capacity>   <label-discharging>
+ format-full = <ramp-capacity>   <label-full>
+ format-low = <label-low>   <animation-low>
+label-charging =  Charging %percentage%%
+label-discharging =  Discharging %percentage%%
 label-full = Fully charged
 label-low = BATTERY LOW
-ramp-capacity-0 =   
-ramp-capacity-1 =   
-ramp-capacity-2 =   
-ramp-capacity-3 =   
-ramp-capacity-4 =   
+ramp-capacity-0 =    
+ramp-capacity-1 =    
+ramp-capacity-2 =    
+ramp-capacity-3 =    
+ramp-capacity-4 =    
 bar-capacity-width = 10
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 =   
+animation-charging-1 =   
+animation-charging-2 =   
+animation-charging-3 =   
+animation-charging-4 =   
 animation-charging-framerate = 750
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-3 = 
-animation-discharging-4 = 
+animation-discharging-0 =   
+animation-discharging-1 =   
+animation-discharging-2 =   
+animation-discharging-3 =   
+animation-discharging-4 =   
 animation-discharging-framerate = 500
 animation-low-0 = !
 animation-low-1 = 
@@ -195,8 +196,15 @@ type = custom/text
 content-background = ${colors.background}
 content-foreground = ${colors.shade4}
 content-padding = 1
-click-left = "archlinux-logout"
-content = " "
+click-left = "$HOME/bin/power-menu"
+content = " ⏻ "
+
+[module/weather]
+type = custom/script
+exec = "bash -c $HOME/.config/polybar/scripts/weather"
+content-background = ${colors.background}
+content-foreground = ${color.shade4}
+interval = 3600
 
 [settings]
 screenchange-reload = true

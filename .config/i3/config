@@ -70,7 +70,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 #####################################################################################################################
 
 # start dmenu
-bindsym $mod+Shift+d exec --no-startup-id dmenu_run -i -F -l 15 -p "Run > " 
+bindsym $mod+Shift+d exec --no-startup-id dmenu_run -i -F -p "Run > " 
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+w exec --no-startup-id rofi -show window
 # bindsym $mod+v exec --no-startup-id clipmenu -l 15 -p "Clipboard"
@@ -83,7 +83,8 @@ bindsym $mod+period exec killall rofi || $HOME/bin/emoji
 #################                          how to exit, logoff, suspend, ...                        #################
 #####################################################################################################################
 
-bindsym Ctrl+Escape mode "$mode_system"
+# bindsym Ctrl+Escape mode "$mode_system"
+bindsym Ctrl+Escape exec $HOME/bin/power-menu
 
 set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
 mode "$mode_system" {
@@ -120,7 +121,7 @@ bindsym $mod+Shift+c reload
 #####################################################################################################################
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill
 
 
 
@@ -329,7 +330,6 @@ gaps outer 3
 #####################################################################################################################
 #################                          i3 gaps change                                           #################
 #####################################################################################################################
-
 
 
 set $mode_gaps Gaps: (o) outer, (i) inner

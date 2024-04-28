@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# $HOME/.config/polybar/launch.sh &
 feh --bg-fill $HOME/.config/background &
 nm-applet &
 blueman-applet &
