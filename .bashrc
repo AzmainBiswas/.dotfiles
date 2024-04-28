@@ -204,13 +204,13 @@ function bash_prompt() {
 	# PS1+=${blu}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${grn}' $(parse_git_branch)'${grn}' > '${clr}
 	# With distro logo
 	# PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
-	PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
+	PS1+=${cyn}'\W'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
 }
 
-# bash_prompt
+bash_prompt
 
 # neofetch
-eval "$(starship init bash)" #starship
+# eval "$(starship init bash)" #starship
 # eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
 
 export NVM_DIR="$HOME/.nvm"
