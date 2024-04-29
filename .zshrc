@@ -1,16 +1,15 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
-export BROWSER="brave-browser"
+export BROWSER="firefox"
 export TERM="xterm-256color"
-export MANPAGER="less"
 export QT_QPA_PLATFORMTHEME=gnome
 export QT_STYLE_OVERRIDE=kvantum
 
 # fzf
 export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='fdfind --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fdfind --type d --strip-cwd-prefix --hidden --follow --exclude .git"
+export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --exclude .git"
 
 export STARSHIP_CONFIG='/home/azmain/.config/starship/starship.toml'
 export PF_INFO='ascii title os kernel shell uptime palette'
@@ -159,7 +158,7 @@ alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 ################################
 
 odf() {
-    dir="$(fdfind . $HOME/.dotfiles -t d --hidden | fzf)"
+    dir="$(fd . $HOME/.dotfiles -t d --hidden | fzf)"
 
     if [[ "${dir}" == "" ]]; then
         echo "choose a directory"
@@ -171,7 +170,7 @@ odf() {
 
 sd() {
     local dir
-    dir="$(fdfind . --type directory | fzf)"
+    dir="$(fd . --type directory | fzf)"
     cd ${dir}
 }
 
@@ -261,7 +260,3 @@ PROMPT='%F{green}%B%n%f%F{red}@%f%F{blue}%m%b%f %F{gray}on%f %F{green}%B%2~%b%f 
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
 emoji=$(cat $HOME/.local/share/emoji.txt | rofi -dmenu -p "Sclect Emoji > " | cut -d' ' -f1 )
-echo $emoji | tr -d "\n" | wl-copy 
+# echo $emoji | tr -d "\n" | wl-copy 
+echo $emoji | tr -d "\n" | xclip -sel clip

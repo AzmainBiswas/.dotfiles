@@ -1,9 +1,9 @@
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$PATH
 
-export BROWSER=brave-browser
+export BROWSER=firefox
 export EDITOR=nvim
-export TERM=screen-256color
+export TERM=xterm-256color
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 

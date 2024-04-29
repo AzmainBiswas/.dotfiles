@@ -3,8 +3,8 @@ import = [
 ]
 
 [window]
-opacity = 0.9
-blur = true
+opacity = 0.8
+blur = false
 padding = { x = 5, y = 5}
 dimensions = { columns = 175, lines = 35 }
 title = "Alacritty"
@@ -27,7 +27,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>\\t"  # Default: ",│`|:\"' ()[]{}<
 save_to_clipboard = true  # Default: false
 
 [cursor]
-style = { shape = "Underline", blinking = "off" }
+style = { shape = "Block", blinking = "off" }
 # Values for `shape`: ▇ Block, _ Underline , | Beam
 
 [mouse]
