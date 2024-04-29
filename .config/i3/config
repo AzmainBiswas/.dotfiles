@@ -383,27 +383,27 @@ mode "$mode_gaps_outer" {
 #####################################################################################################################
 #####################################################################################################################
 
-bar {
-    # height 30
-	position top # bottom
-    font pango:JetBrainsMono Nerd Font 12
-	status_command i3status
-    tray_padding 1
-    strip_workspace_numbers yes
-
-    colors {
-            separator  #000000
-            background #000000
-            statusline #ffffff
-
-            #                   border  background text
-            focused_workspace  #1f222d #474747    #ebdbb2
-            active_workspace   #1f222d #252936    #5e81ac
-            inactive_workspace #282828 #282828    #4c566a
-            urgent_workspace   #1f222d #1f222d    #d3869b
-            binding_mode       #1f222d #81a1c1    #2e3440
-    }
-}
+# bar {
+#     # height 30
+# 	position top # bottom
+#     font pango:JetBrainsMono Nerd Font 12
+# 	status_command i3status
+#     tray_padding 1
+#     strip_workspace_numbers yes
+#
+#     colors {
+#             separator  #000000
+#             background #000000
+#             statusline #ffffff
+#
+#             #                   border  background text
+#             focused_workspace  #1f222d #474747    #ebdbb2
+#             active_workspace   #1f222d #252936    #5e81ac
+#             inactive_workspace #282828 #282828    #4c566a
+#             urgent_workspace   #1f222d #1f222d    #d3869b
+#             binding_mode       #1f222d #81a1c1    #2e3440
+#     }
+# }
 
     ##START THEMING WM
 

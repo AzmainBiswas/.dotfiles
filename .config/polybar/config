@@ -1,16 +1,17 @@
 [colors]
-background = #353641
+background = #000000
 background-alt = #373B41
 foreground = #ffffff
-primary = #F0C674
-secondary = #8ABEB7
+primary = #B9D9FB
+secondary = #30cbff
 alert = #A54242
 disabled = #979797
 orange = #FF5520
+green = #9ACD83
 
 [bar/mybar]
 width = 100%
-height = 20pt
+height = 25pt
 radius = 0
 
 ; dpi = 96
@@ -20,8 +21,8 @@ foreground = ${colors.foreground}
 
 line-size = 3pt
 
-border-size = 4pt
-border-color = #00000000
+border-size = 0pt
+border-color = #000000
 
 padding-left = 0
 padding-right = 0
@@ -31,9 +32,10 @@ module-margin = 1
 separator = |
 separator-foreground = ${colors.disabled}
 
-font-0 = "Ubuntu Sans:size=14;4"
-font-1 = "JetBrainsMono Nerd Font:size=11;4"
-font-2 = "icomoon;4"
+# font-0 = "Ubuntu Sans:size=14;4"
+font-0 = "JetBrainsMono Nerd Font:size=11;4"
+font-1 = "Noto Color Emoji:size=11;scale=3"
+# font-2 = "icomoon;4"
 
 modules-left = rofi xworkspaces xwindow
 # modules-right = pulseaudio battery memory cpu wlan date powermenu
@@ -45,18 +47,18 @@ cursor-scroll = ns-resize
 enable-ipc = true
 
 tray-position = right
-wm-restack = bspwm
+wm-restack = i3
 
 
 ; override-redirect = true
 
 [module/rofi]
 type = custom/text
-content-background = ${colors.background}
-content-foreground = ${colors.shade4}
-content-padding = 1
-click-left = "rofi -theme-str, 'window \{width: 100%;height: 100%;\}' -show drun"
 content = ""
+content-background = ${colors.background}
+content-foreground = ${colors.secondary}
+content-padding = 1
+click-left = "rofi -show drun"
 
 [module/xworkspaces]
 type = internal/xworkspaces
@@ -77,6 +79,8 @@ label-empty = %name%
 label-empty-foreground = ${colors.disabled}
 label-empty-padding = 1
 
+enable-scroll = true
+show-urgent = true
 ;icon-0 = 1;
 ;icon-1 = 2;
 ;icon-2 = 3;
@@ -95,8 +99,8 @@ label = %title:0:70:...%
 
 [module/pulseaudio]
 type = internal/pulseaudio
-format-volume-prefix = "VOL "
-format-volume-prefix-foreground = ${colors.primary}
+format-volume-prefix = " "
+format-volume-prefix-foreground = ${colors.green}
 format-volume = <label-volume>
 label-volume = %percentage%%
 label-muted =  muted
@@ -151,41 +155,41 @@ interval = 1
 date = %I:%M %p 
 date-alt = %d-%m-%Y %I:%M:%S %p
 label =   %date%
-label-foreground = ${colors.primary}
+label-foreground = ${colors.green}
 
 [module/battery]
 type = internal/battery
 full-at = 99
-low-at = 5
+low-at = 25
 battery = BAT1
 adapter = ACAD
 poll-interval = 5
 time-format = %H:%M
-format-charging = <animation-charging>   <label-charging>
-format-discharging = <ramp-capacity>   <label-discharging>
- format-full = <ramp-capacity>   <label-full>
- format-low = <label-low>   <animation-low>
+format-charging = <animation-charging>  <label-charging>
+format-discharging = <ramp-capacity>  <label-discharging>
+format-full = <ramp-capacity>  <label-full>
+format-low = <label-low>  <animation-low>
 label-charging =  Charging %percentage%%
 label-discharging =  Discharging %percentage%%
 label-full = Fully charged
 label-low = BATTERY LOW
-ramp-capacity-0 =    
-ramp-capacity-1 =    
-ramp-capacity-2 =    
-ramp-capacity-3 =    
-ramp-capacity-4 =    
+ramp-capacity-0 =   
+ramp-capacity-1 =   
+ramp-capacity-2 =   
+ramp-capacity-3 =   
+ramp-capacity-4 =   
 bar-capacity-width = 10
-animation-charging-0 =   
-animation-charging-1 =   
-animation-charging-2 =   
-animation-charging-3 =   
-animation-charging-4 =   
+animation-charging-0 = 
+animation-charging-1 =  
+animation-charging-2 =  
+animation-charging-3 =  
+animation-charging-4 =  
 animation-charging-framerate = 750
-animation-discharging-0 =   
-animation-discharging-1 =   
-animation-discharging-2 =   
-animation-discharging-3 =   
-animation-discharging-4 =   
+animation-discharging-0 =  
+animation-discharging-1 =  
+animation-discharging-2 =  
+animation-discharging-3 =  
+animation-discharging-4 =  
 animation-discharging-framerate = 500
 animation-low-0 = !
 animation-low-1 = 
@@ -194,16 +198,16 @@ animation-low-framerate = 200
 [module/powermenu]
 type = custom/text
 content-background = ${colors.background}
-content-foreground = ${colors.shade4}
+content-foreground = ${colors.orange}
 content-padding = 1
 click-left = "$HOME/bin/power-menu"
-content = " ⏻ "
+content = "⏻ "
 
 [module/weather]
 type = custom/script
 exec = "bash -c $HOME/.config/polybar/scripts/weather"
 content-background = ${colors.background}
-content-foreground = ${color.shade4}
+content-foreground = ${color.secondary}
 interval = 3600
 
 [settings]
