@@ -1,0 +1,36 @@
+import = [
+    "~/.config/alacritty/themes/Solarized Dark Higher Contrast.toml"
+]
+
+[window]
+opacity = 0.9
+blur = true
+padding = { x = 5, y = 5}
+dimensions = { columns = 175, lines = 35 }
+title = "Alacritty"
+
+dynamic_title = true
+decorations = "full" # none
+decorations_theme_variant = "Dark" # "Dark"
+class = { instance = "Alacritty", general = "Alacritty" }
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" } 
+bold = { style = "Bold" }
+italic = { style = "Italic" }
+bold_italic = { style = "Bold Italic" }
+size = 12.0
+
+[selection]
+# Characters that are used as separators for "semantic words" in Alacritty
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\\t"  # Default: ",│`|:\"' ()[]{}<>\\t"
+save_to_clipboard = true  # Default: false
+
+[cursor]
+style = { shape = "Underline", blinking = "off" }
+# Values for `shape`: ▇ Block, _ Underline , | Beam
+
+[mouse]
+hide_when_typing = true  # Default: false
+# Example: bindings = [{ mouse = "Left", action = "Paste" }]
+bindings = [{mouse = "Right", action = "Paste"}]

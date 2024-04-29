@@ -36,7 +36,7 @@ wget ${ComicShannsMono} --directory-prefix=${downloadFontDir}
 wget ${CascadiaCodeMono} --directory-prefix=${downloadFontDir}
 wget ${UbuntuMono} --directory-prefix=${downloadFontDir}
 wget ${JetBrainsMono} --directory-prefix=${downloadFontDir}
-wget ${UbuntuFamily} --directory-prefix=${downloadFontDir}
+# wget ${UbuntuFamily} --directory-prefix=${downloadFontDir}
 
 for font in "$downloadFontDir"/*; do
     fontName=$(echo "$font" | awk -F"/" '{print $NF}' | awk -F"." '{print $1}') 

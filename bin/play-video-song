@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# FIND="fd"
-FIND="fdfind"
+FIND="fd"
+# FIND="fdfind"
 MENU="dmenu -i -F -l 15 -p"
 # MENU="rofi -dmenu" # DONT WORK
 

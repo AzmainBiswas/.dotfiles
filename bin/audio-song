@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# FIND="fd"
-FIND="fdfind"
+FIND="fd"
+# FIND="fdfind"
 DMENU='dmenu -i -F -l 15 -p'
 FZF='fzf --height 70% --border rounded --reverse --prompt'
 terminal=foot
