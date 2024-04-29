@@ -54,11 +54,12 @@ wm-restack = i3
 
 [module/rofi]
 type = custom/text
-content = ""
+content = "🪟"
 content-background = ${colors.background}
 content-foreground = ${colors.secondary}
 content-padding = 1
 click-left = "rofi -show drun"
+click-right = "$HOME/bin/power-menu"
 
 [module/xworkspaces]
 type = internal/xworkspaces
@@ -169,7 +170,7 @@ format-discharging = <ramp-capacity>  <label-discharging>
 format-full = <ramp-capacity>  <label-full>
 format-low = <label-low>  <animation-low>
 label-charging =  🔌 %percentage%%
-label-discharging =  🔻 %percentage%%
+label-discharging =  ⏬ %percentage%%
 label-full = 💯 Fully charged
 label-low = 🪫 BATTERY LOW
 ramp-capacity-0 =   
@@ -198,9 +199,8 @@ animation-low-framerate = 200
 type = custom/text
 content-background = ${colors.background}
 content-foreground = ${colors.orange}
-content-padding = 1
 click-left = "$HOME/bin/power-menu"
-content = "❤️"
+content = "🔴"
 
 [module/weather]
 type = custom/script
@@ -212,8 +212,7 @@ interval = 3600
 type = custom/text
 content-background = ${colors.background}
 click-left = "$HOME/bin/x11-wallpaper"
-content-padding = 1
-content = "🖼️"
+content = "🪟"
 
 [settings]
 screenchange-reload = true
