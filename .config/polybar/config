@@ -39,7 +39,7 @@ font-1 = "Noto Color Emoji:scale=8"
 
 modules-left = rofi xworkspaces xwindow
 # modules-right = pulseaudio battery memory cpu wlan date powermenu
-modules-right = weather pulseaudio memory battery wlan date wallpaper powermenu
+modules-right = weather pulseaudio backlight memory battery wlan date wallpaper powermenu
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -213,6 +213,18 @@ type = custom/text
 content-background = ${colors.background}
 click-left = "$HOME/bin/x11-wallpaper"
 content = "♻️"
+
+[module/backlight]
+type = internal/backlight
+enable-scroll = false
+scroll-interval = 10
+format = <ramp> <label>
+label = %percentage%%
+ramp-0 = 🌑
+ramp-1 = 🌒
+ramp-2 = 🌓
+ramp-3 = 🌔
+ramp-4 = 🌕
 
 [settings]
 screenchange-reload = true
