@@ -4,13 +4,13 @@ local config = {}
 
 -- fonts
 config.font = wezterm.font_with_fallback({
+    "JetBrainsMono Nerd Font",
     "Fira Code",
     "Ubuntu Sans Mono",
-    "JetBrainsMono Nerd Font",
     "ComicShannsMono Nerd Font",
     "CaskaydiaCove Nerd Font",
 })
-config.font_size = 12.5
+config.font_size = 12
 
 config.default_cursor_style = "SteadyBlock"
 -- SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, BlinkingBar

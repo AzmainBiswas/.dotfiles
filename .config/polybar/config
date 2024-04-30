@@ -212,7 +212,7 @@ interval = 3600
 type = custom/text
 content-background = ${colors.background}
 click-left = "$HOME/bin/x11-wallpaper"
-content = "🪟"
+content = "♻️"
 
 [settings]
 screenchange-reload = true

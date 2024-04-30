@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+dwm_brightness() {
+	brightness=$(brightnessctl | awk -F'(' '{ print $2 }' | sed "s/)//g" | tr -d "\n")
+
+	printf "%s" "${SEP1}"
+    printf " ☀️ %s " "${brightness}"
+	printf "%s" "${SEP2}"
+}
+
+dwm_brightness
