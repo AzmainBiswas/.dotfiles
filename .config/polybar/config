@@ -225,6 +225,8 @@ ramp-1 = 🌒
 ramp-2 = 🌓
 ramp-3 = 🌔
 ramp-4 = 🌕
+click-left = exec brightnessctl set +5%
+click-right = exec brightnessctl set 5%-
 
 [settings]
 screenchange-reload = true
