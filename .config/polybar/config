@@ -39,7 +39,7 @@ font-1 = "Noto Color Emoji:scale=8"
 
 modules-left = rofi xworkspaces xwindow
 # modules-right = pulseaudio battery memory cpu wlan date powermenu
-modules-right = weather pulseaudio backlight memory battery wlan date wallpaper powermenu
+modules-right = pulseaudio backlight battery wlan date wallpaper powermenu
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -59,7 +59,7 @@ content-background = ${colors.background}
 content-foreground = ${colors.secondary}
 content-padding = 1
 click-left = "rofi -show drun"
-click-right = "$HOME/bin/power-menu"
+click-right = "$HOME/bin/i3-power-menu"
 
 [module/xworkspaces]
 type = internal/xworkspaces
@@ -199,7 +199,7 @@ animation-low-framerate = 200
 type = custom/text
 content-background = ${colors.background}
 content-foreground = ${colors.orange}
-click-left = "$HOME/bin/power-menu"
+click-left = "$HOME/bin/i3-power-menu"
 content = "🔴"
 
 [module/weather]

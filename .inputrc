@@ -8,6 +8,8 @@ set completion-query-items 1000
 
 set echo-control-characters Off
 
+set keymap vi-command
+
 # Map tab to cycle through all the possible completions.
 TAB: menu-complete
 

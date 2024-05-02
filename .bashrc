@@ -17,6 +17,8 @@ clr='\[\033[00m\]'    # Reset
 
 shopt -s autocd
 
+set -o vi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -170,15 +172,10 @@ complete -f -F _dotnet_bash_complete dotnet
 
 ###------------------- PROMPT -----------------------###
 
-# parse_git_branch() {
-# 	# Long form
-# 	git rev-parse --abbrev-ref HEAD 2>/dev/null
-# 	# Short form
-# 	# git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/.*\/\(.*\)/\1/'
-# }
+PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\h \[$(tput setaf 33)\]\w \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "
 
 # neofetch
-eval "$(starship init bash)" #starship
+# eval "$(starship init bash)" #starship
 # eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
 
 export NVM_DIR="$HOME/.nvm"

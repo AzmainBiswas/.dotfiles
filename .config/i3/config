@@ -84,7 +84,7 @@ bindsym $mod+period exec killall rofi || $HOME/bin/emoji
 #####################################################################################################################
 
 # bindsym Ctrl+Escape mode "$mode_system"
-bindsym Ctrl+Escape exec $HOME/bin/power-menu
+bindsym Ctrl+Escape exec $HOME/bin/i3-power-menu
 
 set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
 mode "$mode_system" {
@@ -261,8 +261,8 @@ exec $HOME/.config/i3/startup.sh
 #################                          applications keyboard shortcuts                          #################
 #####################################################################################################################
 
-bindsym $mod+Return exec wezterm;focus
-bindsym Ctrl+Return exec alacritty;focus
+bindsym $mod+Return exec alacritty;focus
+bindsym Ctrl+Return exec wezterm;focus
 
 bindsym control+mod1+u exec --no-startup-id pavucontrol
 
