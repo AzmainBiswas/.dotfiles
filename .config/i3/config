@@ -1,7 +1,7 @@
 #### importent shit ######
 
-exec systemctl --user mask xdg-desktop-portal-gnome &
-exec systemctl --user start xdg-desktop-portal &
+# exec systemctl --user mask xdg-desktop-portal-gnome &
+# exec systemctl --user start xdg-desktop-portal &
 
 #####################################################################################################################
 #################                          Define the $mod variable/key                             #################
@@ -256,6 +256,7 @@ mode "resize" {
 #Authentication dialog (polkit-gnome)
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec $HOME/.config/i3/startup.sh
+exec_always $HOME/.config/polybar/launch.sh
 
 #####################################################################################################################
 #################                          applications keyboard shortcuts                          #################
