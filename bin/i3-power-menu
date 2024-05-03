@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# action=$(printf "Shutdown\nLock\nSuspend\nHibernate\nReboot" | rofi -dmenu -case-sensitive -p "Choose option >")
-action=$(printf "Shutdown\nLock\nLogout\nSuspend\nHibernate\nReboot" | dmenu -i -F -p "Choose option >")
+action=$(printf "Shutdown\nLock\nSuspend\nExit\nHibernate\nReboot" | rofi -dmenu -case-sensitive -p "Power Menu")
+# action=$(printf "Shutdown\nLock\nLogout\nSuspend\nHibernate\nReboot" | dmenu -i -F -p "Choose option >")
 
 case "${action}" in
 Shutdown)
@@ -17,6 +17,9 @@ Suspend)
 	i3lock -i $HOME/.config/background && sleep 1
 	systemctl suspend
 	;;
+Exit)
+    i3-msg exit
+    ;;
 Hibernate)
 	i3lock -i $HOME/.config/background && sleep 1
 	systemctl hibernate

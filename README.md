@@ -1,5 +1,5 @@
 # my-dotfiles
-I am using sway in debian testing righr now.
+I am using sway in fedora righr now.
 
 ## Previews
 

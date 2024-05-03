@@ -27,7 +27,7 @@ if __name__ == "__main__":
     os.system("feh --bg-fill $HOME/.config/background")
 
     # send notifucation
-    os.system(f"notify-send -i {fullpath} 'Wallpaper set!!' 'wallpaper has been set to\n{wallpaper}'")
+    # os.system(f"notify-send -i {fullpath} 'Wallpaper set!!' 'wallpaper has been set to\n{wallpaper}'")
     # notify2.init("Wallpaper")
     # notification = notify2.Notification(
     #     "Wallpaper Set!!", f"Wallpaper has been set to \n{wallpaper}", fullpath

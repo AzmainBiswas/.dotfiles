@@ -75,7 +75,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # finctions
 #
 odf() {
-	dir="$(fdfind . $HOME/.dotfiles -t d --hidden | fzf)"
+	dir="$(fd . $HOME/.dotfiles -t d --hidden | fzf)"
 
 	if [[ "${dir}" == "" ]]; then
 		echo "choose a directory"
@@ -87,7 +87,7 @@ odf() {
 
 sd() {
 	local dir
-	dir="$(fdfind . --type directory | fzf)"
+	dir="$(fd . --type directory | fzf)"
 	cd ${dir}
 }
 
@@ -170,52 +170,11 @@ complete -f -F _dotnet_bash_complete dotnet
 
 ###------------------- PROMPT -----------------------###
 
-# parse_git_branch() {
-# 	# Long form
-# 	git rev-parse --abbrev-ref HEAD 2>/dev/null
-# 	# Short form
-# 	# git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/.*\/\(.*\)/\1/'
-# }
-
-# bash git prompt
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-GIT_PS1_SHOWUPSTREAM="verbose"
-
-__git_ps1_improved() {
-	local git_current_branch_name="\$(__git_ps1 '%s' | sed 's/ .\+//' | sed -e 's/[\\\\/&]/\\\\\\\\&/g')"
-	local git_status_substitutes=(
-		"s/$git_current_branch_name//;"          # remove branch temporarily
-		"s/u//;"                                 # upstream
-		"s/+\([0-9]\+\)/↑\1/;"                   # outgoing
-		"s/-\([0-9]\+\)/↓\1/;"                   # incoming
-		"s/%/?/;"                                # untracked
-		"s/+/+/;"                                # staged
-		"s/*/✕/;"                                # unstaged
-		"s/\(.*\)/ $git_current_branch_name\1/;" # insert branch again
-	)
-
-	echo "\$(__git_ps1 '%s'| sed \"${git_status_substitutes[@]}\")"
-}
-
-function bash_prompt() {
-	PS1='${debian_chroot:+($debian_chroot)}'
-	# with username
-	# PS1+=${blu}'\u'${clr}'@'${ylw}'\h'${cyn}' \W'${grn}' $(parse_git_branch)'${grn}' > '${clr}
-	# With distro logo
-	# PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
-	PS1+=${cyn}'\W'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
-}
-
-bash_prompt
+PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\w \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "
 
 # neofetch
 # eval "$(starship init bash)" #starship
 # eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # zoxide
 # install zoxide first

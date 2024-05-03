@@ -1,16 +1,16 @@
 local wezterm = require("wezterm")
-
+local act = wezterm.action
 local config = {}
 
 -- fonts
 config.font = wezterm.font_with_fallback({
-    "Fira Code",
-    "Ubuntu Sans Mono",
-    "JetBrainsMono Nerd Font",
-    "ComicShannsMono Nerd Font",
-    "CaskaydiaCove Nerd Font",
+	"JetBrainsMono Nerd Font",
+	"Fira Code",
+	"Ubuntu Sans Mono",
+	"ComicShannsMono Nerd Font",
+	"CaskaydiaCove Nerd Font",
 })
-config.font_size = 12.5
+config.font_size = 12
 
 config.default_cursor_style = "SteadyBlock"
 -- SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, BlinkingBar
@@ -20,10 +20,10 @@ config.default_cursor_style = "SteadyBlock"
 -- config.color_scheme = "tokyonight_night"
 -- config.color_scheme = "Catppuccin Mocha"
 config.color_scheme = "GitHub Dark"
-config.color_scheme = 'Solarized Dark Higher Contrast'
+config.color_scheme = "Solarized Dark Higher Contrast"
 
 -- background
-config.window_background_opacity = 0.85
+config.window_background_opacity = 0.8
 
 -- dimensions
 config.initial_cols = 150
@@ -51,11 +51,27 @@ config.audible_bell = "Disabled"
 -- }
 
 config.keys = {
-    {
-        key = "F11",
-        -- mods = "SHIFT|CTRL",
-        action = wezterm.action.ToggleFullScreen,
-    },
+	{
+		key = "F11",
+		-- mods = "SHIFT|CTRL",
+		action = wezterm.action.ToggleFullScreen,
+	},
+}
+
+config.mouse_bindings = {
+	{
+		event = { Down = { streak = 1, button = "Right" } },
+		mods = "NONE",
+		action = wezterm.action_callback(function(window, pane)
+			local has_selection = window:get_selection_text_for_pane(pane) ~= ""
+			if has_selection then
+				window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
+				window:perform_action(act.ClearSelection, pane)
+			else
+				window:perform_action(act({ PasteFrom = "Clipboard" }), pane)
+			end
+		end),
+	},
 }
 
 return config

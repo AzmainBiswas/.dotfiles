@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# $HOME/.config/polybar/launch.sh &
+$HOME/.config/polybar/launch.sh &
 feh --bg-fill $HOME/.config/background &
 nm-applet &
 blueman-applet &
@@ -8,7 +8,7 @@ dunst -config "$HOME/.config/dunst/dunstrc" &
 # emacs --daemon &
 # xfce3-power-manager &
 mpd &
-clipmenud &
+# clipmenud &
 numlockx & 
 # kdeconnect-indicator &
 flameshot &

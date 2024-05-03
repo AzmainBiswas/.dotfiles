@@ -1,9 +1,9 @@
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$PATH
 
-export BROWSER=brave-browser
+export BROWSER=firefox
 export EDITOR=nvim
-export TERM=screen-256color
+export TERM=xterm-256color
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
@@ -22,9 +22,9 @@ export MANPAGER="nvim +Man!"
 
 # fzf
 export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='fdfind --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fdfind --type d --strip-cwd-prefix --hidden --follow --exclude .git"
+export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --exclude .git"
 
 # export SDL_VIDEODRIVER=wayland
 # export _JAVA_AWT_WM_NONREPARENTING=1

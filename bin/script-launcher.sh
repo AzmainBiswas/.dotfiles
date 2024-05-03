@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# FIND="fd"
-FIND="fdfind"
+FIND="fd"
+# FIND="fdfind"
 SCRIPTFOLDER="$HOME/bin"
 DMENU="dmenu -F -i -l 10 -p"
 ROFI="rofi -dmenu -i -p"
