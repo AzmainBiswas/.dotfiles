@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 dwm_date() {
-	printf "%s" "${SEP1}"
-    printf " %s " " $(date "+ 🗓️ %A %b-%d 🕗 %I:%M %p ")"
-	printf "%s" "${SEP2}"
+    printf "%s" " $(date "+🗓️ %A %b-%d 🕗 %I:%M %p")"
 }
 
 dwm_date

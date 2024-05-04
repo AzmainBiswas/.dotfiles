@@ -15,4 +15,4 @@ dwm_wifi() {
 
 dwm_wifi
 
-printf " %s " "${msg}"
+printf "%s" "${msg}"

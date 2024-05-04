@@ -4,19 +4,17 @@ dwm_battery() {
 	capacity=$(cat /sys/class/power_supply/BAT1/capacity)
 	status=$(cat /sys/class/power_supply/BAT1/status)
 
-	printf "%s" "${SEP1}"
-
-	if [ "$status" = "Charging" ]; then
-		printf " 🔌 %s %s%% " "${status}" "${capacity}" # %% for % symbol in bash
-	elif [ "$status" = "Discharging" ]; then
-		if [ "$capacity" -lt 20 ]; then
-			printf " 🆘 low %s%% " "$capacity"
+	if [ $status = "Charging" ]; then
+		printf "🔌 %s %s%% " "${status}" "${capacity}" # %% for % symbol in bash
+    elif [ $status = "Full" ]; then
+        printf "💯 %s" "Full"
+	elif [ $status = "Discharging" ]; then
+		if [ $capacity -lt 20 ]; then
+			printf "🆘 low %s%% " "$capacity"
 		else
-			printf " ⏬ %s %s%% " "${status}" "${capacity}"
+			printf "⏬ %s %s%% " "${status}" "${capacity}"
 		fi
 	fi
-
-	printf "%s" "${SEP2}"
 }
 
 dwm_battery

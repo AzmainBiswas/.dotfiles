@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # get volume for dwm_bar
-msg=""
-
 dwm_volume() {
     mute=$(pactl -f "json" list sinks | jq '.[-1].mute')
     device_name=$(pactl -f "json" list sinks | jq '.[-1].description' | sed "s/\"//g")
@@ -16,8 +14,9 @@ dwm_volume() {
             msg="🫐 ${device_name} 🔊 ${volume_percent}"
         fi
     fi
+
+    printf "%s" "$msg"
 }
 
 dwm_volume
 
-printf " %s " "$msg"

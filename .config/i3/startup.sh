@@ -2,7 +2,7 @@
 
 feh --bg-fill $HOME/.config/background &
 nm-applet &
-blueman-applet &
+# blueman-applet &
 dunst -config "$HOME/.config/dunst/dunstrc" &
 # emacs --daemon &
 # xfce3-power-manager &
