@@ -6,4 +6,4 @@ dwm_weather() {
     printf "%s" "${SEP2}"
 }
 
-# dwm_weather
+dwm_weather

@@ -17,7 +17,7 @@ if [[ -z "$1" ]]; then
 else
     yt-dlp -F "${video_link}"
     echo -e "================================================================================"
-    echo -ne "${RED}Enter Video ID: "
+    echo -ne "${RED}Enter Video ID: ${NC}"
     read video_quality
     yt-dlp -f "$video_quality+ba" --merge-output-format mp4 "$video_link" -o "$video_name_lower"
 fi

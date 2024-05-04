@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# get volume for dwm_bar
+msg=""
+
+dwm_volume() {
+    mute=$(pactl -f "json" list sinks | jq '.[-1].mute')
+    device_name=$(pactl -f "json" list sinks | jq '.[-1].description' | sed "s/\"//g")
+    volume_percent=$(pactl -f "json" list sinks | jq '.[-1].volume["front-left"].value_percent' | sed "s/\"//g")
+
+    if [ "$mute" = true ]; then
+        msg="🔇 mute"
+    else
+        if [[ $device_name = "Family 17h/19h HD Audio Controller Analog Stereo" ]]; then
+            msg="🔊 ${volume_percent}"
+        else
+            msg="🫐 ${device_name} 🔊 ${volume_percent}"
+        fi
+    fi
+}
+
+dwm_volume
+
+printf " %s " "$msg"
