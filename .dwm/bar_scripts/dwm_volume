@@ -11,7 +11,7 @@ dwm_volume() {
         if [[ $device_name = "Family 17h/19h HD Audio Controller Analog Stereo" ]]; then
             msg="🔊 ${volume_percent}"
         else
-            msg="🫐 ${device_name} 🔊 ${volume_percent}"
+            msg="🫐 🔊 ${volume_percent}"
         fi
     fi
 
