@@ -4,7 +4,8 @@
 FIND="fdfind"
 MENU="fzf --border=rounded --margin=5% --color=dark --reverse --prompt"
 
-video_player="devour mpv"
+# video_player="devour mpv"
+video_player="mpv"
 
 ALL="/mnt/media/video/songs/"
 BENGALI="/mnt/media/video/songs/bengali/"

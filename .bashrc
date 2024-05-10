@@ -37,6 +37,7 @@ alias vim=nvim
 
 # Move to the parent folder.
 alias ..='cd ..;pwd'
+alias cd..="cd ..;pwd"
 # Move up two parent folders.
 alias ...='cd ../..;pwd'
 # Move up three parent folders.
@@ -63,10 +64,14 @@ alias merge="xrdb -merge ~/.Xresources"
 alias sb='source ~/.bashrc && echo "bashrc sourceed"'
 alias eb='nvim ~/.bashrc'
 
-#shell
+# shell
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
+
+# devour
+# alias mpv='devour mpv'
+# alias sxiv='devour sxiv'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
