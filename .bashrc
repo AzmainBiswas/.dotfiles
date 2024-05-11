@@ -80,7 +80,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # finctions
 #
 odf() {
-	dir="$(fdfind . $HOME/.dotfiles -t d --hidden | fzf)"
+	dir="$(fd . $HOME/.dotfiles -t d --hidden | fzf)"
 
 	if [[ "${dir}" == "" ]]; then
 		echo "choose a directory"
@@ -92,7 +92,7 @@ odf() {
 
 sd() {
 	local dir
-	dir="$(fdfind . --type directory | fzf)"
+	dir="$(fd . --type directory | fzf)"
 	cd ${dir}
 }
 
@@ -175,6 +175,7 @@ complete -f -F _dotnet_bash_complete dotnet
 
 ###------------------- PROMPT -----------------------###
 
+source ~/.git-prompt.sh
 
 function bash_prompt() {
 	PS1='${debian_chroot:+($debian_chroot)}'
@@ -187,10 +188,9 @@ function bash_prompt() {
 
 bash_prompt
 
-# neofetch
 # eval "$(starship init bash)" #starship
 # eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
 
 # zoxide
 # install zoxide first
-[[ -x "/home/azmain/.local/bin/zoxide" ]] && eval "$(zoxide init bash)" && alias cd="z"
+[[ -x "/usr/bin/zoxide" ]] && eval "$(zoxide init bash)" && alias cd="z"

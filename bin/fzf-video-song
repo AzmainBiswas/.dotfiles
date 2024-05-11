@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# FIND="fd"
-FIND="fdfind"
+FIND="fd"
+# FIND="fdfind"
 MENU="fzf --border=rounded --margin=5% --color=dark --reverse --prompt"
 
 # video_player="devour mpv"
