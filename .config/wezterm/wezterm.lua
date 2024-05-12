@@ -23,7 +23,7 @@ config.color_scheme = "GitHub Dark"
 config.color_scheme = "Solarized Dark Higher Contrast"
 
 -- background
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.9
 
 -- dimensions
 config.initial_cols = 150
