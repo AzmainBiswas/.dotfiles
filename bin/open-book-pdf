@@ -1,18 +1,16 @@
 #!/usr/bin/env bash
 
-FIND="fd"
-# FIND="fdfind"
 DMENU='dmenu -i -F -l 15 -p'
 FZF='fzf --height 70% --border rounded --reverse --prompt'
 ROFI='rofi -dmenu -i -theme ~/.config/rofi/full-theme.rasi -p'
 
-BOOK=/mnt/docs/book
-PROJ=/mnt/docs/poject
-NOTE=/mnt/docs/notes
+BOOK=/mnt/docs/book/
+PROJ=/mnt/docs/poject/
+NOTE=/mnt/docs/notes/
 
 
 main() {
-    choose=$($FIND . $BOOK $PROJ $NOTE -e pdf -e djvu | $MENU "Book Name > " )
+    choose=$(find $BOOK $PROJ $NOTE -type f -iname "*.pdf" -o -iname "*.djvu" | $MENU "Book Name > " )
     if [ "$choose" == "" ]
     then
 	exit

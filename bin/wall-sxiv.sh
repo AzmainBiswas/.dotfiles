@@ -3,7 +3,7 @@
 # set wallpaper using sxiv 
 # select wallpaper using m and quite
 
-wall_name=$(fd . /mnt/media/wallpapers/ -t f | sxiv -t -b -io)
+wall_name=$(find /mnt/media/wallpapers/ -type f | sxiv -tp -b -io -Z 100)
 
 if [[ -f "${wall_name}" ]]; then
     cp -f ${wall_name} "$HOME/.config/background" && feh --bg-fill "$HOME/.config/background" 

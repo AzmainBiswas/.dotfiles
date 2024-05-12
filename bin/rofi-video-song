@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-FIND="fd"
-# FIND="fdfind"
 ALL="/mnt/media/video/songs/"
 
-mpv $($FIND . ${ALL} -e mkv -e mp4 -e webm | rofi -dmenu -matching "fuzzy" -p "Videos" )
+mpv $(find ${ALL} -type f -iname "*.mkv" -o -iname "*.mp4" -o -iname "*.webm" | rofi -dmenu -matching "fuzzy" -p "Videos" )

@@ -10,7 +10,7 @@ config.font = wezterm.font_with_fallback({
 	"ComicShannsMono Nerd Font",
 	"CaskaydiaCove Nerd Font",
 })
-config.font_size = 12
+config.font_size = 13
 
 config.default_cursor_style = "SteadyBlock"
 -- SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, BlinkingBar

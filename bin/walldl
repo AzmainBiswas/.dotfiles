@@ -7,15 +7,15 @@
 
 # Variables
 # wallpaper directory
-WALLDIR="$HOME/Downloads/wallpaper/"
+WALLDIR="/mnt/media/wallpapers"
 # cache directory: ~/.cache/walldl
 CACHEDIR="$HOME/.cache/walldl"
 # datafile: ~/.cache/walldl_data.json
 DATAFILE="$HOME/.cache/walldata.json"
 # max_page: maximum page
-max_page=5
+max_page=10
 # topRange: 1d, 3d, 1w, 1M , 3M, 6M, 1y
-topRange=1M
+topRange=1y
 # quality : large original small
 quality=large
 

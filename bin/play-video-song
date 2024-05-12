@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-FIND="fd"
-# FIND="fdfind"
-MENU="dmenu -i -F -l 15 -p"
+MENU="dmenu -i -F -l 30 -p"
 # MENU="rofi -dmenu" # DONT WORK
 
 ALL="/mnt/media/video/songs/"
@@ -14,16 +12,16 @@ LANG=$(printf "ALL\nBengali\nEnglish\nHindi" | ${MENU} "Sclect Language > ")
 
 case "${LANG}" in
     Bengali)
-	mpv --fs --loop $($FIND . ${BENGALI} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
+	mpv --fs --loop $(find ${BENGALI} -type f -iname "*.webm" -o -iname "*.mp4" -o -iname "*.mkv" | ${MENU} "Sclect Video > ")
 	;;
     English)
-	mpv --fs --loop $($FIND . ${ENGLISH} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
+	mpv --fs --loop $(find ${ENGLISH} -type f -iname "*.webm" -o -iname "*.mp4" -o -iname "*.mkv" | ${MENU} "Sclect Video > ")
 	;;
     Hindi)
-	mpv --fs --loop $($FIND . ${HINDI} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
+	mpv --fs --loop $(find ${HINDI} -type f -iname "*.webm" -o -iname "*.mp4" -o -iname "*.mkv" | ${MENU} "Sclect Video > ")
 	;;
     ALL)
-	mpv --fs --loop $($FIND . ${ALL} -e webm -e mp4 -e mkv | ${MENU} "Sclect Video > ")
+	mpv --fs --loop $(find ${ALL} -type f -iname "*.webm" -o -iname "*.mp4" -o -iname "*.mkv" | ${MENU} "Sclect Video > ")
 	;;
     *)
 	printf "You choice in invalide. Run the script again" | ${MENU}

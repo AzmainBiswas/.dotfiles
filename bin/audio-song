@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-FIND="fd"
-# FIND="fdfind"
 DMENU='dmenu -i -F -l 15 -p'
 FZF='fzf --height 70% --border rounded --reverse --prompt'
 terminal=alacritty
@@ -45,7 +43,7 @@ add() {
 }
 
 FolderPlay() {
-    folder=$($FIND . /mnt/media/music/ --type directory | cut -b 18-1000 | ${MENU} 'Choose a Folder > ' )
+    folder=$(find /mnt/media/music/ -type d | cut -b 18-1000 | ${MENU} 'Choose a Folder > ' )
     if [ "$folder" == "" ]
     then
 	exit

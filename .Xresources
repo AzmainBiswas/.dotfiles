@@ -1,8 +1,104 @@
+! Urxvt
+! --------
+! general settings
+URxvt.saveLines:        50000
+URxvt.termName:         xterm-256color
+URxvt.urgentOnBell:     false
+URxvt.visualBell:       false
+URxvt.iso14755:         false
+URxvt.iso14755_52:      false
+URxvt.meta8:            false
+URxvt.metaSendsEscape:  true
+URxvt.urlLauncher:      firefox
+URxvt.underlineURLs:    true
+URxvt.urlButton:        1
+! appearance
+URxvt.geometry: 		 400x400
+URxvt.depth:             32
+!URxvt.transparent:      true
+URxvt.shading:           80
+URxvt.underlineColor:    #4682B4
+URxvt.highlightColor:    #666666
+URxvt.throughColor:      #4682B4
+URxvt.scrollBar:         false
+URxvt.scrollTtyOutput:   false
+URxvt.scrollWithBuffer:  true
+URxvt.scrollTtyKeypress: true
+URxvt.internalBorder:    0
+URxvt.externalBorder:    0
+
+! special
+! url: https://github.com/mbadolato/iTerm2-Color-Schemes
+URxvt.foreground:  #9cc2c3
+URxvt.background:  [90]#001e27
+URxvt.cursorColor: #f34b00
+!
+! Black
+URxvt.color0:      #002831
+URxvt.color8:      #006488
+!
+! Red
+URxvt.color1:      #d11c24
+URxvt.color9:      #f5163b
+!
+! Green
+URxvt.color2:      #6cbe6c
+URxvt.color10:     #51ef84
+!
+! Yellow
+URxvt.color3:      #a57706
+URxvt.color11:     #b27e28
+!
+! Blue
+URxvt.color4:      #2176c7
+URxvt.color12:     #178ec8
+!
+! Magenta
+URxvt.color5:      #c61c6f
+URxvt.color13:     #e24d8e
+!
+! Cyan
+URxvt.color6:      #259286
+URxvt.color14:     #00b39e
+!
+! White
+URxvt.color7:      #eae3cb
+URxvt.color15:     #fcf4dc
+!
+! Bold, Italic, Underline
+URxvt.colorBD:     #b5d5d3
+!URxvt.colorIT:
+!URxvt.colorUL:
+
+! font
+URxvt.font: xft:JetBrainsMono Nerd Font:size=13:antialias=true,\
+            xft:Noto Color Emoji:size=13:antialias=true:autohint=true
+
+!! Copy Paste & Other Extensions
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,resize-font
+URxvt.clipboard.autocopy: true
+URxvt.copyCommand: xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+! Restore Ctrl+Shift+(c|v)
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.C-minus:  resize-font:smaller
+URxvt.keysym.C-plus:   resize-font:bigger
+URxvt.keysym.C-equal:  resize-font:equal
+
 ! Sxiv
-Sxiv.background: #1d2021
-Sxiv.foreground: #ebdbb2
-Sxiv.font: RobotoMono Nerd Font:size=13
+! --------
+Sxiv.background: #001e27
+Sxiv.foreground: #9cc2c3
+Sxiv.font: UbuntuMono Nerd Fon:size=13
 
 ! courser
+! --------
 Xcursor.theme: Yaru
 Xcursor.size: 20
