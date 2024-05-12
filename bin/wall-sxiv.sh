@@ -5,4 +5,6 @@
 
 wall_name=$(fd . /mnt/media/wallpapers/ -t f | sxiv -t -b -io)
 
-cp -f ${wall_name} "$HOME/.config/background" && feh --bg-fill "$HOME/.config/background" 
+if [[ -f "${wall_name}" ]]; then
+    cp -f ${wall_name} "$HOME/.config/background" && feh --bg-fill "$HOME/.config/background" 
+fi
