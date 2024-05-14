@@ -1,5 +1,6 @@
 import = [
-    "/home/azmain/.config/alacritty/themes/solarized_dark.toml"
+    # "/home/azmain/.config/alacritty/themes/solarized_dark.toml"
+    "/home/azmain/.config/alacritty/themes/GruvboxDarkHard.toml"
 ]
 
 

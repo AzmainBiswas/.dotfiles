@@ -29,44 +29,44 @@ URxvt.externalBorder:    0
 
 ! special
 ! url: https://github.com/mbadolato/iTerm2-Color-Schemes
-URxvt.foreground:  #9cc2c3
-URxvt.background:  [90]#001e27
-URxvt.cursorColor: #f34b00
+URxvt.foreground:  #ebdbb2
+URxvt.background:  [90]#1b1b1b
+URxvt.cursorColor: #ebdbb2
 !
 ! Black
-URxvt.color0:      #002831
-URxvt.color8:      #006488
+URxvt.color0:      #1b1b1b
+URxvt.color8:      #928374
 !
 ! Red
-URxvt.color1:      #d11c24
-URxvt.color9:      #f5163b
+URxvt.color1:      #cc241d
+URxvt.color9:      #fb4934
 !
 ! Green
-URxvt.color2:      #6cbe6c
-URxvt.color10:     #51ef84
+URxvt.color2:      #98971a
+URxvt.color10:     #b8bb26
 !
 ! Yellow
-URxvt.color3:      #a57706
-URxvt.color11:     #b27e28
+URxvt.color3:      #d79921
+URxvt.color11:     #fabd2f
 !
 ! Blue
-URxvt.color4:      #2176c7
-URxvt.color12:     #178ec8
+URxvt.color4:      #458588
+URxvt.color12:     #83a598
 !
 ! Magenta
-URxvt.color5:      #c61c6f
-URxvt.color13:     #e24d8e
+URxvt.color5:      #b16286
+URxvt.color13:     #d3869b
 !
 ! Cyan
-URxvt.color6:      #259286
-URxvt.color14:     #00b39e
+URxvt.color6:      #689d6a
+URxvt.color14:     #8ec07c
 !
 ! White
-URxvt.color7:      #eae3cb
-URxvt.color15:     #fcf4dc
+URxvt.color7:      #a89984
+URxvt.color15:     #ebdbb2
 !
 ! Bold, Italic, Underline
-URxvt.colorBD:     #b5d5d3
+URxvt.colorBD:     #ebdbb2
 !URxvt.colorIT:
 !URxvt.colorUL:
 
@@ -94,8 +94,8 @@ URxvt.keysym.C-equal:  resize-font:equal
 
 ! Sxiv
 ! --------
-Sxiv.background: #001e27
-Sxiv.foreground: #9cc2c3
+Sxiv.background: #1b1b1b
+Sxiv.foreground: #ebdbb2
 Sxiv.font: UbuntuMono Nerd Fon:size=13
 
 ! courser

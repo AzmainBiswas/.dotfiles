@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-dwmblocks &
 feh --bg-fill $HOME/.config/background &
+dwmblocks &
 # nm-applet &
 # blueman-applet &
 dunst -config "$HOME/.config/dunst/dunstrc" &
