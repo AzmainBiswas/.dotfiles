@@ -14,8 +14,7 @@ Logout)
     pkill dwm
     ;;
 Suspend)
-	slock &
-	systemctl suspend
+	slock systemctl suspend -i
 	;;
 Reboot)
 	systemctl reboot

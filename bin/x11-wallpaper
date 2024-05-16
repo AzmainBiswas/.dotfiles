@@ -1,37 +1,24 @@
-#!/usr/bin/env python3
+#!/usr/bin/env bash
+# randomly set x11 wallpaper using feh
 
-import os
-import random
-# import notify2
+# wallpaper directory
+WALLPAPER_DIR="/mnt/media/wallpapers/"
 
-WallPath = "/mnt/media/wallpapers"
+wallpapers=$(find $WALLPAPER_DIR -type f -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" )
+number_of_wallpaper=$(printf "%s\n" "$wallpapers" | wc -l ) # total number of wallpaper
 
+copy_wallpaper() {
+    random_index=$(( $RANDOM % $number_of_wallpaper ))
+    # get a random wallpaper
+    wallpaper=$(printf "%s\n" "$wallpapers" | sed -n "${random_index}p" ) # sed -n "2p" -> print 2nd line. 
 
-def Choose_wall():
-    list_wallpaper = []
-    all_wallpapers = os.listdir(WallPath)
-    for _ in range(6):
-        ch_wallpaper = random.choice(all_wallpapers)
-        list_wallpaper.append(ch_wallpaper)
-        all_wallpapers.remove(ch_wallpaper)
-    wallpaper = random.choice(list_wallpaper)
-    return wallpaper
+    # copy wallpaper
+    cp -f "$wallpaper" "$HOME/.config/background"
+}
 
+# copy wallpaper
+copy_wallpaper
 
-if __name__ == "__main__":
-    wallpaper = Choose_wall()
-    fullpath = os.path.join(WallPath, wallpaper)
-    os.system(f'cp -f "{fullpath}" $HOME/.config/background')
-
-    # set wallaper
-    os.system("feh --bg-fill $HOME/.config/background")
-
-    # send notifucation
-    # os.system(f"notify-send -i {fullpath} 'Wallpaper set!!' 'wallpaper has been set to\n{wallpaper}'")
-    # notify2.init("Wallpaper")
-    # notification = notify2.Notification(
-    #     "Wallpaper Set!!", f"Wallpaper has been set to \n{wallpaper}", fullpath
-    # )
-    # notification.set_urgency(notify2.URGENCY_NORMAL)
-    # notification.set_timeout(5000)
-    # notification.show()
+# set wallpaper
+feh --bg-fill "$HOME/.config/background"
+notify-send -i "$HOME/.config/background" "wallpaper" "wallpaper chenged"

@@ -8,7 +8,7 @@ export TERM=xterm-256color
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 # neovim as man page
-export MANPAGER="nvim +Man!"
+# export MANPAGER="nvim +Man!"
 
 # if running bash
 # if [ -n "$BASH_VERSION" ]; then

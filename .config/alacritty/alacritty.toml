@@ -3,10 +3,8 @@ import = [
     "/home/azmain/.config/alacritty/themes/GruvboxDarkHard.toml"
 ]
 
-
 [window]
-
-opacity = 0.9
+opacity = 0.85
 padding = {x = 5, y = 2}
 dimensions = { columns = 150, lines = 35 }
 decorations = "Full"

@@ -2,7 +2,7 @@
 
 feh --bg-fill $HOME/.config/background &
 dwmblocks &
-# nm-applet &
+nm-applet &
 # blueman-applet &
 dunst -config "$HOME/.config/dunst/dunstrc" &
 # emacs --daemon &
@@ -12,6 +12,7 @@ mpd &
 numlockx on & 
 # kdeconnect-indicator &
 flameshot &
+## polkit
 # lxpolkit &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 picom --config $HOME/.config/picom/picom.conf &
