@@ -1,5 +1,19 @@
+! Font options - ~/.fonts.conf seems to override this
+! Resolution for Xft in dots per inch (e.g. 96)
+Xft.dpi:       115
+! Type of subpixel antialiasing (none, rgb, bgr, vrgb or vbgr)
+Xft.rgba:      rgb
+Xft.antialias: true
+Xft.hinting:   false
+Xft.autohint:  true
+! What degree of hinting to use (hintnone, hintslight, hintmedium, or hintfull)
+Xft.hintstyle: hintslight
+
 ! Urxvt
 ! --------
+! font
+URxvt.font: xft:JetBrainsMono Nerd Font:size=13:antialias=true,\
+            xft:Noto Color Emoji:size=13:antialias=true:autohint=true
 ! general settings
 URxvt.saveLines:        50000
 URxvt.termName:         xterm-256color
@@ -69,10 +83,6 @@ URxvt.color15:     #ebdbb2
 URxvt.colorBD:     #ebdbb2
 !URxvt.colorIT:
 !URxvt.colorUL:
-
-! font
-URxvt.font: xft:JetBrainsMono Nerd Font:size=13:antialias=true,\
-            xft:Noto Color Emoji:size=13:antialias=true:autohint=true
 
 !! Copy Paste & Other Extensions
 URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,resize-font
