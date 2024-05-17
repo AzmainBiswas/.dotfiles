@@ -28,8 +28,8 @@ export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --exc
 
 # export SDL_VIDEODRIVER=wayland
 # export _JAVA_AWT_WM_NONREPARENTING=1
-export QT_QPA_PLATFORMTHEME=gnome
-export QT_STYLE_OVERRIDE=kvantum
+export QT_QPA_PLATFORMTHEME=qt5ct
+# export QT_STYLE_OVERRIDE=kvantum
 # export QT_QPA_PLATFORM=gtk2
 # export XDG_CURRENT_DESKTOP=sway
 # export XDG_SESSION_DESKTOP=sway
