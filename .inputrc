@@ -1,6 +1,7 @@
 set colored-stats Off
 set colored-completion-prefix On
 
+# Show auto-completion list automatically, without double tab
 set show-all-if-ambiguous On
 set completion-ignore-case On # case insensitive search 
 set completion-display-width 0
@@ -18,7 +19,7 @@ TAB: menu-complete
 "\e[1;5D": backward-word
 "\e[1;5C": forward-word
 
-"\C-f":"cd ~/.config"
+"\C-f":"zi\n"
 "\C-l":"clear\n"
 "\C-b":"cd ..\n"
 "\C-h":"cd\n"

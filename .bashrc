@@ -16,19 +16,52 @@ clr='\[\033[00m\]'    # Reset
 # shell options
 
 shopt -s autocd
+# Check the window size after each command and, if necessary, update the values of LINES and COLUMNS
+shopt -s checkwinsize
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# Don't put duplibate lines in the history and do not add lines that start with a space
+export HISTCONTROL=erasedups:ignoredups:ignorespace
+
+# Causes bash to append to history instead of overwriting it so if you start a new terminal, you have old session history
+shopt -s histappend
+PROMPT_COMMAND='history -a'
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
 # complition
 [[ -f /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
+[[ -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
+[[ -f /etc/bash_completion ]] && . /etc/bash_completion
+
+###------------------- PROMPT -----------------------###
+
+if [ ! -f .git-prompt.sh ];then
+    curl --silent --output .git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && source ~/.git-prompt.sh
+else
+    source ~/.git-prompt.sh
+fi
+
+function bash_prompt() {
+	# PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
+	# PS1+=${cyn}'\W'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
+    PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\w\[$(tput setaf 226)\]\$(__git_ps1) \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "	
+}
+
+bash_prompt
+#
+# eval "$(starship init bash)" #starship
+# eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
+
+# zoxide
+# install zoxide first
+[[ -x "/usr/bin/zoxide" ]] && eval "$(zoxide init bash)" && alias cd="z"
 
 #
 # aliases
@@ -101,7 +134,7 @@ sd() {
 
 vf() {
 	local file
-	file="$(fzf --height 75% --layout=reverse --border --preview 'batcat --style=numbers --color=always --line-range :500 {}')"
+	file="$(fzf --height 75% --layout=reverse --border --preview 'bat --style=numbers --color=always --line-range :500 {}')"
 	if [[ ${file} == "" ]]; then
 		echo 'please select one'
 	else
@@ -161,6 +194,18 @@ rga-fzf() {
 		xdg-open "$file"
 }
 
+# github
+gitcom() {
+    git add .
+    git commit -m "$1"
+}
+
+gitpush() {
+    git add .
+    git commit -m "$1"
+    git push
+}
+
 # bash parameter completion for the dotnet CLI
 
 function _dotnet_bash_complete() {
@@ -175,25 +220,3 @@ function _dotnet_bash_complete() {
 complete -f -F _dotnet_bash_complete dotnet
 
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
-
-###------------------- PROMPT -----------------------###
-
-source ~/.git-prompt.sh
-
-function bash_prompt() {
-	PS1='${debian_chroot:+($debian_chroot)}'
-	# with username
-	# With distro logo
-	# PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
-	# PS1+=${cyn}'\W'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
-    PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\w\[$(tput setaf 226)\]\$(__git_ps1) \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "	
-}
-
-bash_prompt
-#
-# eval "$(starship init bash)" #starship
-# eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
-
-# zoxide
-# install zoxide first
-[[ -x "/usr/bin/zoxide" ]] && eval "$(zoxide init bash)" && alias cd="z"
