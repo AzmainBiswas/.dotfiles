@@ -106,7 +106,7 @@ URxvt.keysym.C-equal:  resize-font:equal
 ! --------
 Sxiv.background: #1b1b1b
 Sxiv.foreground: #458588
-Sxiv.font: UbuntuMono Nerd Fon:size=13
+Sxiv.font: UbuntuMono Nerd Fon:size=11
 
 ! courser
 ! --------

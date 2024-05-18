@@ -11,6 +11,7 @@ mpd &
 numlockx on & 
 # kdeconnect-indicator &
 flameshot &
+# polkit
 # lxpolkit &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 picom --config $HOME/.config/picom/picom.conf &

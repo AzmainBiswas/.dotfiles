@@ -9,7 +9,7 @@ dunst -config "$HOME/.config/dunst/dunstrc" &
 xfce3-power-manager &
 mpd &
 # clipmenud &
-numlockx on & 
+# numlockx on & 
 # kdeconnect-indicator &
 flameshot &
 ## polkit
