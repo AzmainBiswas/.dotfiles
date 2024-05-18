@@ -40,30 +40,6 @@ fi
 [[ -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
-###------------------- PROMPT -----------------------###
-
-if [ ! -f .git-prompt.sh ];then
-    curl --silent --output .git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && source ~/.git-prompt.sh
-else
-    source ~/.git-prompt.sh
-fi
-
-function bash_prompt() {
-	# PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
-	# PS1+=${cyn}'\W'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
-    PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\w\[$(tput setaf 226)\]\$(__git_ps1) \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "	
-}
-
-# bash_prompt
-
-# startship
-# install: curl -sS https://starship.rs/install.sh | sh
-eval "$(starship init bash)" #starship
-
-# zoxide
-# install zoxide first
-[[ -x "/usr/bin/zoxide" ]] && eval "$(zoxide init bash)" && alias cd="z"
-
 #
 # aliases
 #
@@ -149,7 +125,7 @@ ovc() {
 }
 
 mkcd() {
-	mkdir -p "$@" && cd "$@" && pwd
+	mkdir -p "$@" && cd "$@"
 }
 
 # file extract
@@ -197,14 +173,14 @@ rga-fzf() {
 
 # github
 gitcom() {
-    git add .
-    git commit -m "$1"
+	git add .
+	git commit -m "$1"
 }
 
 gitpush() {
-    git add .
-    git commit -m "$1"
-    git push
+	git add .
+	git commit -m "$1"
+	git push
 }
 
 # bash parameter completion for the dotnet CLI
@@ -220,4 +196,39 @@ function _dotnet_bash_complete() {
 
 complete -f -F _dotnet_bash_complete dotnet
 
+###------------------- PROMPT -----------------------###
+
+if [ ! -f .git-prompt.sh ]; then
+	curl --silent --output .git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && source ~/.git-prompt.sh
+else
+	source ~/.git-prompt.sh
+fi
+
+function bash_prompt() {
+	# PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
+	# PS1+=${cyn}'\W'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
+	PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\w\[$(tput setaf 226)\]\$(__git_ps1) \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "
+}
+
+# bash_prompt
+
+# startship
+# install: curl -sS https://starship.rs/install.sh | sh
+if command -v starship &>/dev/null; then
+	eval "$(starship init bash)" #starship
+else
+	bash_prompt
+fi
+
+# zoxide
+if command -v zoxide &>/dev/null; then
+	eval "$(zoxide init bash)" && alias cd="z"
+fi
+
+# fastfetch
+if command -v fastfetch &>/dev/null; then
+	fastfetch
+fi
+
+# fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
