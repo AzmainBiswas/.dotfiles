@@ -54,10 +54,11 @@ function bash_prompt() {
     PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\w\[$(tput setaf 226)\]\$(__git_ps1) \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "	
 }
 
-bash_prompt
-#
-# eval "$(starship init bash)" #starship
-# eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/my-oh-my-posh-gruvboc.omp.json)"
+# bash_prompt
+
+# startship
+# install: curl -sS https://starship.rs/install.sh | sh
+eval "$(starship init bash)" #starship
 
 # zoxide
 # install zoxide first
