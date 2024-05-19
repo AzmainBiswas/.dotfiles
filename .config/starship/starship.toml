@@ -1,68 +1,11 @@
-format = """
-$os\
-$directory\
-$fossil_branch\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
-$git_status\
-$hg_branch\
-$character
-"""
-
-right_format = """
-$pijul_channel\
-$docker_context\
-$package\
-$rlang\
-$c\
-$cmake\
-$lua\
-$python\
-$dotnet\
-$meson\
-$sudo\
-$cmd_duration\
-$jobs\
-$time\
-$status\
-$container\
-$battery\
-"""
 add_newline = false
-
-[character]
-success_symbol = '[➜](bold green)'
-error_symbol = '[✗](bold red)'
-
-[shell]
-fish_indicator = 'fish'
-format = 'in [$indicator]($style) '
-style = 'bold blue'
-disabled = false
 
 [c]
 symbol = " "
 
 [directory]
+truncation_length = 60
 read_only = " 󰌾"
-truncation_length = 50
-format = ' [$path]($style)[$read_only]($read_only_style) '
-
-[battery]
-full_symbol = '  '
-charging_symbol = '󰂈 '
-discharging_symbol = '💀 '
-
-[[battery.display]]
-threshold = 10
-style = 'bold red'
-
-[[battery.display]]
-threshold = 30
-style = 'bold yellow'
-discharging_symbol = '💦 '
 
 [fossil_branch]
 symbol = " "
@@ -90,11 +33,29 @@ behind = '⇣${count}'
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
 
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
 [hg_branch]
 symbol = " "
 
 [hostname]
 ssh_symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
 
 [lua]
 symbol = " "
@@ -105,42 +66,92 @@ symbol = "󰍛 "
 [meson]
 symbol = "󰔷 "
 
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
 [nodejs]
 symbol = " "
 
-[os]
-format = " [$symbol]($style) "
-style = "red"
-disabled = true
+[ocaml]
+symbol = " "
 
 [os.symbols]
-Arch = ""
-Artix = ""
-Ubuntu = ""
-Debian = ""
-Fedora = ""
-Linux = ""
-Windows = "󰍲"
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
 
+[package]
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
 
 [python]
 symbol = " "
 
-[dotnet]
-symbol = " "
-
 [rlang]
 symbol = "󰟔 "
+
+[ruby]
+symbol = " "
 
 [rust]
 symbol = " "
 
-[jobs]
-symbol = ""
-style = "bold red"
-number_threshold = 1
-format = "[ $symbol ]($style)"
+[scala]
+symbol = " "
 
-[cmd_duration]
-format = "[ took $duration ]($style)"
-style = "red"
+[swift]
+symbol = " "
+
+[zig]
+symbol = " "

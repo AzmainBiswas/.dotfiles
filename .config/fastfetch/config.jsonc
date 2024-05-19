@@ -64,11 +64,6 @@
             "type": "memory"
         },
         {
-            "key": "│           │\u001b[11D\u001b[36m󰩟 network",
-            "type": "localip",
-            "format": "{1} ({4})"
-        },
-        {
             "key": "├───────────┤",
             "type": "custom"
         },
