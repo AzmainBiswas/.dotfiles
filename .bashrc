@@ -198,8 +198,8 @@ complete -f -F _dotnet_bash_complete dotnet
 
 ###------------------- PROMPT -----------------------###
 
-if [ ! -f .git-prompt.sh ]; then
-	curl --silent --output .git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && source ~/.git-prompt.sh
+if [ ! -f "$HOME/.git-prompt.sh" ]; then
+	curl --silent --output $HOME/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && source ~/.git-prompt.sh
 else
 	source ~/.git-prompt.sh
 fi
@@ -226,9 +226,9 @@ if command -v zoxide &>/dev/null; then
 fi
 
 # fastfetch
-if command -v fastfetch &>/dev/null; then
-	fastfetch
-fi
+# if command -v fastfetch &>/dev/null; then
+# 	fastfetch
+# fi
 
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
