@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 feh --bg-fill $HOME/.config/background &
 dwmblocks &
 nm-applet &
