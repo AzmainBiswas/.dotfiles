@@ -263,7 +263,7 @@ exec_always $HOME/.config/polybar/launch.sh
 #####################################################################################################################
 
 bindsym $mod+Return exec alacritty;focus
-bindsym Ctrl+Return exec wezterm;focus
+bindsym Mod1+Return exec kitty;focus
 
 bindsym control+mod1+u exec --no-startup-id pavucontrol
 

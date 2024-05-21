@@ -11,9 +11,8 @@ video_name_lower=$(echo $video_name_no_space | tr "[:upper:]" "[:lower:]")
 
 
 if [[ -z "$1" ]]; then
-    echo "first argument is for video quality(use bv for better video quality)"
-    echo "second argument is for video link"
-    echo "last arguments for video name"
+    echo "first argument is for video link"
+    echo "secound arguments for video name"
 else
     yt-dlp -F "${video_link}"
     echo -e "================================================================================"

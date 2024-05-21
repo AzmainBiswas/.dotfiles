@@ -3,8 +3,8 @@
 msg=""
 
 dwm_wifi() {
-    connected=$(nmcli d | grep "wlo1" | awk '{ print $3}')
-    wifi_name=$(nmcli d | grep "wlo1" | awk '{ print $NF }')
+    connected=$(nmcli d | grep "wlan0" | awk '{ print $3}')
+    wifi_name=$(nmcli d | grep "wlan0" | awk '{ print $NF }')
     
     if [[ $connected = "connected" ]]; then
         msg="🛜 ${wifi_name}"

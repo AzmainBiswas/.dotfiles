@@ -5,7 +5,7 @@ import = [
 
 [window]
 opacity = 0.85
-padding = {x = 5, y = 2}
+padding = {x = 0, y = 0}
 dimensions = { columns = 150, lines = 35 }
 decorations = "Full"
 decorations_theme_variant = "Dark" # "Light"
