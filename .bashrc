@@ -198,11 +198,11 @@ complete -f -F _dotnet_bash_complete dotnet
 
 ###------------------- PROMPT -----------------------###
 
-if [ ! -f "$HOME/.git-prompt.sh" ]; then
-	curl --silent --output $HOME/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && source ~/.git-prompt.sh
-else
-	source ~/.git-prompt.sh
-fi
+# if [ ! -f "$HOME/.git-prompt.sh" ]; then
+# 	curl --silent --output $HOME/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && source ~/.git-prompt.sh
+# else
+# 	source ~/.git-prompt.sh
+# fi
 
 function bash_prompt() {
 	# PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
