@@ -20,7 +20,7 @@ TAB: menu-complete
 "\e[1;5C": forward-word
 
 "\C-f":"zi\n"
-"\C-l":"clear\n"
+# "\C-l":"clear\n"
 "\C-b":"cd ..\n"
 "\C-h":"cd\n"
 "\es":"\C-asudo \C-e"

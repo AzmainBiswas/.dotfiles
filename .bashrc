@@ -79,6 +79,17 @@ alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
+# conditional alias
+# zoxide
+if command -v zoxide &>/dev/null; then
+	eval "$(zoxide init bash)" && alias cd="z"
+fi
+
+# trash-cli
+if command -v trash &> /dev/null; then
+    alias rm="trash -v"
+fi
+
 # devour
 # alias mpv='devour mpv'
 # alias sxiv='devour sxiv'
@@ -218,11 +229,6 @@ if command -v starship &>/dev/null; then
 	eval "$(starship init bash)" #starship
 else
 	bash_prompt
-fi
-
-# zoxide
-if command -v zoxide &>/dev/null; then
-	eval "$(zoxide init bash)" && alias cd="z"
 fi
 
 # fastfetch
