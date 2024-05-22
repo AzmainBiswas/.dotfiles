@@ -86,8 +86,8 @@ if command -v zoxide &>/dev/null; then
 fi
 
 # trash-cli
-if command -v trash &> /dev/null; then
-    alias rm="trash -v"
+if command -v trash &>/dev/null; then
+	alias rm="trash -v"
 fi
 
 # devour

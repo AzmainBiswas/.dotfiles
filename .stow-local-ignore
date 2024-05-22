@@ -1,7 +1,7 @@
 \.git
 \.gitignore
-\setup.sh
 
+setup
 pic
 ^/README.*
 ^/LICENSE.*

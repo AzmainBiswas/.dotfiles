@@ -10,6 +10,8 @@ installFontDir="/usr/local/share/fonts"
 nerdfontVersion="v3.1.1"
 firaCodeVersion="6.2"
 
+rm -f ${downloadFontDir}
+
 # checking download font dir exists or not
 if [[ ! -d ${downloadFontDir} ]]; then
 	echo "${downloadFontDir} does not exist so making it."
@@ -29,14 +31,12 @@ ComicShannsMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${ner
 JetBrainsMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/JetBrainsMono.zip"
 UbuntuMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/UbuntuMono.zip"
 CascadiaCodeMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/CascadiaCode.zip"
-UbuntuFamily="https://assets.ubuntu.com/v1/0cef8205-ubuntu-font-family-0.83.zip"
 
 wget ${FiraCode} --directory-prefix=${downloadFontDir}
 wget ${ComicShannsMono} --directory-prefix=${downloadFontDir}
 wget ${CascadiaCodeMono} --directory-prefix=${downloadFontDir}
 wget ${UbuntuMono} --directory-prefix=${downloadFontDir}
 wget ${JetBrainsMono} --directory-prefix=${downloadFontDir}
-# wget ${UbuntuFamily} --directory-prefix=${downloadFontDir}
 
 for font in "$downloadFontDir"/*; do
     fontName=$(echo "$font" | awk -F"/" '{print $NF}' | awk -F"." '{print $1}') 
