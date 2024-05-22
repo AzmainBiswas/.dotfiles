@@ -30,7 +30,7 @@ clean_up
 # print info
 show_info() {
     printf "%s\n" "$1"
-    notify-send "wallhaven" "$1"
+    notify-send -i "sxiv" "wallhaven" "$1"
     [[ -n "$2" ]] && clean_up && exit "$2" # 2nd argument must me integer
 }
 
