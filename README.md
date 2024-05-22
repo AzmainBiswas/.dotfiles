@@ -10,7 +10,7 @@ I am using dwm in ArcoLinux.
 
 ## Previews
 
-![terminal](./pic/1.png)
+![terminal](./pic/1.jpg)
 
 
-![background](./pic/2.png)
+![background](./pic/2.jpg)
