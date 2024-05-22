@@ -43,7 +43,7 @@ add() {
 }
 
 FolderPlay() {
-    folder=$(find /mnt/media/music/ -type d | cut -b 18-1000 | ${MENU} 'Choose a Folder > ' )
+    folder=$(fd . /mnt/media/music/ --type d | cut -b 18-1000 | ${MENU} 'Choose a Folder > ' )
     if [ "$folder" == "" ]
     then
 	exit

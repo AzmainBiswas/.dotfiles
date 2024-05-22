@@ -8,6 +8,13 @@ I am using dwm in ArcoLinux.
 - Filemannager: pcmanfm
 - Image: sxiv
 
+**NOTE:** For fd package in debian do
+```shell
+sudo apt install fd-find
+ln -s $(which fdfind) ~/.local/bin/fd
+```
+Make sure that `$HOME/.local/bin` is in your `$PATH`.
+
 ## Previews
 
 ![terminal](./pic/1.jpg)

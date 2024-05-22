@@ -6,7 +6,7 @@ ROFI="rofi -dmenu -i -p"
 FZF='fzf --height 70% --border rounded --reverse --prompt'
 
 main() {
-    script=$(find $SCRIPTFOLDER -type f -executable | awk -F'/' '{ print $NF }'  | $MENU "Script Launcher > ")
+    script=$(fd . $SCRIPTFOLDER --type x | awk -F'/' '{ print $NF }'  | $MENU "Script Launcher > ")
     if [ "script" == "" ] || [ "script" == " " ]
     then
         exit

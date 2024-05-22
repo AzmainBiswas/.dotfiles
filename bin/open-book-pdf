@@ -10,7 +10,7 @@ NOTE=/mnt/docs/notes/
 
 
 main() {
-    choose=$(find $BOOK $PROJ $NOTE -type f -iname "*.pdf" -o -iname "*.djvu" | $MENU "Book Name > " )
+    choose=$(fd . $BOOK $PROJ $NOTE --type f -e "pdf" -e "djvu" | $MENU "Book Name > " )
     if [ "$choose" == "" ]
     then
 	exit

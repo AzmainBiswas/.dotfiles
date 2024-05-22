@@ -14,16 +14,16 @@ LANG=$(printf "ALL\nBENGALI\nENGLISH\nHINDI" | ${MENU} "Sclect Language > ")
 
 case "${LANG}" in
 BENGALI)
-	${video_player} $(find ${BENGALI} -type f -iname "*.webm" -o -iname "*.mp4" -o -iname "*.mkv" | ${MENU} "Sclect Video > ")
+	${video_player} $(fd . ${BENGALI} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
 	;;
 ENGLISH)
-	${video_player} $(find ${ENGLISH} -type f -iname "*.webm" -o -iname "*.mp4" -o -iname "*.mkv" | ${MENU} "Sclect Video > ")
+	${video_player} $(fd . ${ENGLISH} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
 	;;
 HINDI)
-	${video_player} $(find ${HINDI} -type f -iname "*.webm" -o -iname "*.mp4" -o -iname "*.mkv" | ${MENU} "Sclect Video > ")
+	${video_player} $(fd . ${HINDI} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
 	;;
 ALL)
-	${video_player} $(find ${ALL} -type f -iname "*.webm" -o -iname "*.mp4" -o -iname "*.mkv" | ${MENU} "Sclect Video > ")
+	${video_player} $(fd . ${ALL} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
 	;;
 *)
 	printf "You choice in invalide. Run the script again" | ${MENU}

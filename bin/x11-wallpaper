@@ -4,7 +4,7 @@
 # wallpaper directory
 WALLPAPER_DIR="/mnt/media/wallpapers/"
 
-wallpapers=$(find $WALLPAPER_DIR -type f -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" )
+wallpapers=$(fd . $WALLPAPER_DIR --type f -e "jpg" -e "png" -e "jpeg" )
 number_of_wallpaper=$(printf "%s\n" "$wallpapers" | wc -l ) # total number of wallpaper
 
 copy_wallpaper() {
@@ -21,4 +21,4 @@ copy_wallpaper
 
 # set wallpaper
 feh --bg-fill "$HOME/.config/background"
-notify-send -i "$HOME/.config/background" "wallpaper" "wallpaper chenged"
+# notify-send -i "$HOME/.config/background" "wallpaper" "wallpaper chenged"

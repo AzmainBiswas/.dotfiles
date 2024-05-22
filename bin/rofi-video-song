@@ -2,4 +2,4 @@
 
 ALL="/mnt/media/video/songs/"
 
-mpv $(find ${ALL} -type f -iname "*.mkv" -o -iname "*.mp4" -o -iname "*.webm" | rofi -dmenu -matching "fuzzy" -p "Videos" )
+mpv $(fd . ${ALL} --type f -e "mkv" -e "mp4" -e "webm" | rofi -dmenu -matching "fuzzy" -p "Videos" )
