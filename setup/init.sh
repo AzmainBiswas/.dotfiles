@@ -16,7 +16,7 @@ install_starship() {
     if command -v starship &>/dev/null; then
         printf "starship alrady exists\n"
     else
-        curl --silent --show-error "https://starship.rs/install.sh" -o /tmp/starship.sh &&
+        curl "https://starship.rs/install.sh" -o /tmp/starship.sh &&
             chmod +x /tmp/starship.sh && /tmp/starship.sh
     fi
 }
@@ -26,7 +26,7 @@ install_zoxide() {
     if command -v zoxide &>/dev/null; then
         printf "zoxide alrady installed\n"
     else
-        curl --silent --show-error "https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh" -o /tmp/zoxide.sh &&
+        curl "https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh" -o /tmp/zoxide.sh &&
             chmod +x /tmp/zoxide.sh && /tmp/zoxide.sh
     fi
 }

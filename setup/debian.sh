@@ -4,8 +4,11 @@
 # import common variable and functions
 . ./init.sh
 
-sudo apt install git stow curl wget ripgrep fd-find bash-completion tmux \
-    xclip xsel sxiv feh 
+sudo apt install git stow exa curl wget ripgrep fd-find bash-completion tmux \
+    xclip xsel sxiv feh pipx
+
+pipx install trash-cli
+pipx install yt-dlp
 
 # fd-find to fd
 mkdir -p ~/.local/bin

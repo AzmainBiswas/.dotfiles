@@ -14,10 +14,10 @@ mpd &
 # kdeconnect-indicator &
 flameshot &
 ## polkit
-# lxpolkit &
+lxpolkit &
 # for debian
-/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+# /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 picom --config $HOME/.config/picom/picom.conf &
 copyq --start-server &
 urxvtd &
