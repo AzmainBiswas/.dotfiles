@@ -33,7 +33,7 @@
     hide_duplicate_count = false
     show_indicators = yes
     icon_position = left
-    icon_path = /usr/share/icons/Papirus-Dark/16x16/apps:/usr/share/icons/Papirus-Dark/16x16/devices:/usr/share/icons/Papirus-Dark/16x16/mimetypes:/usr/share/icons/Papirus-Dark/16x16/status:/usr/share/icons/Papirus-Dark/16x16/actions:/usr/share/icons/Papirus-Dark/16x16/categories:/usr/share/icons/Papirus-Dark/16x16/panel:/usr/share/icons/Papirus-Dark/16x16/apps:/usr/share/icons/Papirus-Dark/16x16/emotes
+    icon_path = /usr/share/icons/Papirus-Dark/48x48/apps:/usr/share/icons/Papirus-Dark/16x16/devices:/usr/share/icons/Papirus-Dark/16x16/mimetypes:/usr/share/icons/Papirus-Dark/16x16/status:/usr/share/icons/Papirus-Dark/16x16/actions:/usr/share/icons/Papirus-Dark/16x16/categories:/usr/share/icons/Papirus-Dark/16x16/panel:/usr/share/icons/Papirus-Dark/16x16/apps:/usr/share/icons/Papirus-Dark/16x16/emotes
     min_icon_size = 5
     max_icon_size = 32
     sticky_history = yes

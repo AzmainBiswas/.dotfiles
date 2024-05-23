@@ -60,6 +60,7 @@ alias mkdir="mkdir -vp"
 alias ls="exa -ahF --group-directories-first"
 alias ll="exa -alhF --group-directories-first"
 alias tree="exa -F --color=always --tree"
+alias cat="bat"
 
 alias cls="clear"
 alias spdl="spotdl --bitrate=320k"

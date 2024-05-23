@@ -7,10 +7,10 @@ downloadFontDir="$HOME/Downloads/fonts"
 installFontDir="/usr/local/share/fonts"
 
 ## change if necessary
-nerdfontVersion="v3.1.1"
+nerdfontVersion="v3.2.0"
 firaCodeVersion="6.2"
 
-rm -f ${downloadFontDir}
+rm -rfv ${downloadFontDir}
 
 # checking download font dir exists or not
 if [[ ! -d ${downloadFontDir} ]]; then
