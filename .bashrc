@@ -80,6 +80,10 @@ alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
+# clipboard
+alias pbcopy="xsel --input --clipboard"
+alias pbpaste="xsel --output --clipboard"
+
 # conditional alias
 # zoxide
 if command -v zoxide &>/dev/null; then
@@ -184,12 +188,12 @@ rga-fzf() {
 }
 
 # github
-gitcom() {
+gm() {
 	git add .
 	git commit -m "$1"
 }
 
-gitpush() {
+gp() {
 	git add .
 	git commit -m "$1"
 	git push
