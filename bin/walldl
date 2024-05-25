@@ -13,7 +13,7 @@ CACHEDIR="$HOME/.cache/walldl"
 # datafile: ~/.cache/walldl_data.json
 DATAFILE="$HOME/.cache/walldata.json"
 # max_page: maximum page
-max_page=10
+max_page=5
 # topRange: 1d, 3d, 1w, 1M , 3M, 6M, 1y
 topRange=1y
 # quality : large original small

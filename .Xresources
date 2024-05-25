@@ -12,8 +12,8 @@ Xft.hintstyle: hintslight
 ! Urxvt
 ! --------
 ! font
-URxvt.font: xft:JetBrainsMono Nerd Font:size=13:antialias=true,\
-            xft:Noto Color Emoji:size=13:antialias=true:autohint=true
+URxvt.font: xft:JetBrainsMono Nerd Font:size=11:antialias=true,\
+            xft:Noto Color Emoji:size=11:antialias=true:autohint=true
 ! general settings
 URxvt.saveLines:        50000
 URxvt.termName:         xterm-256color

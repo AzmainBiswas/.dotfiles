@@ -19,6 +19,9 @@ shopt -s autocd
 # Check the window size after each command and, if necessary, update the values of LINES and COLUMNS
 shopt -s checkwinsize
 
+# vim mode
+# set -o vi
+
 # Don't put duplibate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 
