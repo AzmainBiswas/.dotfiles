@@ -8,7 +8,7 @@ set statusbar-bg "#23272e"
 set statusbar-fg "#bbc2cf"
 
 set highlight-color "rgba(32, 69, 94, 0.43)"
-set highlight-active-color "#ffad66"
+set highlight-active-color "rgba(32, 69, 94, 0.43)"
 
 set index-bg "#282c34"
 set index-fg "#bbc2cf"

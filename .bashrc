@@ -35,7 +35,7 @@ HISTFILESIZE=2000
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 # complition
@@ -90,12 +90,12 @@ alias pbpaste="xsel --output --clipboard"
 # conditional alias
 # zoxide
 if command -v zoxide &>/dev/null; then
-	eval "$(zoxide init bash)" && alias cd="z"
+    eval "$(zoxide init bash)" && alias cd="z"
 fi
 
 # trash-cli
 if command -v trash &>/dev/null; then
-	alias rm="trash -v"
+    alias rm="trash -v"
 fi
 
 # devour
@@ -112,131 +112,131 @@ alias rmorphin='sudo pacman -Rns $(pacman -Qdtq)'
 # finctions
 #
 odf() {
-	dir="$(fd . $HOME/.dotfiles -t d --hidden | fzf)"
+    dir="$(fd . $HOME/.dotfiles -t d --hidden | fzf)"
 
-	if [[ "${dir}" == "" ]]; then
-		echo "choose a directory"
-	else
-		cd ${dir}
-		nvim .
-	fi
+    if [[ "${dir}" == "" ]]; then
+        echo "choose a directory"
+    else
+        cd ${dir}
+        nvim .
+    fi
 }
 
 sd() {
-	local dir
-	dir="$(fd . --type directory | fzf)"
-	cd ${dir}
+    local dir
+    dir="$(fd . --type directory | fzf)"
+    cd ${dir}
 }
 
 vf() {
-	local file
-	file="$(fzf --height 75% --layout=reverse --border --preview 'bat --style=numbers --color=always --line-range :500 {}')"
-	if [[ ${file} == "" ]]; then
-		echo 'please select one'
-	else
-		nvim ${file}
-	fi
+    local file
+    file="$(fzf --height 75% --layout=reverse --border --preview 'bat --style=numbers --color=always --line-range :500 {}')"
+    if [[ ${file} == "" ]]; then
+        echo 'please select one'
+    else
+        nvim ${file}
+    fi
 }
 
 ovc() {
-	cd $HOME/.config/nvim
-	nvim .
+    cd $HOME/.config/nvim
+    nvim .
 }
 
 mkcd() {
-	mkdir -p "$@" && cd "$@"
+    mkdir -p "$@" && cd "$@"
 }
 
 # file extract
 #
 ex() {
-	local file_name
-	file_name="$(echo $1 | awk -F. '{print $1}')"
-	if [ -f $1 ]; then
-		case $1 in
-		*.tar.bz2) mkdir "./$file_name" && tar xvjf $1 --directory="./$file_name" ;;
-		*.tar.gz) mkdir "./$file_name" && tar xvzf $1 --directory="./$file_name" ;;
-		*.bz2) bunzip2 $1 ;;
-		*.rar) unrar x $1 ;;
-		*.gz) gunzip $1 ;;
-		*.tar) mkdir "./$file_name" && tar xvf $1 --directory="./$file_name" ;;
-		*.tbz2) mkdir "./$file_name" && tar xvjf $1 --directory="./$file_name" ;;
-		*.tgz) mkdir "./$file_name" && tar xvzf $1 --directory="./$file_name" ;;
-		*.zip) unzip $1 -d "./${file_name}" ;;
-		*.Z) uncompress $1 ;;
-		*.7z) 7za e x $1 ;;
-		*.deb) ar x $1 ;;
-		*.tar.xz) mkdir "./$file_name" && tar xvf $1 --directory="./$file_name" ;;
-		*.tar.zst) unzstd $1 ;;
-		*) echo "'$1' cannot be extracted via ex()" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
+    local file_name
+    file_name="$(echo $1 | awk -F. '{print $1}')"
+    if [ -f $1 ]; then
+        case $1 in
+        *.tar.bz2) mkdir "./$file_name" && tar xvjf $1 --directory="./$file_name" ;;
+        *.tar.gz) mkdir "./$file_name" && tar xvzf $1 --directory="./$file_name" ;;
+        *.bz2) bunzip2 $1 ;;
+        *.rar) unrar x $1 ;;
+        *.gz) gunzip $1 ;;
+        *.tar) mkdir "./$file_name" && tar xvf $1 --directory="./$file_name" ;;
+        *.tbz2) mkdir "./$file_name" && tar xvjf $1 --directory="./$file_name" ;;
+        *.tgz) mkdir "./$file_name" && tar xvzf $1 --directory="./$file_name" ;;
+        *.zip) unzip $1 -d "./${file_name}" ;;
+        *.Z) uncompress $1 ;;
+        *.7z) 7za e x $1 ;;
+        *.deb) ar x $1 ;;
+        *.tar.xz) mkdir "./$file_name" && tar xvf $1 --directory="./$file_name" ;;
+        *.tar.zst) unzstd $1 ;;
+        *) echo "'$1' cannot be extracted via ex()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
 # ripgrep all
 rga-fzf() {
-	RG_PREFIX="rga --files-with-matches"
-	local file
-	file="$(
-		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
-			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
-			--phony -q "$1" \
-			--bind "change:reload:$RG_PREFIX {q}" \
-			--preview-window="70%:wrap"
-	)" &&
-		echo "opening $file" &&
-		xdg-open "$file"
+    RG_PREFIX="rga --files-with-matches"
+    local file
+    file="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+            fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+            --phony -q "$1" \
+            --bind "change:reload:$RG_PREFIX {q}" \
+            --preview-window="70%:wrap"
+    )" &&
+        echo "opening $file" &&
+        xdg-open "$file"
 }
 
 # github
 gm() {
-	git add .
-	git commit -m "$1"
+    git add .
+    git commit -m "$1"
 }
 
 gp() {
-	git add .
-	git commit -m "$1"
-	git push
+    git add .
+    git commit -m "$1"
+    git push
 }
 
 # bash parameter completion for the dotnet CLI
 
 function _dotnet_bash_complete() {
-	local cur="${COMP_WORDS[COMP_CWORD]}" IFS=$'\n' # On Windows you may need to use use IFS=$'\r\n'
-	local candidates
+    local cur="${COMP_WORDS[COMP_CWORD]}" IFS=$'\n' # On Windows you may need to use use IFS=$'\r\n'
+    local candidates
 
-	read -d '' -ra candidates < <(dotnet complete --position "${COMP_POINT}" "${COMP_LINE}" 2>/dev/null)
+    read -d '' -ra candidates < <(dotnet complete --position "${COMP_POINT}" "${COMP_LINE}" 2>/dev/null)
 
-	read -d '' -ra COMPREPLY < <(compgen -W "${candidates[*]:-}" -- "$cur")
+    read -d '' -ra COMPREPLY < <(compgen -W "${candidates[*]:-}" -- "$cur")
 }
 
 complete -f -F _dotnet_bash_complete dotnet
 
 ###------------------- PROMPT -----------------------###
 
-# if [ ! -f "$HOME/.git-prompt.sh" ]; then
-# 	curl --silent --output $HOME/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && source ~/.git-prompt.sh
-# else
-# 	source ~/.git-prompt.sh
-# fi
+if [ ! -f "$HOME/.git-prompt.sh" ]; then
+    curl --silent --output $HOME/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && source ~/.git-prompt.sh
+else
+    source ~/.git-prompt.sh
+fi
 
 function bash_prompt() {
-	# PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
-	# PS1+=${cyn}'\W'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
-	PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\w\[$(tput setaf 226)\]\$(__git_ps1) \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "
+    # PS1+=${cyn}'\w'${ylw}"$(__git_ps1_improved)"${grn}'  '${clr}
+    # PS1+=${cyn}'\W'${ylw}"$(__git_ps1_improved)"${grn}' ➜ '${clr}
+    PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\w\[$(tput setaf 226)\]\$(__git_ps1) \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "
 }
 
 # bash_prompt
 
-# startship
+# starship
 # install: curl -sS https://starship.rs/install.sh | sh
 if command -v starship &>/dev/null; then
-	eval "$(starship init bash)" #starship
+    eval "$(starship init bash)" #starship
 else
-	bash_prompt
+    bash_prompt
 fi
 
 # fastfetch
@@ -244,7 +244,9 @@ fi
 # 	fastfetch
 # fi
 
-$HOME/bin/print-scripts/unix
+# $HOME/bin/print-scripts/unix
+fastfetch
 
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+

@@ -5,10 +5,10 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
-$git_metrics\
 $fill\
 $dotnet\
 $c\
+$conda\
 $python\
 $nodejs\
 $cmd_duration $jobs $battery\
@@ -40,14 +40,14 @@ truncation_length = 3
 truncate_to_repo = false
 
 [character]
-success_symbol = "[❯](purple)"
+success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
-vicmd_symbol = "[❯](green)"
+vicmd_symbol = "[❯](purple)"
 
 [git_branch]
 symbol = " "
 format = "[$symbol$branch]($style) "
-style = "bright-black"
+style = "bright-gray"
 
 [jobs]
 symbol = '✦'
