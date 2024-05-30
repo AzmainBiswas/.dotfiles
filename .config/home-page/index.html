@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+
+    <style>
+        body {
+            font-family: Jet Brains;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            background-color: #282c34;
+        }
+
+        .search-container {
+            text-align: center;
+        }
+
+        .search-container input[type="search"]{
+            width: 800px;
+            padding: 10px;
+            margin-right: 10px;
+            font-size: 16px;
+            text-align: center;
+            color: #bbc2cf;
+            background: #282c34;
+            outline: none;
+            border: 0px;
+            border-radius: 25px;
+            /* backdrop-filter: blur(8px); */
+            /* -webkit-backdrop-filter: blur(10px); */
+        }
+
+        .search-container input[type="search"]:hover {
+          border: 0px;
+          outline: none;
+          color: #282c34;
+          background-color: #a9a1e1;
+        }
+
+        .search-container input[type="search"]:focus {
+          border: 0px;
+          outline: none;
+          color: #282c34;
+          background-color: #a9a1e1;
+        }
+
+        .search-container button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 0px;
+            color: #bbc2cf;
+            border-radius: 25px;
+            background-color: rgba(40, 44, 52, 0.8);
+        }
+
+        .search-container button[type="submit"]:hover {
+          color: #282c34;
+          background-color: rgba(151, 190, 101, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <form action="https://www.google.com/search" method="get" onsubmit="searchFormHandler(event)">
+            <div>
+                <input type="search" id="default-search" name="q" placeholder="Search Quary" required onkeydown="handleKeyPress(event)">
+                <button type="submit" >Search</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function search() {
+          const searchTerm = document.getElementById("default-search").value;
+          const encodedSearchTerm = encodeURIComponent(searchTerm);
+          const googleUrl = "https://www.google.com/search?q=" + encodedSearchTerm + "&udm=14";
+          window.location.href = googleUrl;
+        }
+    
+        function handleKeyPress(event) {
+          if (event.keyCode === 13) { // Enter key code
+            event.preventDefault(); // Prevent default form submission
+            document.getElementById("default-search").focus()
+            search();
+          }
+        }
+    
+        function searchFormHandler(event) {
+          if (!navigator.onLine) {
+            event.preventDefault();
+            search();
+          }
+        }
+    
+        document.addEventListener("DOMContentLoaded", event => {
+          document.getElementById("default-search").focus();
+          document.addEventListener("keydown", handleEnterKeyFocus);
+        });
+      </script>
+</body>
+</html>
