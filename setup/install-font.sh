@@ -7,7 +7,7 @@ downloadFontDir="$HOME/Downloads/fonts"
 installFontDir="/usr/local/share/fonts"
 
 ## change if necessary
-nerdfontVersion="v3.2.0"
+nerdfontVersion="v3.2.1"
 firaCodeVersion="6.2"
 
 rm -rfv ${downloadFontDir}
@@ -31,12 +31,14 @@ ComicShannsMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${ner
 JetBrainsMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/JetBrainsMono.zip"
 UbuntuMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/UbuntuMono.zip"
 CascadiaCodeMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/CascadiaCode.zip"
+Meslo="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/Meslo.zip"
 
 wget ${FiraCode} --directory-prefix=${downloadFontDir}
 wget ${ComicShannsMono} --directory-prefix=${downloadFontDir}
 wget ${CascadiaCodeMono} --directory-prefix=${downloadFontDir}
 wget ${UbuntuMono} --directory-prefix=${downloadFontDir}
 wget ${JetBrainsMono} --directory-prefix=${downloadFontDir}
+wget ${Meslo} --directory-prefix=${downloadFontDir}
 
 for font in "$downloadFontDir"/*; do
     fontName=$(echo "$font" | awk -F"/" '{print $NF}' | awk -F"." '{print $1}') 

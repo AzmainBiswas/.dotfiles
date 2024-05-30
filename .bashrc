@@ -83,6 +83,13 @@ alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
+# git 
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gp="git push"
+
 # clipboard
 alias pbcopy="xsel --input --clipboard"
 alias pbpaste="xsel --output --clipboard"
@@ -188,18 +195,6 @@ rga-fzf() {
     )" &&
         echo "opening $file" &&
         xdg-open "$file"
-}
-
-# github
-gm() {
-    git add .
-    git commit -m "$1"
-}
-
-gp() {
-    git add .
-    git commit -m "$1"
-    git push
 }
 
 # bash parameter completion for the dotnet CLI

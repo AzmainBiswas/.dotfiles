@@ -6,3 +6,4 @@
 [safe]
 	directory = /mnt/docs/project/mcmc/simulation-techniques
 	directory = /mnt/docs/project/mcmc/report
+	directory = /mnt/docs/project/markov_chain
