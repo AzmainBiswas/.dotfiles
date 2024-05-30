@@ -17,18 +17,21 @@ $character"""
 
 add_newline = false
 
+[conda]
+format = '[$symbol$environment](dimmed green) '
+
 [nodejs]
-format = "[$symbol($version )]($style)"
+format = "[$symbol($version )]($style) "
 
 [c]
-format = '[$name $version]($style)'
+format = '[$name $version]($style) '
 
 [python]
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style) '
 symbol = ' '
 
 [dotnet]
-format = '[$symbol($version )(🎯 $tfm )]($style)'
+format = '[$symbol($version )(🎯 $tfm )]($style) '
 
 [fill]
 symbol = " "

@@ -20,9 +20,8 @@ scrolling:
 
 font:
   normal:
-    family: "ComicShannsMono Nerd Font"
+    family: "MesloLGS Nerd Font"
     style: Ragular
-    family: "Fira Code"
   bold:
     style: Medium
   italic:

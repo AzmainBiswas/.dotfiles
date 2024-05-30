@@ -410,13 +410,13 @@ mode "$mode_gaps_outer" {
 
     # Window color settings
     # class                 border  backgr. text    indicator
-    client.focused          #fabd2f #83a598 #ebdbb2 #83a598
+    client.focused          #fabd2f #a9a1e1 #ebdbb2 #83a598
     client.unfocused        #2e3440 #1f222d #888888 #1f222d
     client.focused_inactive #2e3440 #1f222d #888888 #1f222d
     client.placeholder      #2e3440 #1f222d #888888 #1f222d
     client.urgent           #900000 #900000 #ebdbb2 #900000
 
-    client.background       #242424
+    client.background       #282c34
 
     ##STOP THEMING WM
 
