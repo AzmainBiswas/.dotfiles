@@ -239,8 +239,7 @@ fi
 # 	fastfetch
 # fi
 
-# $HOME/bin/print-scripts/unix
-fastfetch
+$HOME/bin/print-scripts/unix
 
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
