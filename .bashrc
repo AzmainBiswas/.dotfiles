@@ -235,11 +235,11 @@ else
 fi
 
 # fastfetch
-# if command -v fastfetch &>/dev/null; then
-# 	fastfetch
-# fi
+if command -v fastfetch &>/dev/null; then
+	fastfetch
+fi
 
-$HOME/bin/print-scripts/unix
+# $HOME/bin/print-scripts/unix
 
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash

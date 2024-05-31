@@ -4,6 +4,7 @@ local config = {}
 
 -- fonts
 config.font = wezterm.font_with_fallback({
+    "MesloLGM Nerd Font",
 	"JetBrainsMono Nerd Font",
 	"Fira Code",
 	"Ubuntu Sans Mono",
@@ -17,18 +18,29 @@ config.default_cursor_style = "SteadyBlock"
 
 -- color scheme
 -- config.color_scheme = "Ubuntu"
-config.color_scheme = 'GruvboxDarkHard'
+-- config.color_scheme = 'GruvboxDarkHard'
+config.color_scheme = 'DoomOne'
 -- config.color_scheme = "tokyonight_night"
 -- config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "GitHub Dark"
 -- config.color_scheme = "Solarized Dark Higher Contrast"
 
 -- background
-config.window_background_opacity = 0.9
+config.window_background_opacity = 1
+
+-- padding
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
+}
 
 -- dimensions
 config.initial_cols = 150
 config.initial_rows = 35
+
+config.default_prog = { '/bin/bash', '-l' }
 
 config.integrated_title_button_style = "Gnome"
 -- hide tab bar
