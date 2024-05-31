@@ -5,7 +5,7 @@
 . ./init.sh
 
 sudo pacman -S --needed git stow starship zoxide fd ripgrep eza bash-completion \
-    tmux xclip xsel trash-cli curl wget fastfetch sxiv feh libva-mesa-driver mesa-vdpau libvdpau-va-gl libva-vdpau-driver 
+    tmux xclip xsel trash-cli curl wget aria2 fastfetch sxiv feh libva-mesa-driver mesa-vdpau libvdpau-va-gl libva-vdpau-driver 
 
 printf "\n"
 # install fzf

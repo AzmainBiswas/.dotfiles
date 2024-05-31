@@ -4,7 +4,8 @@
 # import common variable and functions
 . ./init.sh
 
-sudo apt install git stow exa bat curl wget ripgrep fd-find bash-completion tmux \
+sudo apt install git stow exa bat curl wget aria2\
+    ripgrep fd-find bash-completion tmux \
     xclip xsel sxiv feh pipx
 
 pipx install trash-cli
