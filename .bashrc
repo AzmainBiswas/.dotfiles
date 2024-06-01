@@ -62,7 +62,7 @@ alias mkdir="mkdir -vp"
 
 alias ls="exa -ahF --group-directories-first"
 alias ll="exa -alhF --group-directories-first"
-alias tree="exa -F --color=always --tree"
+alias tree="exa -F --color=always --tree --icons"
 alias cat="bat"
 
 alias cls="clear"
@@ -98,11 +98,6 @@ alias pbpaste="xsel --output --clipboard"
 # zoxide
 if command -v zoxide &>/dev/null; then
     eval "$(zoxide init bash)" && alias cd="z"
-fi
-
-# trash-cli
-if command -v trash &>/dev/null; then
-    alias rm="trash -v"
 fi
 
 # devour

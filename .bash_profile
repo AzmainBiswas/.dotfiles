@@ -9,7 +9,7 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 # neovim as man page
 # export MANPAGER="nvim +Man!"
-export MANPAGER="bat -l man -p"
+# export MANPAGER="bat -l man -p"
 
 # if running bash
 # if [ -n "$BASH_VERSION" ]; then

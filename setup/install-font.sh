@@ -10,38 +10,38 @@ installFontDir="/usr/local/share/fonts"
 nerdfontVersion="v3.2.1"
 firaCodeVersion="6.2"
 
-rm -rfv ${downloadFontDir}
+rm -rfv ${downloadFontDir}/*
 
 # checking download font dir exists or not
 if [[ ! -d ${downloadFontDir} ]]; then
-	echo "${downloadFontDir} does not exist so making it."
+    printf "${downloadFontDir} does not exist so making it.\n"
     mkdir -vp $downloadFontDir
 fi
 
 # checking install font dir
 if [[ ! -d ${installFontDir} ]]; then
-    echo "first make ${installFontDir} directory with:"
-    echo "sudo mkdir -v ${installFontDir}"
+    printf "first make ${installFontDir} directory with:\n"
+    printf "sudo mkdir -v ${installFontDir}\n"
     exit 1
 fi
 
 ### fonts urls
-FiraCode="https://github.com/tonsky/FiraCode/releases/download/${firaCodeVersion}/Fira_Code_v${firaCodeVersion}.zip"
-ComicShannsMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/ComicShannsMono.zip"
-JetBrainsMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/JetBrainsMono.zip"
-UbuntuMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/UbuntuMono.zip"
-CascadiaCodeMono="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/CascadiaCode.zip"
-Meslo="https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/Meslo.zip"
+fonts=(
+    "https://github.com/tonsky/FiraCode/releases/download/${firaCodeVersion}/Fira_Code_v${firaCodeVersion}.zip"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/ComicShannsMono.zip"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/JetBrainsMono.zip"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/UbuntuMono.zip"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/CascadiaCode.zip"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/Meslo.zip"
+)
 
-aria2c -c ${FiraCode} --dir=${downloadFontDir} 
-aria2c -c ${ComicShannsMono} --dir=${downloadFontDir} 
-aria2c -c ${CascadiaCodeMono} --dir=${downloadFontDir} 
-aria2c -c ${UbuntuMono} --dir=${downloadFontDir} 
-aria2c -c ${JetBrainsMono} --dir=${downloadFontDir} 
-aria2c -c ${Meslo} --dir=${downloadFontDir}
+for font in ${fonts[@]}; do
+    printf "\n${font} .... \n"
+    curl --output-dir ${downloadFontDir} -O -J -L ${font}
+done
 
 for font in "$downloadFontDir"/*; do
-    fontName=$(echo "$font" | awk -F"/" '{print $NF}' | awk -F"." '{print $1}') 
+    fontName=$(printf "$font" | awk -F"/" '{print $NF}' | awk -F"." '{print $1}')
     sudo unzip $font -d "${installFontDir}/${fontName}"
 done
 
@@ -49,8 +49,8 @@ done
 if [[ -d /mnt/media/downloads/dont_delete_ever/windows_fonts ]]; then
     sudo cp -rfv /mnt/media/downloads/dont_delete_ever/windows_fonts/windows_fonts ${installFontDir}
 else
-    echo "Please mount media drive."
+    printf "Please mount media drive.\n"
 fi
 
 fc-cache -f
-echo "Done ..."
+printf "Done ...\n"
