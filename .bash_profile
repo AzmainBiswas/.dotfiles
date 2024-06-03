@@ -3,7 +3,7 @@ export PATH=/usr/local/go/bin:${HOME}/go/bin:${PATH}
 
 export BROWSER=firefox
 export EDITOR=nvim
-export TERM=xterm-256color
+export TERM=alacritty
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
