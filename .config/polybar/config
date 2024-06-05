@@ -32,12 +32,12 @@ module-margin = 1
 separator = |
 separator-foreground = ${colors.disabled}
 
-# font-0 = "Ubuntu Sans:size=14;4"
+; font-0 = "Ubuntu Sans:size=14;4"
 font-0 = "JetBrainsMono Nerd Font:size=11"
 font-1 = "Noto Color Emoji:scale=8"
-# font-2 = "icomoon;4"
+; font-2 = "icomoon;4"
 
-modules-left = rofi xworkspaces xwindow
+modules-left = rofi i3 xwindow
 # modules-right = pulseaudio battery memory cpu wlan date powermenu
 modules-right = pulseaudio backlight battery wlan date wallpaper powermenu
 
@@ -49,6 +49,8 @@ enable-ipc = true
 tray-position = right
 wm-restack = i3
 
+scroll-up = "i3.prev"
+scroll-down = "i3.next"
 
 ; override-redirect = true
 
@@ -60,6 +62,32 @@ content-foreground = ${colors.secondary}
 content-padding = 1
 click-left = "rofi -show drun"
 click-right = "$HOME/bin/i3-power-menu"
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+show-urgent = true
+index-sort = true
+enable-scroll = true
+
+label-mode = %index%
+label-mode-padding = 1
+label-mode-background = #e60053
+
+label-focused = %index%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 1
+
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+label-urgent = %index%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
 
 [module/xworkspaces]
 type = internal/xworkspaces

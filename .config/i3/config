@@ -30,7 +30,7 @@ set $down k
 set $left h
 set $right l
 
-font pango:FiraCode Nerd Font Propo 10
+font pango:FiraCode Nerd Font Propo 11
 
 
 
@@ -72,9 +72,9 @@ bindsym $mod+Shift+9 move container to workspace 9
 # start dmenu
 bindsym $mod+d exec --no-startup-id dmenu_run -i -F -p "Run > " 
 bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
-bindsym $mod+w exec --no-startup-id rofi -show window
+bindsym $mod+Shift+w exec --no-startup-id rofi -show window
 # bindsym $mod+v exec --no-startup-id clipmenu -l 15 -p "Clipboard"
-bindsym $mod+s exec $HOME/bin/script-launcher.sh
+# bindsym $mod+s exec $HOME/bin/script-launcher.sh
 bindsym $mod+v exec copyq menu
 bindsym $mod+period exec killall rofi || $HOME/bin/emoji
 
@@ -206,8 +206,8 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # qwerty/azerty issue for letter z
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 
@@ -324,8 +324,8 @@ bindsym $mod+i bar mode invisible
 #####################################################################################################################
 
 for_window [class="^.*"] border pixel 1
-gaps inner 3
-gaps outer 3
+gaps inner 0
+gaps outer 0
 #smart_gaps on
 #smart_borders on
 
@@ -410,8 +410,8 @@ mode "$mode_gaps_outer" {
 
     # Window color settings
     # class                 border  backgr. text    indicator
-    client.focused          #fabd2f #a9a1e1 #ebdbb2 #83a598
-    client.unfocused        #2e3440 #1f222d #888888 #1f222d
+    client.focused          #c678dd #a9a1e1 #282c34 #83a598
+    client.unfocused        #2e3440 #1f222d #bbc2cf #1f222d
     client.focused_inactive #2e3440 #1f222d #888888 #1f222d
     client.placeholder      #2e3440 #1f222d #888888 #1f222d
     client.urgent           #900000 #900000 #ebdbb2 #900000
