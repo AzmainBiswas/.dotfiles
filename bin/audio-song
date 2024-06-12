@@ -46,7 +46,7 @@ FolderPlay() {
     folder=$(fd . /mnt/media/music/ --type d | cut -b 18-1000 | ${MENU} 'Choose a Folder > ' )
     if [ "$folder" == "" ]
     then
-	exit
+		exit
     fi
     mpc stop
     mpc clear
@@ -70,31 +70,40 @@ choose=$(menu | ${MENU} "choose your option > " | awk -F. '{ print $1 }')
 
 case ${choose} in
     0)
-	playRandom ;;
+		playRandom
+		;;
     1)
-	play ;;
+		play
+		;;
     2)
-	FolderPlay ;;
+		FolderPlay
+		;;
     3)
-	if [ $1 == '-f' ]
-	then
-	    ncmpcpp
-	else
-	    $terminal -e ncmpcpp
-	fi
-	;;
+		if [ $1 == '-f' ]
+		then
+			ncmpcpp
+		else
+			$terminal -e ncmpcpp
+		fi
+		;;
     4)
-	mpc stop ;;
+		mpc stop
+		;;
     5)
-	notify-send -i "mpd" "Playing" "$(mpc current)" ;;
+		notify-send -i "mpd" "Playing" "$(mpc current)"
+		;;
     6)
-	mpc volume 25 ;;
+		mpc volume 25
+		;;
     7)
-	mpc volume 50 ;;
+		mpc volume 50
+		;;
     8)
-	mpc volume 75 ;;
+		mpc volume 75
+		;;
     9)
-	mpc volume 100 ;;
+		mpc volume 100
+		;;
     *)
-	printf "Plece choose currect value"
+		printf "Plece choose currect value"
 esac

@@ -1,7 +1,7 @@
 export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.cargo/bin:${PATH}
 export PATH=/usr/local/go/bin:${HOME}/go/bin:${PATH}
 
-export BROWSER=firefox
+export BROWSER=chromium
 export EDITOR=nvim
 export TERM=alacritty
 
@@ -38,5 +38,5 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 if [ -e /home/azmain/.nix-profile/etc/profile.d/nix.sh ]; then . /home/azmain/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-	export MOZ_ENABLE_WAYLAND=1
+    export MOZ_ENABLE_WAYLAND=1
 fi

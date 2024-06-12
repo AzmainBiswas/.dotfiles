@@ -40,7 +40,7 @@ config.window_padding = {
 config.initial_cols = 150
 config.initial_rows = 35
 
-config.default_prog = { '/bin/bash', '-l' }
+config.default_prog = { '/usr/bin/bash', '-l' }
 
 config.integrated_title_button_style = "Gnome"
 -- hide tab bar

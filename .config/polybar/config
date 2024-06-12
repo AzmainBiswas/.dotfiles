@@ -14,12 +14,13 @@ width = 100%
 height = 22pt
 radius = 0
 
+bottom = true
 ; dpi = 96
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3pt
+line-size = 2pt
 
 border-size = 0pt
 border-color = #282c34
@@ -33,11 +34,11 @@ separator = |
 separator-foreground = ${colors.disabled}
 
 ; font-0 = "Ubuntu Sans:size=14;4"
-font-0 = "JetBrainsMono Nerd Font:size=11"
-font-1 = "Noto Color Emoji:scale=8"
+font-0 = "JetBrainsMono Nerd Font:size=11;3"
+font-1 = "Noto Color Emoji:scale=8;3"
 ; font-2 = "icomoon;4"
 
-modules-left = rofi i3 xwindow
+modules-left = rofi i3 
 # modules-right = pulseaudio battery memory cpu wlan date powermenu
 modules-right = pulseaudio backlight battery wlan date wallpaper powermenu
 

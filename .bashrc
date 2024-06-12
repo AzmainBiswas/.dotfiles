@@ -56,14 +56,14 @@ alias ...='cd ../..;pwd'
 # Move up three parent folders.
 alias ....='cd ../../..;pwd'
 
-alias cp="cp -riv"
+alias cp="rsync --human-readable --verbose --progress --archive --whole-file"
 alias mv="mv -iv"
 alias mkdir="mkdir -vp"
 
 alias ls="exa -ahF --group-directories-first"
 alias ll="exa -alhF --group-directories-first"
 alias tree="exa -F --color=always --tree --icons"
-alias cat="bat"
+alias cat="bat --plain --theme OneHalfDark"
 
 alias cls="clear"
 alias spdl="spotdl --bitrate=320k"
@@ -238,4 +238,3 @@ fi
 
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
-
