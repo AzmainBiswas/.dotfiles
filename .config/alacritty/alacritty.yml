@@ -8,7 +8,7 @@ window:
   padding:
     x: 0
     y: 0
-  opacity: 1
+  opacity: 0.9
     
 scrolling:
   # maximum number of lines in the scrollback buffer. Specifying '0' will
@@ -28,7 +28,7 @@ font:
     style: "Light Italic"
 
   # Point size of the font
-  size: 11
+  size: 12
 
 cursor:
   # Values for 'style':
