@@ -21,7 +21,7 @@ order += "wireless _first_"
 order += "battery all"
 # order += "disk /"
 # order += "load"
-# order += "memory"
+order += "memory"
 # order += "cpu_temperature 0"
 order += "tztime local"
 

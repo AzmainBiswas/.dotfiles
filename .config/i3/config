@@ -256,14 +256,14 @@ mode "resize" {
 #Authentication dialog (polkit-gnome)
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec $HOME/.config/i3/startup.sh
-exec_always $HOME/.config/polybar/launch.sh
+# exec_always $HOME/.config/polybar/launch.sh
 
 #####################################################################################################################
 #################                          applications keyboard shortcuts                          #################
 #####################################################################################################################
 
-bindsym $mod+Return exec alacritty;focus
-bindsym Mod1+Return exec kitty;focus
+bindsym $mod+Return exec kitty;focus
+# bindsym Mod1+Return exec kitty;focus
 
 bindsym control+mod1+u exec --no-startup-id pavucontrol
 
@@ -324,10 +324,10 @@ bindsym $mod+i bar mode invisible
 #####################################################################################################################
 
 for_window [class="^.*"] border pixel 1
-gaps inner 0
-gaps outer 0
+# gaps inner 0
+# gaps outer 0
 # smart_gaps on
-smart_borders on
+# smart_borders on
 
 
 
@@ -384,27 +384,27 @@ mode "$mode_gaps_outer" {
 #####################################################################################################################
 #####################################################################################################################
 
-# bar {
-#     # height 30
-# 	position top # bottom
-#     font pango:JetBrainsMono Nerd Font 12
-# 	status_command i3status
-#     tray_padding 1
-#     strip_workspace_numbers yes
-#
-#     colors {
-#             separator  #000000
-#             background #000000
-#             statusline #ffffff
-#
-#             #                   border  background text
-#             focused_workspace  #1f222d #474747    #ebdbb2
-#             active_workspace   #1f222d #252936    #5e81ac
-#             inactive_workspace #282828 #282828    #4c566a
-#             urgent_workspace   #1f222d #1f222d    #d3869b
-#             binding_mode       #1f222d #81a1c1    #2e3440
-#     }
-# }
+bar {
+    # height 30
+	position bottom# top 
+    font pango:JetBrainsMono Nerd Font 11
+	status_command i3status
+    tray_padding 1
+    strip_workspace_numbers yes
+
+    colors {
+            separator  #000000
+            background #000000
+            statusline #ffffff
+
+            #                   border  background text
+            focused_workspace  #1f222d #474747    #ebdbb2
+            active_workspace   #1f222d #252936    #5e81ac
+            inactive_workspace #282828 #282828    #4c566a
+            urgent_workspace   #1f222d #1f222d    #d3869b
+            binding_mode       #1f222d #81a1c1    #2e3440
+    }
+}
 
 	##START THEMING WM
 
@@ -430,7 +430,10 @@ for_window [class="Chromium"] move to workspace 2
 for_window [class="Brave"] move to workspace 2
 # for_window [class="Emacs"] move to workspace 3
 
+
 ############ Rule #####################
+for_window [class="Dunst"] floating enable
+for_window [window_role="alert"] floating enable
 for_window [window_role="About"] floating enable
 no_focus   [window_type="splash"]
 for_window [tiling] border pixel $borderpx
