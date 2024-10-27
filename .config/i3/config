@@ -263,7 +263,7 @@ exec $HOME/.config/i3/startup.sh
 #####################################################################################################################
 
 # bindsym $mod+Return exec alacritty;focus
-bindsym $mod+Return exec alacritty;focus
+bindsym $mod+Return exec wezterm;focus
 # bindsym Mod1+Return exec kitty;focus
 
 bindsym control+mod1+u exec --no-startup-id pavucontrol

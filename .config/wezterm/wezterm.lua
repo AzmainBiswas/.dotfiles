@@ -4,8 +4,8 @@ local config = {}
 
 -- fonts
 config.font = wezterm.font_with_fallback({
-    "MesloLGM Nerd Font",
 	"JetBrainsMono Nerd Font",
+    "MesloLGM Nerd Font",
 	"Fira Code",
 	"Ubuntu Sans Mono",
 	"ComicShannsMono Nerd Font",
@@ -19,8 +19,8 @@ config.default_cursor_style = "SteadyBlock"
 -- color scheme
 -- config.color_scheme = "Ubuntu"
 -- config.color_scheme = 'GruvboxDarkHard'
-config.color_scheme = 'DoomOne'
--- config.color_scheme = "tokyonight_night"
+-- config.color_scheme = 'DoomOne'
+config.color_scheme = "tokyonight_night"
 -- config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "GitHub Dark"
 -- config.color_scheme = "Solarized Dark Higher Contrast"
