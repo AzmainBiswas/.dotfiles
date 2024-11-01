@@ -9,7 +9,6 @@ installFontDir="/usr/local/share/fonts"
 ## change if necessary
 nerdfontVersion="v3.2.1"
 firaCodeVersion="6.2"
-isoevkaVersion="v31.7.1"
 
 rm -rfv ${downloadFontDir}/*
 
@@ -34,7 +33,8 @@ fonts=(
     "https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/UbuntuMono.zip"
     "https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/CascadiaCode.zip"
     "https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/Meslo.zip"
-    "https://github.com/be5invis/Iosevka/releases/download/${isoevkaVersion}/PkgTTC-Iosevka-31.7.1.zip"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/Iosevka.zip"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/${nerdfontVersion}/IosevkaTerm.zip"
 )
 
 for font in ${fonts[@]}; do

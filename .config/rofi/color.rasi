@@ -9,7 +9,7 @@
     grey: #282c34;
 
     width: 50%;
-    font: "JetBrainsMono Nerd Font 15";
+    font: "IosevkaTerm Nerd Font 17";
 }
 
 element-text, element-icon , mode-switcher {

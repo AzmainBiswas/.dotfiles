@@ -11,24 +11,18 @@ window:
   opacity: 1
     
 scrolling:
-  # maximum number of lines in the scrollback buffer. Specifying '0' will
-  # disable scrolling.
   history: 2000
-  # Number of lines the viewport will move for every line scrolled when
-  # scrollback is enabled (history > 0).
   multiplier: 8
 
 font:
   normal:
-    family: "JetBrainsMono Nerd Font"
+    family: "IosevkaTerm Nerd Font"
     style: Ragular
   bold:
     style: Medium
   italic:
     style: "Light Italic"
-
-  # Point size of the font
-  size: 12
+  size: 13.5
 
 cursor:
   # Values for 'style':

@@ -8,18 +8,16 @@ case "${action}" in
 		systemctl poweroff
 		;;
 	Lock)
-		i3lock -i $HOME/.config/background
+		slock
 		;;
 	Logout)
 		i3-msg exit
 		;;
 	Suspend)
-		i3lock -i $HOME/.config/background && sleep 1
-		systemctl suspend
+		slock systemctl suspend
 		;;
 	Hibernate)
-		i3lock -i $HOME/.config/background && sleep 1
-		systemctl hibernate
+		slock systemctl hibernate
 		;;
 	Reboot)
 		systemctl reboot

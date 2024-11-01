@@ -13,7 +13,7 @@ Xft.hintstyle: hintslight
 ! --------
 Sxiv.background: #282c34
 Sxiv.foreground: #a9a1e1
-Sxiv.font: UbuntuMono Nerd Fon:size=11
+Sxiv.font: IosevkaTerm Nerd Font:size=13
 
 ! courser
 ! --------

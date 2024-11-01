@@ -30,7 +30,7 @@ set $down k
 set $left h
 set $right l
 
-font pango:FiraCode Nerd Font Propo 11
+font pango:Iosevka Nerd Font 12
 
 
 
@@ -262,8 +262,8 @@ exec $HOME/.config/i3/startup.sh
 #################                          applications keyboard shortcuts                          #################
 #####################################################################################################################
 
-# bindsym $mod+Return exec alacritty;focus
-bindsym $mod+Return exec wezterm;focus
+bindsym $mod+Return exec alacritty;focus
+# bindsym $mod+Return exec wezterm;focus
 # bindsym Mod1+Return exec kitty;focus
 
 bindsym control+mod1+u exec --no-startup-id pavucontrol
