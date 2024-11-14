@@ -25,3 +25,7 @@ TAB: menu-complete
 "\C-h":"cd\n"
 "\es":"\C-asudo \C-e"
 "\C-y":yank
+# Ctrl-Delete: delete next word
+"\e[3;5~": shell-kill-word
+# Ctrl-Backspace: delete previous word
+"\C-H": shell-backward-kill-word

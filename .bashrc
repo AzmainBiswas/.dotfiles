@@ -20,7 +20,7 @@ shopt -s autocd
 shopt -s checkwinsize
 
 # vim mode
-set -o vi
+# set -o vi
 
 # Don't put duplibate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace

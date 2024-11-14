@@ -22,10 +22,13 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 [[ -f $HOME/.bashrc ]] && . ~/.bashrc
 
 # fzf
-export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --border'
+# export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --exclude .git"
+export FZF_DEFAULT_OPTS='
+  --border="sharp" --border-label="" --preview-window="sharp" --prompt="> "
+  --marker=">" --pointer="◆" --separator="─" --scrollbar="│" --layout="reverse"'
 
 # export SDL_VIDEODRIVER=wayland
 # export _JAVA_AWT_WM_NONREPARENTING=1

@@ -27,7 +27,7 @@ config.color_scheme = "tokyonight_night"
 -- config.color_scheme = "Solarized Dark Higher Contrast"
 
 -- background
-config.window_background_opacity = 1
+config.window_background_opacity = 0.9
 
 -- padding
 config.window_padding = {

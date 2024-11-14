@@ -1,5 +1,5 @@
 import:
-  - ~/.config/alacritty/themes/tokyo-night.yaml
+  - ~/.config/alacritty/themes/catppuccin_mocha.yaml
 
 window:
   dimensions:
@@ -8,7 +8,7 @@ window:
   padding:
     x: 0
     y: 0
-  opacity: 1
+  opacity: 0.9
     
 scrolling:
   history: 2000
