@@ -1,0 +1,7 @@
+theme = catppuccin-mocha
+
+font-family = Iosevka Nerd Font
+font-size = 13
+
+gtk-titlebar=false
+# window-decoration = false
