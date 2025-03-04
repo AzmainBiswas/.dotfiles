@@ -262,7 +262,7 @@ exec $HOME/.config/i3/startup.sh
 #################                          applications keyboard shortcuts                          #################
 #####################################################################################################################
 
-bindsym $mod+Return exec alacritty;focus
+bindsym $mod+Return exec ghostty;focus
 # bindsym $mod+Return exec wezterm;focus
 # bindsym Mod1+Return exec kitty;focus
 

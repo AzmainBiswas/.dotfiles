@@ -1,7 +1,8 @@
 theme = catppuccin-mocha
 
-font-family = Iosevka Nerd Font
+font-family = Fira Code
 font-size = 13
 
-gtk-titlebar=false
-# window-decoration = false
+background-opacity = 0.85
+gtk-titlebar = false
+window-decoration = false
