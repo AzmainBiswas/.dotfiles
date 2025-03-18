@@ -39,7 +39,7 @@ fonts=(
 
 for font in ${fonts[@]}; do
     printf "\n${font} .... \n"
-    curl --output-dir ${downloadFontDir} -O -J -L ${font}
+    aria2c --dir=${downloadFontDir} ${font}
 done
 
 for font in "$downloadFontDir"/*; do

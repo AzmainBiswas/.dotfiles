@@ -7,8 +7,12 @@ case "${action}" in
 	Shutdown)
 		systemctl poweroff
 		;;
-	Lock)
-		slock
+    Lock)
+        if command -v i3lock-fancy &>/dev/null; then
+            i3lock-fancy
+        else 
+            slock
+        fi
 		;;
 	Logout)
 		i3-msg exit
