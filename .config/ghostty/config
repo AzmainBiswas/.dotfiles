@@ -5,4 +5,4 @@ font-size = 12
 
 background-opacity = 0.85
 gtk-titlebar = false
-window-decoration = false
+#window-decoration = false

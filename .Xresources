@@ -11,8 +11,8 @@ Xft.hintstyle: hintslight
 
 ! Sxiv
 ! --------
-Sxiv.background: #282c34
-Sxiv.foreground: #a9a1e1
+Sxiv.background: #282828
+Sxiv.foreground: #8ec07c
 Sxiv.font: IosevkaTerm Nerd Font:size=13
 
 ! courser
