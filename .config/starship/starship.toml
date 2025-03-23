@@ -1,70 +1,23 @@
-format = """
-$username\
-$hostname\
-$directory\
-$git_branch\
-$git_state\
-$git_status\
-$fill\
-$dotnet\
-$c\
-$conda\
-$python\
-$nodejs\
-$cmd_duration $jobs $battery\
-$line_break\
-$character"""
-
 add_newline = false
-# Timeout for commands executed by starship (in milliseconds).
-command_timeout = 3600000
-
-# Ignore global command_timeout setting and keep running external commands, no matter how long they take.
-# ignore_timeout = true
-
-# Timeout for starship to scan files (in milliseconds).
-scan_timeout = 500
-
-[conda]
-format = '[$symbol$environment](dimmed green) '
-
-[nodejs]
-format = "[$symbol($version )]($style) "
-
-[c]
-format = '[$name $version]($style) '
-
-[python]
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style) '
-symbol = ' '
-
-[dotnet]
-format = '[$symbol($version )(🎯 $tfm )]($style) '
-
-[fill]
-symbol = " "
-
-[directory]
-style = "blue"
-read_only = " 󰌾"
-truncation_length = 3
-truncate_to_repo = false
 
 [character]
-success_symbol = "[❯](green)"
-error_symbol = "[❯](red)"
-vicmd_symbol = "[❯](purple)"
+success_symbol = ' [➜](bold green) '
+error_symbol = ' [✗](bold red) '
+
+[c]
+symbol = " "
+
+[directory]
+truncation_length = 60
+read_only = " 󰌾"
+
+[fossil_branch]
+symbol = " "
 
 [git_branch]
-symbol = " "
-format = "[$symbol$branch]($style) "
-style = "bright-gray"
-
-[jobs]
-symbol = '✦'
-style = "bold red"
-number_threshold = 1
-format = "[$symbol]($style)"
+format = "[$branch]($style)"
+symbol = " "
+style = "bright-green"
 
 [git_status]
 format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed) ]($style)"
@@ -80,25 +33,129 @@ ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
 
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
 
-[git_metrics]
-disabled = false
+[golang]
+symbol = " "
 
-[cmd_duration]
-format = "[$duration]($style)"
-style = "yellow"
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+ssh_symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[lua]
+symbol = " "
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+
+[package]
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
 
 [rust]
 symbol = " "
 
-[time]
-disabled = false
-style = "bold white"
-format = "[$time]($style)"
+[scala]
+symbol = " "
 
-[[battery.display]]
-threshold = 15
-style = 'bold red'
+[swift]
+symbol = " "
+
+[zig]
+symbol = " "

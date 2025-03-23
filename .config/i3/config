@@ -77,6 +77,7 @@ bindsym $mod+Shift+w exec --no-startup-id rofi -show window
 # bindsym $mod+s exec $HOME/bin/script-launcher.sh
 bindsym $mod+v exec copyq menu
 bindsym $mod+period exec killall rofi || $HOME/bin/emoji
+bindsym $mod+c exec --no-startup-id $HOME/bin/x11-wallpaper
 
 
 #####################################################################################################################
@@ -263,7 +264,7 @@ exec $HOME/.config/i3/startup.sh
 #####################################################################################################################
 
 bindsym $mod+Return exec ghostty;focus
-# bindsym $mod+Return exec wezterm;focus
+# bindsym $mod+Return exec alacritty;focus
 # bindsym Mod1+Return exec kitty;focus
 
 bindsym control+mod1+u exec --no-startup-id pavucontrol

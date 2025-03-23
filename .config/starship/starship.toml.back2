@@ -1,0 +1,104 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$fill\
+$dotnet\
+$c\
+$golang\
+$conda\
+$python\
+$cmd_duration $jobs $battery\
+$line_break\
+$character"""
+
+add_newline = false
+# Timeout for commands executed by starship (in milliseconds).
+command_timeout = 3600000
+
+# Ignore global command_timeout setting and keep running external commands, no matter how long they take.
+# ignore_timeout = true
+
+# Timeout for starship to scan files (in milliseconds).
+scan_timeout = 500
+
+[conda]
+format = '[$symbol$environment](dimmed green) '
+
+[nodejs]
+format = "[$symbol($version )]($style) "
+
+[c]
+format = '[$name $version]($style) '
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style) '
+symbol = ' '
+
+[dotnet]
+format = '[$symbol($version )(🎯 $tfm )]($style) '
+
+[fill]
+symbol = " "
+
+[directory]
+style = "blue"
+read_only = " 󰌾"
+truncation_length = 3
+truncate_to_repo = false
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❯](purple)"
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+style = "bright-gray"
+
+[jobs]
+symbol = '✦'
+style = "bold red"
+number_threshold = 1
+format = "[$symbol]($style)"
+
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed) ]($style)"
+style = "bright-cyan"
+conflicted = " =${count}"
+untracked = " ?${count}"
+modified = " m${count}"
+staged = " +${count}"
+renamed = " ->${count}"
+deleted = " x${count}"
+stashed = "≡"
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+
+
+[git_metrics]
+disabled = false
+
+[cmd_duration]
+format = "[$duration]($style)"
+style = "yellow"
+
+[memory_usage]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[time]
+disabled = false
+style = "bold white"
+format = "[$time]($style)"
+
+[[battery.display]]
+threshold = 15
+style = 'bold red'

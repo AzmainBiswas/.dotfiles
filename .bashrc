@@ -94,11 +94,6 @@ alias gp="git push"
 alias pbcopy="xsel --input --clipboard"
 alias pbpaste="xsel --output --clipboard"
 
-# conditional alias
-# zoxide
-if command -v zoxide &>/dev/null; then
-    eval "$(zoxide init bash)" && alias cd="z"
-fi
 
 # devour
 # alias mpv='devour mpv'
@@ -223,20 +218,27 @@ function bash_prompt() {
 
 # starship
 # install: curl -sS https://starship.rs/install.sh | sh
-# if command -v starship &>/dev/null; then
-#     eval "$(starship init bash)" #starship
-# else
-#     bash_prompt
-# fi
+if command -v starship &>/dev/null; then
+    eval "$(starship init bash)" #starship
+else
+    bash_prompt
+fi
 
-bash_prompt
+# bash_prompt
 
 # fastfetch
 if command -v fastfetch &>/dev/null; then
 	fastfetch
 fi
 
-# $HOME/bin/print-scripts/unix
+# conditional alias
+# zoxide
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init bash)" && alias cd="z"
+fi
+
+
+$HOME/bin/print-scripts/unix
 
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
