@@ -238,7 +238,7 @@ if command -v zoxide &>/dev/null; then
 fi
 
 
-$HOME/bin/print-scripts/unix
+# $HOME/bin/print-scripts/unix
 
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
