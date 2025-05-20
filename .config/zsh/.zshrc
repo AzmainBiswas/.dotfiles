@@ -9,7 +9,7 @@ zstyle ':completion:*' menu select # tab opens cmp menu
 zstyle ':completion:*' special-dirs false # force . and .. to show in cmp menu
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # colorize cmp menu
 zstyle ':completion:*:builtins' list-colors '=*=1;38;5;142'
-zstyle ':completion:*:aliases' list-colors '=*=2;38;5;128'
+zstyle ':completion:*:aliases' list-colors '=*=34;38;5;128'
 zstyle ':completion:*:options' list-colors '=^(-- *)=34'
 zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
 zstyle ':completion:*' file-list false # more detailed list
