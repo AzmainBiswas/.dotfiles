@@ -269,7 +269,7 @@ bindsym $mod+Return exec ghostty;focus
 
 bindsym control+mod1+u exec --no-startup-id pavucontrol
 
-bindsym $mod+Shift+Return exec --no-startup-id nemo;focus
+# bindsym $mod+Shift+Return exec --no-startup-id nemo;focus
 
 
 
@@ -388,11 +388,11 @@ mode "$mode_gaps_outer" {
 
 bar {
     # height 30
-	position bottom# top 
+	position top #bottom / top 
     font pango:JetBrainsMono Nerd Font 11
 	status_command i3status
     tray_padding 1
-    strip_workspace_numbers yes
+    strip_workspace_numbers no
 
     colors {
             separator  #000000
@@ -430,7 +430,10 @@ for_window [class="firefox"] move to workspace 3
 for_window [class="Google-chrome"] move to workspace 3
 for_window [class="Chromium"] move to workspace 3
 for_window [class="Brave"] move to workspace 3
-# for_window [class="Emacs"] move to workspace 3
+
+for_window [class="dev.zed.Zed"] move to workspace 2
+for_window [class="Emacs"] move to workspace 2
+for_window [class="Code"] move to workspace 2
 
 
 ############ Rule #####################
