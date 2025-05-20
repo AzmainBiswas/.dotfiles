@@ -236,9 +236,8 @@ autoload -Uz vcs_info
 # zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' get-revision true
-zstyle ':vcs_info:git:*' formats "(%b %m%u%c)"
-zstyle ':vcs_info:git*' formats "%{$fg[grey]%}%s %{$reset_color%}%r/%S%{$fg[grey]%} %{$fg[blue]%}%b%{$reset_color%}%m%u%c%{$reset_color%} "
-zstyle ':vcs_info:git:*' actionformats '(%b|%a %m%u%c)'
+zstyle ':vcs_info:git:*' formats "(%b) %m%u%c"
+zstyle ':vcs_info:git:*' actionformats '( %b|%a) %m%u%c'
 
 precmd() { vcs_info }
 setopt prompt_subst
