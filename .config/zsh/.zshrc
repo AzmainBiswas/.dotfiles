@@ -6,9 +6,13 @@ autoload -U colors && colors
 
 # cmp opts
 zstyle ':completion:*' menu select # tab opens cmp menu
-zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} ma=0\;33 # colorize cmp menu
-# zstyle ':completion:*' file-list true # more detailed list
+zstyle ':completion:*' special-dirs false # force . and .. to show in cmp menu
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # colorize cmp menu
+zstyle ':completion:*:builtins' list-colors '=*=1;38;5;142'
+zstyle ':completion:*:aliases' list-colors '=*=2;38;5;128'
+zstyle ':completion:*:options' list-colors '=^(-- *)=34'
+zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
+zstyle ':completion:*' file-list false # more detailed list
 zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
 
 # main opts
@@ -56,10 +60,6 @@ bindkey '^H' cd_home
 function sudo_prefix() { LBUFFER="sudo $LBUFFER" }
 zle -N sudo_prefix
 bindkey "^[s" sudo_prefix
-
-function reload_zsh() { source $HOME/.config/zsh/.zshrc; clear; echo "zshrc reloaded!!!\n"; zle reset-prompt }
-zle -N reload_zsh
-bindkey "^X^R" reload_zsh
 
 # # Make zsh autocomplete with up arrow
 # autoload -Uz history-search-end
@@ -241,4 +241,5 @@ zstyle ':vcs_info:git:*' actionformats '(%b|%a)%m%u%c'
 
 precmd() { vcs_info }
 setopt prompt_subst
-PROMPT='%F{red}[ %F{magenta}%n%F{yellow}@%F{green}%m %F{cyan}%~ %F{blue}${vcs_info_msg_0_} %F{red}]%f$ '
+# PROMPT='%F{red}[ %F{magenta}%n%F{yellow}@%F{green}%m %F{cyan}%~ %F{blue}${vcs_info_msg_0_} %F{red}]%f%(?:%F{red}$%f:%F{green}$%f) '
+PROMPT='%F{white}%B(%F{magenta}%n%F{yellow}@%F{green}%m %F{cyan}%~ %F{blue}${vcs_info_msg_0_}%F{white})%b%f%(?:%{$fg_bold[green]%}$:%{$fg_bold[red]%}$) '
