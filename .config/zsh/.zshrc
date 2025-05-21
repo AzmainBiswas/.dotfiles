@@ -9,7 +9,7 @@ zstyle ':completion:*' menu select # tab opens cmp menu
 zstyle ':completion:*' special-dirs false # force . and .. to show in cmp menu
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # colorize cmp menu
 zstyle ':completion:*:builtins' list-colors '=*=1;38;5;142'
-zstyle ':completion:*:aliases' list-colors '=*=34;38;5;128'
+# zstyle ':completion:*:aliases' list-colors '=*=34;38;5;128'
 zstyle ':completion:*:options' list-colors '=^(-- *)=34'
 zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
 zstyle ':completion:*' file-list false # more detailed list
@@ -34,6 +34,7 @@ SAVEHIST=1000000
 HISTFILE="$XDG_CACHE_HOME/zsh_history" # move histfile to cache
 HISTCONTROL=ignoreboth # consecutive duplicates & commands starting with space are not saved
 
+bindkey -v
 # binds
 bindkey "^a" beginning-of-line
 bindkey "^e" end-of-line
@@ -48,14 +49,6 @@ bindkey '^R' fzf-history-widget
 
 bindkey "\e[1;5C" forward-word   # Ctrl + Right Arrow
 bindkey "\e[1;5D" backward-word  # Ctrl + Left Arrow
-
-function cd_back() { LBUFFER ="cd .."; zle accept-line }
-zle -N cd_back
-bindkey '^B' cd_back
-
-function cd_home() { LBUFFER ="cd"; zle accept-line }
-zle -N cd_home
-bindkey '^H' cd_home
 
 function sudo_prefix() { LBUFFER="sudo $LBUFFER" }
 zle -N sudo_prefix
@@ -223,23 +216,26 @@ if command -v zoxide &>/dev/null; then
 fi
 
 ## plugins
-#require zsh-autosuggestions
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# require zsh-autosuggestions
+# source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-#require zsh-autosuggestions
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# require zsh-autosuggestions
+# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ###------------------- PROMPT -----------------------###
-autoload -Uz vcs_info
-# Customize the Git info format: branch name in parentheses
-# zstyle ':vcs_info:git:*' formats '(%b)'
-# zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' get-revision true
-zstyle ':vcs_info:git:*' formats "(%b)%m%u%c"
-zstyle ':vcs_info:git:*' actionformats '(%b|%a)%m%u%c'
 
-precmd() { vcs_info }
-setopt prompt_subst
-# PROMPT='%F{red}[ %F{magenta}%n%F{yellow}@%F{green}%m %F{cyan}%~ %F{blue}${vcs_info_msg_0_} %F{red}]%f%(?:%F{red}$%f:%F{green}$%f) '
-PROMPT='%F{white}%B(%F{magenta}%n%F{yellow}@%F{green}%m %F{cyan}%~ %F{blue}${vcs_info_msg_0_}%F{white})%b%f%(?:%{$fg_bold[green]%}$:%{$fg_bold[red]%}$) '
+# autoload -Uz vcs_info
+# # Customize the Git info format: branch name in parentheses
+# # zstyle ':vcs_info:git:*' formats '(%b)'
+# # zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
+# zstyle ':vcs_info:*' check-for-changes true
+# zstyle ':vcs_info:*' get-revision true
+# zstyle ':vcs_info:git:*' formats "(%b)%m%u%c"
+# zstyle ':vcs_info:git:*' actionformats '(%b|%a)%m%u%c'
+#
+# precmd() { vcs_info }
+# setopt prompt_subst
+# # PROMPT='%F{red}[ %F{magenta}%n%F{yellow}@%F{green}%m %F{cyan}%~ %F{blue}${vcs_info_msg_0_} %F{red}]%f%(?:%F{red}$%f:%F{green}$%f) '
+# PROMPT='%B%F{white}(%F{magenta}%n%F{yellow}@%F{green}%m %F{cyan}%~ %F{blue}${vcs_info_msg_0_}%F{white})%f%b%(?:%{$fg_bold[green]%}$%f:%{$fg_bold[red]%}$%f) '
+
+eval "$(starship init zsh)"

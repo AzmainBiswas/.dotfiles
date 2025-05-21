@@ -22,7 +22,7 @@ font:
     style: Medium
   italic:
     style: "Light Italic"
-  size: 13
+  size: 12
 
 cursor:
   # Values for 'style':
