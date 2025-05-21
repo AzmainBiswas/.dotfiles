@@ -34,7 +34,6 @@ SAVEHIST=1000000
 HISTFILE="$XDG_CACHE_HOME/zsh_history" # move histfile to cache
 HISTCONTROL=ignoreboth # consecutive duplicates & commands starting with space are not saved
 
-bindkey -v
 # binds
 bindkey "^a" beginning-of-line
 bindkey "^e" end-of-line
@@ -49,6 +48,7 @@ bindkey '^R' fzf-history-widget
 
 bindkey "\e[1;5C" forward-word   # Ctrl + Right Arrow
 bindkey "\e[1;5D" backward-word  # Ctrl + Left Arrow
+bindkey -v
 
 function sudo_prefix() { LBUFFER="sudo $LBUFFER" }
 zle -N sudo_prefix
