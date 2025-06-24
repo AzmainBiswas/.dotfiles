@@ -6,6 +6,7 @@ autoload -U colors && colors
 
 # cmp opts
 zstyle ':completion:*' menu select # tab opens cmp menu
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' special-dirs false # force . and .. to show in cmp menu
 # zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # colorize cmp menu
 # zstyle ':completion:*:builtins' list-colors '=*=1;38;5;142'

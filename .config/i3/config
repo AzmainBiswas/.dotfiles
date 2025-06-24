@@ -395,9 +395,9 @@ bar {
     strip_workspace_numbers no
 
     colors {
-            separator  #000000
-            background #000000
-            statusline #ffffff
+            separator  #282828
+            background #282828
+            statusline #ebdbb2
 
             #                   border  background text
             focused_workspace  #1f222d #474747    #ebdbb2
@@ -412,7 +412,7 @@ bar {
 
 	# Window color settings
 	# class                 border  backgr. text    indicator
-	client.focused          #a9a1e1 #a9a1e1 #282c34 #83a598
+	client.focused          #a9a1e1 #a9a1e1 #8ec07c #83a598
 	client.unfocused        #2e3440 #1f222d #bbc2cf #1f222d
 	client.focused_inactive #2e3440 #1f222d #888888 #1f222d
 	client.placeholder      #2e3440 #1f222d #888888 #1f222d
