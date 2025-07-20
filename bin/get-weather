@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+## get weather remport from wttr.in
+
+weather=$(curl -s wttr.in/?format=j1)
+temp_c=$(echo ${weather} | jq ".current_condition[].temp_C" | sed "s/\"//g")
+weatherDesc=$(echo $weather | jq ".current_condition[].weatherDesc[].value" | sed "s/\"//g")
+windspeedKmph=$(echo $weather | jq ".current_condition[].windspeedKmph" | sed "s/\"//g")
+precipInches=$(echo $weather | jq ".current_condition[].precipInches" | sed "s/\"//g")
+humidity=$(echo $weather | jq ".current_condition[].humidity" | sed "s/\"//g")
+
+printf "\n--- Weather Remport ---\n\n"
+printf "temperature: ${temp_c} °C\nHumidity: ${humidity}\nWeather Descpriction: ${weatherDesc}\nWind Speed: ${windspeedKmph} Km/h\nPrecipitation: ${precipInches} In\n"
+printf "\n"
+
+notify-send -i "$HOME/Pictures/weather.png" "== Weather Report ==" "temperature: ${temp_c} °C\nHumidity: ${humidity}\nWeather Descpriction: ${weatherDesc}\nWind Speed: ${windspeedKmph} Km/h\nPrecipitation: ${precipInches} In\n"

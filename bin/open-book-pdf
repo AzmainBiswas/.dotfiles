@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+DMENU='dmenu -i -F -l 15 -p'
+FZF='fzf --height 70% --border rounded --reverse --prompt'
+ROFI='rofi -dmenu -i -theme ~/.config/rofi/full-theme.rasi -p'
+
+BOOK=/mnt/docs/book/
+PROJ=/mnt/docs/poject/
+NOTE=/mnt/docs/notes/
+
+
+main() {
+    choose=$(fd . $BOOK $PROJ $NOTE --type f -e "pdf" -e "djvu" | $MENU "Book Name > " )
+    if [ "$choose" == "" ]
+    then
+	exit
+    fi
+    zathura "$choose"
+}
+
+help() {
+    printf "%s\n" " -r: for rofi menu.
+ -f: for fzf menu.
+ -h: for help.
+ -d: for dmenu.
+ By default it will ue rofi as launcher."
+}
+
+if [ $1 == '-d' ]
+then
+  MENU=$ROFI
+  main
+elif [ $1 == '-f' ]
+then
+  MENU=$FZF
+  main
+elif [ $1 == '-h' ]
+then
+  help
+else
+  MENU=$DMENU
+  main
+fi

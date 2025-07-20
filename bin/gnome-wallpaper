@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+import random
+import os
+import subprocess
+
+WallPath = "/mnt/media/wallpapers"
+
+def ChooseWall():
+    list_wallpaper = []
+    all_wallpaper = os.listdir(WallPath)
+    for _ in range(6):
+        ch_wallpaper = random.choice(all_wallpaper)
+        list_wallpaper.append(ch_wallpaper)
+        all_wallpaper.remove(ch_wallpaper)
+    wallpaper = random.choice(list_wallpaper)
+    return wallpaper
+
+if __name__ == "__main__":
+    wallpaper = ChooseWall()
+    fullparh = os.path.join(WallPath, wallpaper)
+    subprocess.run(['gsettings', 'set', 'org.gnome.desktop.background', 'picture-uri-dark', 'file://' + fullparh])
+    # os.system(f"notify-send -i {fullparh} 'WallPaper' 'WallPaper changed to {wallpaper}'")
+    subprocess.run(["echo" , f"WallPaper set to {wallpaper}."])
+    # os.system(f"notify-send -i {fullparh} 'WallPaper' 'WallPaper set to {wallpaper}'")

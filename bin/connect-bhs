@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# device MAC Address
+device_address=74:D7:13:14:7E:B5 # Realme Buds Air 3
+
+device_name=$(bluetoothctl info 74:D7:13:14:7E:B5 | grep "Name" | awk -F": " '{ print $NF }')
+
+bluetooth_on=$(bluetoothctl show | grep -c "Powered: yes")
+battery_percentage=$(bluetoothctl info $device_address | grep "Battery Percentage:" | awk '{ print $NF }' | sed 's/(/ /; s/)/ %/')
+connection=$(bluetoothctl info $device_address | grep -c "Connected: yes")
+pair_on=$(bluetoothctl info $device_address | grep -c "Paired: yes")
+trust_on=$(bluetoothctl info $device_address | grep -c "Trusted: yes")
+
+PairOn() {
+    if [[ $pair_on == 0 ]]; then
+        bluetoothctl pair $device_address &> /dev/null
+    fi
+}
+
+TrustOn() {
+    if [[ $trust_on == 0 ]]; then
+        bluetoothctl trust $device_address &> /dev/null
+    fi
+}
+
+Connect() {
+    # if power is not on then on the power
+    if [[ $bluetooth_on == 0 ]]; then
+        bluetoothctl power on &> /dev/null
+    fi
+
+    if [[ $connection == 1 ]]; then
+        notify-send -i "bluetooth" "Bluetooth" "Connected to $device_name\nBattery Percentage:$battery_percentage"
+    else
+        PairOn
+        TrustOn
+        bluetoothctl connect $device_address &> /dev/null && notify-send -i "bluetooth" "Bluetooth" "Connected to $device_name\nBattery Percentage:$battery_percentage"
+    fi
+}
+
+DisConnect() {
+    if [[ $connection == 1 ]]; then
+        bluetoothctl disconnect $device_address &>/dev/null && notify-send -i "bluetooth" "Bluetooth" "$device_name is disconnected"
+    else
+        notify-send -i "bluetooth" "Bluetooth" "$device_name is not connected"
+    fi
+}
+
+if [[ $1 == '-d' ]];then
+    DisConnect 
+else
+    Connect
+fi

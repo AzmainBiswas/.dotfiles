@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# action=$(printf "Shutdown\nLock\nSuspend\nHibernate\nReboot" | rofi -dmenu -case-sensitive -p "Power Menu")
+action=$(printf "Shutdown\nLock\nLogout\nSuspend\nReboot" | dmenu -l 6 -i -F -p "Power Menu >")
+
+case "${action}" in
+Shutdown)
+	systemctl poweroff
+	;;
+Lock)
+	slock
+	;;
+Logout)
+    pkill dwm
+    ;;
+Suspend)
+	slock systemctl suspend -i
+	;;
+Reboot)
+	systemctl reboot
+	;;
+*)
+	exit 2
+	;;
+esac
+
+exit 0

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+dwm_date() {
+    printf "%s" " $(date "+📅 %b-%d(%a) 🕗 %I:%M %P")"
+}
+
+dwm_date

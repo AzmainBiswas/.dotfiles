@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+
+DMENU='dmenu -i -F -l 15 -p'
+FZF='fzf --height 70% --border rounded --reverse --prompt'
+terminal=alacritty
+
+# have to add this function
+
+menu() {
+    printf "0. Play random songs\n"
+    printf "1. Play A Song\n"
+    printf "2. Play A Folder\n"
+    printf "3. Open ncmpcpp(Music palyer)\n"
+    printf "4. Stop\n"
+    printf "5. Current Song name\n"
+    printf "6. volume 25 \n"
+    printf "7. volume 50 \n"
+    printf "8. volume 75 \n"
+    printf "9. volume 100 \n"
+}
+
+playRandom() {
+    mpc clear
+    mpc add /
+    mpc random on
+    mpc play
+    notify-send -i "mpd" "Playing" "$(mpc current)"
+}
+
+play() {
+    music=$(mpc listall | ${MENU} 'music to play > ')
+    mpc clear 
+    mpc -q add "$music"
+    mpc play
+    mpc repeat on
+    notify-send -i "mpd" "Playing" "$(mpc current)"
+}
+
+add() {
+    music2=$(mpc listall | ${MENU} 'Add to queue > ')
+    mpc -q add "$music2"
+    notify-send -i "mpd" "Added" "$(printf ${music2})"
+}
+
+FolderPlay() {
+    folder=$(fd . /mnt/media/music/ --type d | cut -b 18-1000 | ${MENU} 'Choose a Folder > ' )
+    if [ "$folder" == "" ]
+    then
+		exit
+    fi
+    mpc stop
+    mpc clear
+    mpc add "${folder}"
+    mpc repeat on
+    mpc random on
+    mpc play
+    notify-send -i "mpd" "Added" "$(printf ${folder})"
+    notify-send -i "mpd" "Playing" "$(mpc current)"
+}
+
+
+if [ $1 == '-f' ]
+then
+    MENU=${FZF}
+else
+    MENU=${DMENU}
+fi
+
+choose=$(menu | ${MENU} "choose your option > " | awk -F. '{ print $1 }')
+
+case ${choose} in
+    0)
+		playRandom
+		;;
+    1)
+		play
+		;;
+    2)
+		FolderPlay
+		;;
+    3)
+		if [ $1 == '-f' ]
+		then
+			ncmpcpp
+		else
+			$terminal -e ncmpcpp
+		fi
+		;;
+    4)
+		mpc stop
+		;;
+    5)
+		notify-send -i "mpd" "Playing" "$(mpc current)"
+		;;
+    6)
+		mpc volume 25
+		;;
+    7)
+		mpc volume 50
+		;;
+    8)
+		mpc volume 75
+		;;
+    9)
+		mpc volume 100
+		;;
+    *)
+		printf "Plece choose currect value"
+esac

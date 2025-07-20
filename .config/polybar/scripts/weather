@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# temp_C=$(curl -s wttr.in/?format=j1 | jq ".current_condition[].temp_C" | sed "s/\"//g")
+# weatherDesc=$(curl -s wttr.in/?format=j1 | jq ".current_condition[].weatherDesc[].value" | sed "s/\"//g")
+
+# echo -e "󰖐 : ${temp_C}°C"
+echo $(curl -s wttr.in/?format=1)

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+dwm_brightness() {
+	brightness=$(brightnessctl | grep -o "(.*" | tr -d "()")
+    printf "🌞 %s " "${brightness}"
+}
+
+dwm_brightness

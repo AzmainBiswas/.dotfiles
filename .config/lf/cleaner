@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ueberzu cmd -s $UB_SOCKET -a remove -i PREVIEW

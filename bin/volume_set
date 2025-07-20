@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+## set volume for dwm
+
+if [[ $1 = "-i" ]]; then
+    pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 dwmblocks
+elif [[ $1 = "-d" ]]; then
+    pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 dwmblocks
+elif [[ $1 = "-m" ]]; then
+    pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 dwmblocks
+fi

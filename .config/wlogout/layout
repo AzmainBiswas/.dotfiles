@@ -1,0 +1,36 @@
+{
+    "label" : "lock",
+    "action" : "swaylock -e -i $HOME/.config/background",
+    "text" : "Lock (l)",
+    "keybind" : "l"
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "Reboot (r)",
+    "keybind" : "r"
+}
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "Shutdown (s)",
+    "keybind" : "s"
+}
+{
+    "label" : "logout",
+    "action" : "killall sway",
+    "text" : "Logout (e)",
+    "keybind" : "e"
+}
+{
+    "label" : "suspend",
+    "action" : "$HOME/bin/logout.sh",
+    "text" : "Suspend (u)",
+    "keybind" : "u"
+}
+{
+    "label" : "sleep",
+    "action" : "$HOME/bin/logout.sh",
+    "text" : "sleep (p)",
+    "keybind" : "p"
+}

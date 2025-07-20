@@ -1,0 +1,31 @@
+set colored-stats Off
+set colored-completion-prefix On
+
+# Show auto-completion list automatically, without double tab
+set show-all-if-ambiguous On
+set completion-ignore-case On # case insensitive search 
+set completion-display-width 0
+set completion-query-items 1000
+
+set echo-control-characters Off
+
+# Map tab to cycle through all the possible completions.
+TAB: menu-complete
+"\e[Z": menu-complete-backward
+
+"\e[A": history-search-backward
+"\e[B": history-search-foreward
+
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+
+"\C-f":"zi\n"
+# "\C-l":"clear\n"
+"\C-b":"cd ..\n"
+"\C-h":"cd\n"
+"\es":"\C-asudo \C-e"
+"\C-y":yank
+# Ctrl-Delete: delete next word
+"\e[3;5~": shell-kill-word
+# Ctrl-Backspace: delete previous word
+"\C-H": shell-backward-kill-word

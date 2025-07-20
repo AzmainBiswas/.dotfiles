@@ -1,0 +1,472 @@
+#### importent shit #####
+
+exec systemctl --user mask xdg-desktop-portal-gnome &
+exec systemctl --user mask xdg-desktop-portal-kde &
+exec systemctl --user unmask xdg-desktop-portal-wrl &
+exec systemctl --user start xdg-desktop-portal-wrl &
+exec systemctl --user start xdg-desktop-portal &
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK &
+exec hash dbus-update-activation-environment 2>/dev/null && \
+         dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK &
+#####################################################################################################################
+#################                          picom and wallpaper                                      #################
+#####################################################################################################################
+
+exec_always --no-startup-id swaybg -m fill -i $HOME/.config/background &
+
+#####################################################################################################################
+#################           autostart   -    execute applications at boot time                      #################
+#####################################################################################################################
+
+#Authentication dialog (polkit-gnome)
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1 &
+exec_always --no-startup-id $HOME/.config/sway/waybar.sh &
+# exec /usr/lib/xfce4/notifyd/xfce4-notifyd &
+exec --no-startup-id $HOME/.config/sway/startup.sh &
+
+
+#####################################################################################################################
+#################                          Define the $mod variable/key                             #################
+#####################################################################################################################
+#Set Alt key
+#set $mod Mod1
+
+#set Super key
+set $mod Mod4
+
+#####################################################################################################################
+#################                          Define the movements keys - variables                    #################
+#####################################################################################################################
+
+
+#This is setup for qwerty
+set $up j
+set $down k
+set $left h
+set $right l
+
+font pango:FiraCode Nerd Font Propo 10
+
+########################################### input method ##########################################################
+
+## scaling fractor ##
+output eDP-1 scale 1
+
+## touchpad ##
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+    # accel_profile "adaptive" #disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+    # pointer_accel 0.4 # set mouse sensitivity (between -1 and 1)
+}
+
+## keyboard ##
+input type:keyboard {
+        xkb_layout "us"
+        xkb_numlock enabled
+}
+
+## Mouse ##
+
+input type:Mouse {
+        scroll_factor 0.5
+}
+#####################################################################################################################
+#################                          Single and Dual screen                                   #################
+#####################################################################################################################
+# exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60.00
+# exec xrandr --setprovideroutputsource modesetting NVIDIA-0
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+
+
+#####################################################################################################################
+#################                                   menu                                            #################
+#####################################################################################################################
+
+# start dmenu
+#bbindsym Ctrl+Space exec --no-startup-id rofi -show drun
+bindsym $mod+d exec killall rofi || rofi -show drun 
+# bindsym $mod+Shift+d exec rofi -show run
+bindsym $mod+Shift+d exec killall dmenu || dmenu_run -F -p "Launcher > " -l 14
+bindsym $mod+w exec killall rofi || "$HOME/bin/sway_window_switcher"
+
+#####################################################################################################################
+#################                          how to exit, logoff, suspend, ...                        #################
+#####################################################################################################################
+
+bindsym Ctrl+Escape exec --no-startup-id wlogout
+
+
+#####################################################################################################################
+#################                          reload changed configuration                             #################
+#####################################################################################################################
+
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+
+#####################################################################################################################
+#################                          Stopping an application                                  #################
+#####################################################################################################################
+
+# kill focused window
+bindsym $mod+q kill
+
+#####################################################################################################################
+#################                          Moving around in i3                                      #################
+#####################################################################################################################
+
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+#####################################################################################################################
+#################                          moving around workspaces                                 #################
+#####################################################################################################################
+# next/previous workspace
+
+bindsym Mod1+Tab workspace next
+bindsym Mod1+Shift+Tab workspace prev
+bindsym $mod+Tab workspace back_and_forth
+
+#navigate workspaces next / previous
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+#####################################################################################################################
+#################                          Scratchpad                                        #################
+#####################################################################################################################
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+#####################################################################################################################
+#################                          Tiling parameters                                        #################
+#####################################################################################################################
+
+# orientation for new workspaces
+default_orientation horizontal
+
+# split in horizontal orientation
+bindsym Mod1+h split h
+
+# split in vertical orientation
+bindsym Mod1+v split v
+
+# Enter fullscreen mode for the focused container
+# Super + F in arcolinux is execute thunar
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+# qwerty/azerty issue for letter z
+# bindsym $mod+s layout stacking
+# bindsym $mod+t layout tabbed
+# bindsym $mod+e layout toggle split
+
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+####################################################################################################################
+# resize window (you can also use the mouse for that)
+
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+       bindsym $left       resize shrink width 10 px or 10 ppt
+       bindsym $down       resize grow height 10 px or 10 ppt
+       bindsym $up         resize shrink height 10 px or 10 ppt
+       bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+       bindsym Left        resize shrink width 1 px or 1 ppt
+       bindsym Down        resize grow height 1 px or 1 ppt
+       bindsym Up          resize shrink height 1 px or 1 ppt
+       bindsym Right       resize grow width 1 px or 1 ppt
+
+        # back to normal: Enter or Escape
+       bindsym Return mode "default"
+       bindsym Escape mode "default"
+}
+
+
+#####################################################################################################################
+#################                          applications keyboard shortcuts                          #################
+#####################################################################################################################
+
+# bindsym $mod+Return exec alacritty;focus
+bindsym $mod+Return exec foot
+bindsym Ctrl+Return exec wezterm
+bindsym $mod+period exec killall rofi || $HOME/bin/emoji
+bindsym $mod+v exec rofi -modi clipboard:/home/azmain/.config/rofi/scripts/cliphist-rofi -show clipboard
+bindsym $mod+s exec $HOME/bin/script-launcher.sh
+bindsym $mod+n exec swaync-client -t
+
+#####################################################################################################################
+#################                          screenshots                                              #################
+#####################################################################################################################
+
+bindsym Print exec grim $HOME/Pictures/Screenshots/$(date +%d-%m-%y-%H-%M-%S).png && notify-send "Screenshot Path" "$HOME/Pictures/Screenshots/$(date +%d-%m-%y-%H-%M-%S).png"
+bindsym $mod+Print exec grim -g "$(slurp)" $HOME/Pictures/Screenshots/$(date +%d-%m-%y-%H-%M-%S).png && notify-send "Screenshot Path" "$HOME/Pictures/Screenshots/$(date +%d-%m-%y-%H-%M-%S).png"
+
+#####################################################################################################################
+#################                          audio settings                                           #################
+#####################################################################################################################
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+## MPD ##
+bindsym Ctrl+Shift+k exec mpc toggle
+bindsym Ctrl+Shift+l exec mpc next && notify-send "Playing" "$(mpc current)"
+bindsym Ctrl+Shift+j exec mpc prev && notify-send "Playing" "$(mpc current)"
+
+################################################################################################################
+#################                          light                                               #################
+################################################################################################################
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec brightnessctl set 10+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10-
+
+bindsym $mod+End exec --no-startup-id $HOME/bin/yt-music.sh 
+bindsym End exec --no-startup-id $HOME/bin/audio-song
+
+#####################################################################################################################
+#################                          i3 gaps next                                             #################
+#####################################################################################################################
+
+for_window [class="^.*"] border pixel 2
+gaps inner 5
+gaps outer 5
+# smart_gaps on
+# smart_borders on
+
+
+
+#####################################################################################################################
+#################                          i3 gaps change                                           #################
+#####################################################################################################################
+
+
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym equal  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+    ##START THEMING WM
+
+        set $rosewater #f5e0dc
+        set $flamingo  #f2cdcd
+        set $pink      #f5c2e7
+        set $mauve     #cba6f7
+        set $red       #f38ba8
+        set $maroon    #eba0ac
+        set $peach     #fab387
+        set $green     #a6e3a1
+        set $teal      #94e2d5
+        set $sky       #89dceb
+        set $sapphire  #74c7ec
+        set $blue      #89b4fa
+        set $lavender  #b4befe
+        set $text      #cdd6f4
+        set $subtext1  #bac2de
+        set $subtext0  #a6adc8
+        set $overlay2  #9399b2
+        set $overlay1  #7f849c
+        set $overlay0  #6c7086
+        set $surface2  #585b70
+        set $surface1  #45475a
+        set $surface0  #313244
+        set $base      #1e1e2e
+        set $mantle    #181825
+        set $crust     #11111b
+
+    # Window color settings
+        # target                 title     bg    text   indicator  border
+        client.focused           $pink     $base $text  $rosewater $sapphire
+        client.focused_inactive  $mauve    $base $text  $rosewater $overlay1
+        client.unfocused         $mauve    $base $text  $rosewater $base
+        client.urgent            $peach    $base $peach $overlay0  $peach
+        client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+        client.background        $base
+
+    ##STOP THEMING WM
+
+
+#################################################### blur ##########################################################
+ 
+# blur enable
+# shadows enable
+# corner_radius 12
+# scratchpad_minimize enable
+# titlebar_separator enable
+
+# layer_effects "waybar" blur enable; shadows enable; corner_radius 0
+
+########################### assigne ###################################
+# for_window [class="firefox"] move to workspace 2
+# for_window [class="Google-chrome"] move to workspace 2
+# for_window [class="Brave"] move to workspace 2
+# for_window [class="Emacs"] move to workspace 3
+
+############ Rule #####################
+for_window [window_role="About"] floating enable
+no_focus   [window_type="splash"]
+for_window [tiling] border pixel $borderpx
+for_window [class="Nm-connection-editor"] floating enable
+for_window [class="Shadow"] fullscreen enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [title="Picture in picture" ] floating enable
+
+# Zoom (😱?)
+# For pop up notification windows that don't use notifications api
+for_window [app_id="zoom" title="^zoom$"] border none, floating enable
+# For specific Zoom windows
+for_window [app_id="zoom" title="^(Zoom|About)$"] border pixel, floating enable
+for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_size 960 x 700
+# Open Zoom Meeting windows on a new workspace (a bit hacky)
+for_window [app_id="zoom" title="Zoom Meeting(.*)?"] workspace next_on_output --create, move container to workspace current, floating disable, inhibit_idle open
+
+#### Opacity ####
+# for_window [class="Code"] opacity 0.95
+for_window [app_id="pcmanfm"] opacity 0.85
+
+
+
+##########################################################################################
+################################### gtk-theme ###############################################
+## set $gnome-schema org.gnome.desktop.interface
+## 
+exec_always {
+##     gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
+##     gsettings set $gnome-schema icon-theme 'Tela-circle-black-dark'
+##     gsettings set $gnome-schema cursor-theme 'macOS-Monterey-White'
+##     gsettings set $gnome-schema font-name 'Cantarell 13'
+    gsettings set $gnome-schema cursor-size 35
+}
+
+######################################################
+#################### bindgester
+####################################################
+# Allow switching between workspaces with left and right swipes
+# bindgesture swipe:right workspace prev
+# bindgesture swipe:left workspace next
+
+# Allow container movements by pinching them
+# bindgesture pinch:inward+up move up
+# bindgesture pinch:inward+down move down
+# bindgesture pinch:inward+left move left
+# bindgesture pinch:inward+right move right
+
+# mod + mouse will to change workspace
+bindsym --whole-window {
+    $mod+button4 workspace prev
+    $mod+button5 workspace next
+}

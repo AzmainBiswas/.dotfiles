@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Action
+Name=set wallpaper in wayland
+ToolbarLabel=set wallpaper
+Icon=wallpaper
+Profiles=profile-wallpaper;
+[X-Action-Profile profile-wallpaper]
+MimeTypes=image/png;image/jpg;image/jpeg
+Name[en]=Default profile
+Exec=/home/azmain/bin/set-wall.sh %f

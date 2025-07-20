@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+MENU="dmenu -i -F -l 30 -p"
+# MENU="rofi -dmenu" # DONT WORK
+
+ALL="/mnt/media/video/songs/"
+BENGALI="/mnt/media/video/songs/bengali/"
+ENGLISH="/mnt/media/video/songs/english/"
+HINDI="/mnt/media/video/songs/hindi/"
+
+LANG=$(printf "ALL\nBengali\nEnglish\nHindi" | ${MENU} "Sclect Language > ")
+
+case "${LANG}" in
+    Bengali)
+	mpv --fs --loop $(fd . ${BENGALI} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
+	;;
+    English)
+	mpv --fs --loop $(fd . ${ENGLISH} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
+	;;
+    Hindi)
+	mpv --fs --loop $(fd . ${HINDI} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
+	;;
+    ALL)
+	mpv --fs --loop $(fd . ${ALL} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
+	;;
+    *)
+	printf "You choice in invalide. Run the script again" | ${MENU}
+esac

@@ -1,0 +1,47 @@
+import = [
+    # "/home/azmain/.config/alacritty/themes/solarized_dark.toml"
+    # "/home/azmain/.config/alacritty/themes/GruvboxDarkHard.toml"
+    "/home/azmain/.config/alacritty/themes/DoomOne.toml"
+]
+
+[window]
+opacity = 1
+padding = {x = 0, y = 0}
+dimensions = { columns = 150, lines = 35 }
+decorations = "Full"
+decorations_theme_variant = "Dark" # "Light"
+
+# Window title
+title = "Alacritty"  # Default: "Alacritty"
+# Dynamic title
+dynamic_title = true  # Default: true
+# Window class (Linux/BSD only)
+class = { instance = "Alacritty", general = "Alacritty" }
+
+[scrolling]
+# Maximum number of lines in the scrollback buffer
+history = 10000
+# Number of lines scrolled for every input scroll increment
+multiplier = 8
+
+[font]
+normal = { family = "MesloLGM Nerd Font", style = "Ragular"}
+bold = { style = "Medium" }
+italic = { style = "Light Italic" }
+bold_italic = { style = "Bold Italic" }
+size = 11
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\\t"  # Default: ",│`|:\"' ()[]{}<>\\t"
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }  # Default: shape = "Block", blinking = "Off"
+vi_mode_style = "Block"  # Default: "None"
+
+[mouse]
+hide_when_typing = true  # Default: false
+bindings = [{ mouse = "Right", action = "Paste" }]
+
+[colors]
+draw_bold_text_with_bright_colors = true

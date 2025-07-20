@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+dwm_weather() {
+	printf "%s" "$(curl -s wttr.in/?format=1)"
+}
+
+dwm_weather

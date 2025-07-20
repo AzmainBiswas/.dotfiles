@@ -1,0 +1,84 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+general {
+        colors = true
+        interval = 5
+        color_good = "#8ec07c" # Light green
+        color_degraded = "#f9e2af" # Light yellow
+        color_bad = "#f38ba8" # Light red
+}
+
+# order += "ipv6"
+# order += "weather"
+order += "volume master"
+order += "wireless _first_"
+# order += "ethernet _first_"
+order += "battery all"
+# order += "disk /"
+order += "load"
+order += "memory"
+# order += "cpu_temperature 0"
+order += "tztime local"
+
+# wireless _first_ {
+#         format_up = "(%quality at %essid)"
+#         format_down = "down"
+# }
+
+wireless _first_ {
+        format_up = "  %essid %quality "
+        format_down = "  Down  "
+}
+
+volume master {
+        format = "  %volume "
+        format_muted = " 0 "
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+ethernet _first_ {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
+# battery all {
+#         format = "%status %percentage"
+# }
+
+battery all {
+        format = "%status %percentage %remaining %emptytime"
+        format_down = "No battery"
+        status_chr = " 󱐋"
+        status_bat = " 🠫"
+        status_full = "☻  "
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 30
+        last_full_capacity = true
+        hide_seconds = true
+        integer_battery_capacity = true
+}
+
+disk "/" {
+        format = "%avail"
+}
+
+load {
+        format = "CPU: %1min"
+}
+
+memory {
+        format = "  %used"
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+        format = "   %a %d-%m-%Y   %I:%M %p "
+}

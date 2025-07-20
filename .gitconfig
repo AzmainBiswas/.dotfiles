@@ -1,0 +1,9 @@
+[user]
+	email = 82164368+AzmainBiswas@users.noreply.github.com. 
+	name = Azmain Biswas
+[credential]
+	helper = store
+[safe]
+	directory = /mnt/docs/project/mcmc/simulation-techniques
+	directory = /mnt/docs/project/mcmc/report
+	directory = /mnt/docs/project/markov_chain

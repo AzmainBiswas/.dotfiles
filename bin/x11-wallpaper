@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# randomly set x11 wallpaper using feh
+
+# wallpaper directory
+WALLPAPER_DIR="/mnt/media/wallpapers/"
+
+wallpapers=$(fd . $WALLPAPER_DIR --type f -e "jpg" -e "png" -e "jpeg" )
+number_of_wallpaper=$(printf "%s\n" "$wallpapers" | wc -l ) # total number of wallpaper
+
+copy_wallpaper() {
+    random_index=$(( $RANDOM % $number_of_wallpaper ))
+    # get a random wallpaper
+    wallpaper=$(printf "%s\n" "$wallpapers" | sed -n "${random_index}p" ) # sed -n "2p" -> print 2nd line. 
+
+    # copy wallpaper
+    cp -f "$wallpaper" "$HOME/.config/background"
+}
+
+# copy wallpaper
+copy_wallpaper
+
+# set wallpaper
+feh --bg-fill "$HOME/.config/background"
+# notify-send -i "$HOME/.config/background" "wallpaper" "wallpaper chenged"

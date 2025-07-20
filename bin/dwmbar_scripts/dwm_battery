@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+dwm_battery() {
+	capacity=$(cat /sys/class/power_supply/BAT1/capacity)
+	status=$(cat /sys/class/power_supply/BAT1/status)
+
+	if [ $status = "Charging" ]; then
+		printf "🔌 %s %s%% " "${status}" "${capacity}" # %% for % symbol in bash
+    elif [ $status = "Full" ]; then
+        printf "💯 %s" "Full"
+	elif [ $status = "Discharging" ]; then
+		if [ $capacity -lt 20 ]; then
+			printf "🆘 low %s%% " "$capacity"
+		else
+			printf "⏬ %s %s%% " "${status}" "${capacity}"
+		fi
+	fi
+}
+
+dwm_battery

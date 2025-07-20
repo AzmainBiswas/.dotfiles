@@ -1,0 +1,22 @@
+#!/bin/sh
+
+while read file; do
+	case "$1" in
+	"d")
+		rm "$file"
+		;;
+	"c")
+		echo -n "$file" | xclip -selection clipboard && wl-copy
+		;;
+	"w")
+		# $HOME/bin/set-wall.sh  "$file"
+		$HOME/bin/set-wall-x11.sh "$file"
+		;;
+	"g")
+		gsettings set org.gnome.desktop.background picture-uri-dark file://$pwd/$file
+		;;
+	"p")
+		cat $file | xclip -selection clipboard -t image/png
+		;;
+	esac
+done

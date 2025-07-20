@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+MENU="fzf --border=rounded --margin=5% --color=dark --reverse --prompt"
+
+# video_player="devour mpv"
+video_player="mpv"
+
+ALL="/mnt/media/video/songs/"
+BENGALI="/mnt/media/video/songs/bengali/"
+ENGLISH="/mnt/media/video/songs/english/"
+HINDI="/mnt/media/video/songs/hindi/"
+
+LANG=$(printf "ALL\nBENGALI\nENGLISH\nHINDI" | ${MENU} "Sclect Language > ")
+
+case "${LANG}" in
+BENGALI)
+	${video_player} $(fd . ${BENGALI} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
+	;;
+ENGLISH)
+	${video_player} $(fd . ${ENGLISH} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
+	;;
+HINDI)
+	${video_player} $(fd . ${HINDI} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
+	;;
+ALL)
+	${video_player} $(fd . ${ALL} --type f -e "webm" -e "mp4" -e "mkv" | ${MENU} "Sclect Video > ")
+	;;
+*)
+	printf "You choice in invalide. Run the script again" | ${MENU}
+	;;
+esac

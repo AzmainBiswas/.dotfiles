@@ -1,0 +1,263 @@
+[colors]
+background = #282c34
+background-alt = #373B41
+foreground = #bbc2cf
+primary = #a9a1e1
+secondary = #51afef
+alert = #A54242
+disabled = #979797
+orange = #FF5520
+green = #9ACD83
+
+[bar/mybar]
+width = 100%
+height = 22pt
+radius = 0
+
+bottom = true
+; dpi = 96
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2pt
+
+border-size = 0pt
+border-color = #282c34
+
+padding-left = 0
+padding-right = 0
+
+module-margin = 1
+
+separator = |
+separator-foreground = ${colors.disabled}
+
+; font-0 = "Ubuntu Sans:size=14;4"
+font-0 = "JetBrainsMono Nerd Font:size=11;3"
+font-1 = "Noto Color Emoji:scale=8;3"
+; font-2 = "icomoon;4"
+
+modules-left = rofi i3 
+# modules-right = pulseaudio battery memory cpu wlan date powermenu
+modules-right = pulseaudio backlight battery wlan date wallpaper powermenu
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+tray-position = right
+wm-restack = i3
+
+scroll-up = "i3.prev"
+scroll-down = "i3.next"
+
+; override-redirect = true
+
+[module/rofi]
+type = custom/text
+content = "🪟"
+content-background = ${colors.background}
+content-foreground = ${colors.secondary}
+content-padding = 1
+click-left = "rofi -show drun"
+click-right = "$HOME/bin/i3-power-menu"
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+show-urgent = true
+index-sort = true
+enable-scroll = true
+
+label-mode = %index%
+label-mode-padding = 1
+label-mode-background = #e60053
+
+label-focused = %index%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 1
+
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+label-urgent = %index%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+label-active = %name%
+label-active-background = ${colors.background-alt}
+label-active-underline= ${colors.primary}
+label-active-padding = 1
+
+label-occupied = %name%
+label-occupied-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = %name%
+label-empty-foreground = ${colors.disabled}
+label-empty-padding = 1
+
+enable-scroll = true
+show-urgent = true
+;icon-0 = 1;
+;icon-1 = 2;
+;icon-2 = 3;
+;icon-3 = 4;
+;icon-4 = 5;
+;icon-5 = 6;
+;icon-6 = 7;
+;icon-7 = 8;
+;icon-8 = 9;
+;icon-9 = 10;
+;icon-default = ♟
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:70:...%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume-prefix = "🔊 "
+format-volume-prefix-foreground = ${colors.green}
+format-volume = <label-volume>
+label-volume = %percentage%%
+label-muted = 🔇 muted
+label-muted-foreground = ${colors.disabled}
+;Right and Middle click
+click-right = pavucontrol
+; click-middle =
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+label-layout = %layout%
+label-layout-foreground = ${colors.primary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-foreground = ${colors.background}
+label-indicator-background = ${colors.secondary}
+
+[module/memory]
+type = internal/memory
+interval = 3
+format-prefix = "🐏 "
+format-prefix-foreground = ${colors.primary}
+label = %percentage_used:2%%
+click-left = "alacritty --class "term,term" -e htop"
+
+[module/cpu]
+type = internal/cpu
+interval = 3
+format-prefix = "   CPU "
+format-prefix-foreground = ${colors.primary}
+label = %percentage:2%%
+click-left = "alacritty --class "term,term" -e auto-cpufreq --stats"
+
+[network-base]
+type = internal/network
+interval = 5
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-disconnected = %{F#F0C674}%ifname%%{F#707880} disconnected
+
+[module/wlan]
+inherit = network-base
+interface-type = wireless
+label-connected = 🛜 %essid%
+
+[module/date]
+type = internal/date
+interval = 1
+date = %I:%M %p 
+date-alt = %d-%m-%Y %I:%M:%S %p
+label = 🕘 %date%
+
+[module/battery]
+type = internal/battery
+full-at = 99
+low-at = 25
+battery = BAT1
+adapter = ACAD
+poll-interval = 5
+time-format = %H:%M
+format-charging = <animation-charging>  <label-charging>
+format-discharging = <ramp-capacity>  <label-discharging>
+format-full = <ramp-capacity>  <label-full>
+format-low = <label-low>  <animation-low>
+label-charging =  🔌 %percentage%%
+label-discharging =  ⏬ %percentage%%
+label-full = 💯 Fully charged
+label-low = 🪫 BATTERY LOW
+ramp-capacity-0 =   
+ramp-capacity-1 =   
+ramp-capacity-2 =   
+ramp-capacity-3 =   
+ramp-capacity-4 =   
+bar-capacity-width = 10
+animation-charging-0 = 
+animation-charging-1 =  
+animation-charging-2 =  
+animation-charging-3 =  
+animation-charging-4 =  
+animation-charging-framerate = 750
+animation-discharging-0 =  
+animation-discharging-1 =  
+animation-discharging-2 =  
+animation-discharging-3 =  
+animation-discharging-4 =  
+animation-discharging-framerate = 500
+animation-low-0 = !
+animation-low-1 = 
+animation-low-framerate = 200
+
+[module/powermenu]
+type = custom/text
+content-background = ${colors.background}
+content-foreground = ${colors.orange}
+click-left = "$HOME/bin/i3-power-menu"
+content = "🔴"
+
+[module/weather]
+type = custom/script
+exec = "bash -c $HOME/.config/polybar/scripts/weather"
+content-background = ${colors.background}
+interval = 3600
+
+[module/wallpaper]
+type = custom/text
+content-background = ${colors.background}
+click-left = "$HOME/bin/x11-wallpaper"
+content = "♻️"
+
+[module/backlight]
+type = internal/backlight
+# card="amdgpu_bl0"
+enable-scroll = true
+scroll-interval = 5
+format = <ramp> <label>
+label = %percentage%%
+ramp-0 = 🌑
+ramp-1 = 🌒
+ramp-2 = 🌓
+ramp-3 = 🌔
+ramp-4 = 🌕
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+; vim:ft=dosini

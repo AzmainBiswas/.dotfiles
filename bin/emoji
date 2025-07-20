@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+emoji=$(cat $HOME/.local/share/emoji.txt | rofi -dmenu -sorting-method fzf -p "󰞅" | cut -d' ' -f1 )
+# emoji=$(cat $HOME/.local/share/emoji.txt | dmenu -l 15 -fn ":size=16" -F -i -p "Sclect Emoji > " | cut -d' ' -f1 )
+# echo $emoji | tr -d "\n" | wl-copy 
+echo $emoji | tr -d "\n" | xclip -sel clip

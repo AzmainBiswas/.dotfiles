@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+YT_CLINT="https://vid.puffyan.us"
+
+quary_usr=$(echo $@ | tr -d "\n" | tr ' ' '+')
+
+if [ "$quary_usr" != '' ]
+then
+    quary=$(echo "song+audio+$quary_usr" | tr -d "\n")
+    video_id=$(curl --silent "https://vid.puffyan.us/search?q=${quary}" | rg -o "watch\?v=.{11}" | head -n 1)
+    video_url="https://www.youtube.com/${video_id}"
+    audio_url=$(yt-dlp -f ba --get-url ${video_url})
+
+    mpc stop
+    mpc clear
+    mpc add ${audio_url}
+    mpc play
+
+    # notification
+    title=$(yt-dlp --get-title ${video_url})
+    notify-send "playing: " "${title}"
+fi

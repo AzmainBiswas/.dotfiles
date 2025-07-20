@@ -1,0 +1,161 @@
+#!/usr/bin/env bash
+# download wallpaper using wallhaven api
+#
+# 1. run without argument for dmenu
+# 2. run with 'top' argument to see toplist
+# 3. with any argument ment act as search quary
+
+# Variables
+# wallpaper directory
+WALLDIR="/mnt/media/wallpapers"
+# cache directory: ~/.cache/walldl
+CACHEDIR="$HOME/.cache/walldl"
+# datafile: ~/.cache/walldl_data.json
+DATAFILE="$HOME/.cache/walldata.json"
+# max_page: maximum page
+max_page=1o
+# topRange: 1d, 3d, 1w, 1M , 3M, 6M, 1y
+topRange=1y
+# quality : large original small
+quality=large
+
+# clean up
+clean_up() {
+    printf "%s\n" "cleanning up ... "
+    rm -rf $CACHEDIR $DATAFILE
+}
+# first clean up every thing for no conflicts
+clean_up
+
+# print info
+show_info() {
+    printf "%s\n" "$1"
+    notify-send -i "sxiv" "wallhaven" "$1"
+    [[ -n "$2" ]] && clean_up && exit "$2" # 2nd argument must me integer
+}
+
+# check the dependency
+check_dep() {
+    for dep; do
+        command -v $dep 1>/dev/null || show_info "$dep not found, install $dep first" 1
+    done
+}
+
+check_dep curl wget sxiv jq
+
+# make all the nessery directory
+mkdir -p $WALLDIR $CACHEDIR
+
+# option menu
+option_type() {
+    printf "Search\nToplist\n" | dmenu -l 3 -p "Sclect Option 👉: "
+    # printf "Search\nToplist\n" | rofi -dmenu -p "Sclect Option 👉: "
+}
+
+# search menu
+search_menu() {
+    : | dmenu -p "Search Wallpaper 🔍: " | tr ' ' '+'
+    # : | rofi -dmenu -p "Search Wallpaper 🔍: " | tr ' ' '+'
+}
+
+# get search result
+get_search_data() {
+    for page_no in $(seq $max_page); do
+        {
+            json=$(
+                curl -s -G "https://wallhaven.cc/api/v1/search" \
+                    -d "q=$1" \
+                    -d "sorting=relevance" \
+                    -d "categories=110" \
+                    -d "atleast=1920x1080" \
+                    -d "ratios=landscape" \
+                    -d "topRange=$topRange" \
+                    -d "page=$page_no"
+            )
+            printf "%s\n" "$json" >>$DATAFILE
+        } &
+        sleep 0.001
+    done
+    wait
+}
+
+# get toplist data
+get_toplist_data() {
+    for page_no in $(seq $max_page); do
+        {
+            json=$(
+                curl -s -G "https://wallhaven.cc/api/v1/search" \
+                    -d "sorting=toplist" \
+                    -d "categories=110" \
+                    -d "atleast=1920x1080" \
+                    -d "ratios=landscape" \
+                    -d "topRange=$topRange" \
+                    -d "page=$page_no"
+            )
+            printf "%s\n" "$json" >>$DATAFILE
+        } &
+        sleep 0.001
+    done
+    wait
+}
+
+# getting data in verious type
+if [[ -n "$1" ]]; then
+    # for terminal
+    if [[ "$1" == "top" ]]; then
+        printf "getting toplist .....\n"
+        get_toplist_data
+    else
+        quary=$(printf "%s" "$*" | tr ' ' '+')
+        printf "getting data for %s ...\n" "$quary"
+        get_search_data $quary
+    fi
+else
+    # for dmenu
+    check_dep dmenu
+    option=$(option_type)
+
+    case "$option" in
+    Search)
+        quary=$(search_menu)
+        [[ -z $quary ]] && show_info "search quary in empty" 1
+        show_info "getting data for $quary ..."
+        get_search_data $quary
+        ;;
+    Toplist)
+        show_info "getting toplist data ....."
+        get_toplist_data
+        ;;
+    *)
+        show_info "select a valid option" 1
+        ;;
+    esac
+fi
+
+# downloading thumbniles
+thumbniles=$(jq -r ".data[]?|.thumbs.$quality" <$DATAFILE)
+[[ -z "$thumbniles" ]] && show_info "no result found 😥"
+
+show_info "downloading thumbniles ..."
+for url in $thumbniles; do
+    {
+        wget --quiet "$url" --directory-prefix="$CACHEDIR"
+    } &
+    sleep 0.001
+done
+wait
+
+image_names=$(sxiv -tpo -z 200 $CACHEDIR) # o is needed for selection,p Enable private mode, z Set zoom level to ZOOM percent
+[[ -z "$image_names" ]] && show_info "image not found" 1
+
+show_info "downloading wallpaper ...."
+for name in $image_names; do
+    id=$(printf "%s" "$name" | awk -F '/' '{print $NF}' | cut -d '.' -f 1)
+    path=$(jq -r '.data[]?|select(.id=="'$id'")|.path' <$DATAFILE)
+    wget "$path" --directory-prefix="$WALLDIR"
+done
+wait
+
+show_info "download complete 👍"
+
+clean_up

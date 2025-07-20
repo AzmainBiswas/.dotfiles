@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+ALL="/mnt/media/video/songs/"
+
+mpv $(fd . ${ALL} --type f -e "mkv" -e "mp4" -e "webm" | rofi -dmenu -matching "fuzzy" -p "Videos" )

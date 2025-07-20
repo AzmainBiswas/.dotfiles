@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# video_quality="$1"
+video_link="$1"
+video_name="${@:2}"
+
+
+video_name_no_space=$(echo $video_name | tr " " "-")
+video_name_lower=$(echo $video_name_no_space | tr "[:upper:]" "[:lower:]")
+
+
+if [[ -z "$1" ]]; then
+    echo "first argument is for video link"
+    echo "secound arguments for video name"
+else
+    # checking if the value is nall
+    [[ -z $video_link ]] && exit 0
+    [[ -z $video_name ]] && exit 0
+    yt-dlp -F "${video_link}"
+    printf "\n================================================================================\n"
+    printf "${RED}Enter Video ID: ${NC}"
+    read video_quality
+    [ -z $video_quality ] && printf "please enter a value\n" && exit 0
+    yt-dlp -f "$video_quality+ba" --merge-output-format mp4 "$video_link" -o "$video_name_lower"
+fi
