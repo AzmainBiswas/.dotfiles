@@ -389,7 +389,7 @@ mode "$mode_gaps_outer" {
 
 bar {
     # height 30
-    mode hide
+    # mode hide
 	position bottom #bottom / top 
     font pango:JetBrainsMono Nerd Font 11
 	status_command i3status

@@ -5,7 +5,7 @@ nm-applet &
 # blueman-applet &
 dunst -config "$HOME/.config/dunst/dunstrc" &
 # emacs --daemon &
-xfce4-power-manager &
+xfce4-power-manager --daemon &
 mpd &
 # clipmenud &
 numlockx on & 
