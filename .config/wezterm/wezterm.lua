@@ -4,8 +4,8 @@ local config = {}
 
 -- fonts
 config.font = wezterm.font_with_fallback({
+    "JetBrainsMono Nerd Font",
     "IosevkaTerm Nerd Font",
-	"JetBrainsMono Nerd Font",
     "MesloLGM Nerd Font",
 	"Fira Code",
 	"Ubuntu Sans Mono",

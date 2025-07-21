@@ -1,11 +1,12 @@
+[general]
 import = [
     # "/home/azmain/.config/alacritty/themes/solarized_dark.toml"
-    # "/home/azmain/.config/alacritty/themes/GruvboxDarkHard.toml"
-    "/home/azmain/.config/alacritty/themes/DoomOne.toml"
+    "/home/azmain/.config/alacritty/themes/GruvboxDarkHard.toml"
+    # "/home/azmain/.config/alacritty/themes/DoomOne.toml"
 ]
 
 [window]
-opacity = 1
+opacity = 0.9
 padding = {x = 0, y = 0}
 dimensions = { columns = 150, lines = 35 }
 decorations = "Full"
@@ -25,7 +26,7 @@ history = 10000
 multiplier = 8
 
 [font]
-normal = { family = "MesloLGM Nerd Font", style = "Ragular"}
+normal = { family = "JetBrainsMono Nerd Font", style = "Ragular"}
 bold = { style = "Medium" }
 italic = { style = "Light Italic" }
 bold_italic = { style = "Bold Italic" }

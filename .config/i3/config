@@ -30,7 +30,7 @@ set $down k
 set $left h
 set $right l
 
-font pango:Iosevka Nerd Font 12
+font pango:JetBrainsMono Nerd Font 12
 
 
 
@@ -327,10 +327,10 @@ bindsym $mod+i bar mode invisible
 #####################################################################################################################
 
 for_window [class="^.*"] border pixel 1
-# gaps inner 0
-# gaps outer 0
-# smart_gaps on
-# smart_borders on
+gaps outer 2
+gaps inner 2
+smart_gaps on
+smart_borders on
 
 
 
@@ -389,11 +389,12 @@ mode "$mode_gaps_outer" {
 
 bar {
     # height 30
-	position top #bottom / top 
+    mode hide
+	position bottom #bottom / top 
     font pango:JetBrainsMono Nerd Font 11
 	status_command i3status
     tray_padding 1
-    strip_workspace_numbers no
+    strip_workspace_numbers off
 
     colors {
             separator  #282828

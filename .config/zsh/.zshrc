@@ -42,10 +42,10 @@ bindkey "^e" end-of-line
 bindkey "^k" kill-line
 bindkey "^H" backward-kill-word
 # ctrl J & K for going up and down in prev commands
-bindkey "^J" history-search-forward
-bindkey "^K" history-search-backward
-bindkey "$terminfo[kcud1]" history-search-forward
-bindkey "$terminfo[kcuu1]" history-search-backward
+# bindkey "^J" history-search-forward
+# bindkey "^K" history-search-backward
+# bindkey "$terminfo[kcud1]" history-search-forward
+# bindkey "$terminfo[kcuu1]" history-search-backward
 bindkey '^R' fzf-history-widget
 
 bindkey "\e[1;5C" forward-word   # Ctrl + Right Arrow
@@ -56,13 +56,13 @@ zle -N sudo_prefix
 bindkey "^[s" sudo_prefix
 
 # # Make zsh autocomplete with up arrow
-# autoload -Uz history-search-end
-# zle -N history-beginning-search-backward-end history-search-end
-# zle -N history-beginning-search-forward-end history-search-end
-# bindkey "$terminfo[kcuu1]" history-beginning-search-backward-end
-# bindkey "$terminfo[kcud1]" history-beginning-search-forward-end
-# bindkey "^J" history-beginning-search-forward-end
-# bindkey "^K" history-beginning-search-backward-end
+autoload -Uz history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "$terminfo[kcuu1]" history-beginning-search-backward-end
+bindkey "$terminfo[kcud1]" history-beginning-search-forward-end
+bindkey "^J" history-beginning-search-forward-end
+bindkey "^K" history-beginning-search-backward-end
 
 #
 # aliases
@@ -222,9 +222,13 @@ fi
 ## plugins
 # require zsh-autosuggestions
 # source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # require zsh-autosuggestions
 # source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 ###------------------- PROMPT -----------------------###
 

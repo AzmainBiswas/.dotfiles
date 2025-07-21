@@ -16,10 +16,13 @@ TAB: menu-complete
 "\e[A": history-search-backward
 "\e[B": history-search-foreward
 
+"\C-k": history-search-backward
+"\C-j": history-search-foreward
+
 "\e[1;5D": backward-word
 "\e[1;5C": forward-word
 
-"\C-f":"zi\n"
+# "\C-f":"zi\n"
 # "\C-l":"clear\n"
 "\C-b":"cd ..\n"
 "\C-h":"cd\n"
