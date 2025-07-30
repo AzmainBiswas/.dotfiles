@@ -20,5 +20,5 @@ copy_wallpaper() {
 copy_wallpaper
 
 # set wallpaper
-feh --bg-fill "$HOME/.config/background"
-notify-send -i "$HOME/.config/background" "wallpaper" "wallpaper chenged"
+pkill swaybg
+swaybg -m fill -i $HOME/.config/background &
