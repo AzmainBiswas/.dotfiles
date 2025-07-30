@@ -264,9 +264,9 @@ exec $HOME/.config/i3/startup.sh
 #################                          applications keyboard shortcuts                          #################
 #####################################################################################################################
 
-bindsym $mod+Return exec ghostty;focus
+# bindsym $mod+Return exec ghostty;focus
 # bindsym $mod+Return exec alacritty;focus
-# bindsym Mod1+Return exec kitty;focus
+bindsym $mod+Return exec kitty;focus
 
 bindsym control+mod1+u exec --no-startup-id pavucontrol
 
