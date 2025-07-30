@@ -8,7 +8,7 @@
  */
 
 configuration {
-  font: "Iosevka Nerd Font Medium 16";
+  font: "JetBrainsMono Nerd Font 15";
 
   drun {
     display-name: "[^.^]";
@@ -72,7 +72,7 @@ element {
 }
 
 element-text {
-  padding: 12px;
+  padding: 8px;
   text-color: @fg-alt;
 }
 

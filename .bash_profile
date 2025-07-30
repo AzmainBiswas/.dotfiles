@@ -1,7 +1,7 @@
 export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.cargo/bin:${PATH}
 export PATH=/usr/local/go/bin:${HOME}/go/bin:${PATH}
 
-export BROWSER=chromium
+export BROWSER=firefox
 export EDITOR=nvim
 export TERM=screen-256color
 

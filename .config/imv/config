@@ -2,7 +2,7 @@
 
 [options]
 background = #1d2021
-overlay_font = RobotoMono Nerd Font Mono:15
+overlay_font = JetBrainsMono Nerd Font Mono:15
 # Suppress built-in key bindings, and specify them explicitly in this
 # config file.
 suppress_default_binds = true
@@ -15,15 +15,14 @@ suppress_default_binds = true
 [binds]
 # Define some key bindings
 q = quit
-y = exec echo working!
 <w> = exec $HOME/bin/set-wall.sh $imv_current_file
 <Ctrl+d> = exec rm $imv_current_file
 
 # Image navigation
 <Left> = prev
-<bracketleft> = prev
+p = prev
 <Right> = next
-<bracketright> = next
+n = next
 gg = goto 1
 <Shift+G> = goto -1
 
@@ -48,7 +47,7 @@ o = zoom -1
 x = close
 f = fullscreen
 d = overlay
-p = exec echo $imv_current_file | wl-copy
+y = exec echo $imv_current_file | wl-copy
 c = center
 s = scaling next
 <Shift+S> = upscaling next

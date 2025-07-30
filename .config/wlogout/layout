@@ -18,7 +18,7 @@
 }
 {
     "label" : "logout",
-    "action" : "killall sway",
+    "action" : "hyprctl dispatch exit",
     "text" : "Logout (e)",
     "keybind" : "e"
 }

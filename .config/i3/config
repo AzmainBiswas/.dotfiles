@@ -389,12 +389,13 @@ mode "$mode_gaps_outer" {
 
 bar {
     # height 30
-    # mode hide
+    mode dock # hide
+    modifier $mod 
 	position bottom #bottom / top 
     font pango:JetBrainsMono Nerd Font 11
 	status_command i3status
-    tray_padding 1
-    strip_workspace_numbers off
+    tray_padding 5
+    strip_workspace_numbers on
 
     colors {
             separator  #282828
@@ -428,14 +429,14 @@ exec xset r rate 300 50 &
 
 ### Window ######
 
-for_window [class="firefox"] move to workspace 3
-for_window [class="Google-chrome"] move to workspace 3
-for_window [class="Chromium"] move to workspace 3
-for_window [class="Brave"] move to workspace 3
+for_window [class="firefox"] move to workspace 2
+for_window [class="Google-chrome"] move to workspace 2
+for_window [class="Chromium"] move to workspace 2
+for_window [class="Brave"] move to workspace 2
 
-for_window [class="dev.zed.Zed"] move to workspace 2
-for_window [class="Emacs"] move to workspace 2
-for_window [class="Code"] move to workspace 2
+for_window [class="dev.zed.Zed"] move to workspace 3
+for_window [class="Emacs"] move to workspace 3
+for_window [class="Code"] move to workspace 3
 
 
 ############ Rule #####################

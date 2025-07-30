@@ -17,5 +17,5 @@
 
 // @theme "./color"
 // @theme "./full-theme.rasi"
-// @theme "./minimal.rasi"
-@theme "./gruvbox.rasi"
+@theme "./minimal.rasi"
+// @theme "./gruvbox.rasi"

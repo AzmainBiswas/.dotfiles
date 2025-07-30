@@ -21,4 +21,4 @@ copy_wallpaper
 
 # set wallpaper
 feh --bg-fill "$HOME/.config/background"
-# notify-send -i "$HOME/.config/background" "wallpaper" "wallpaper chenged"
+notify-send -i "$HOME/.config/background" "wallpaper" "wallpaper chenged"

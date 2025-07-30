@@ -247,3 +247,4 @@ fi
 # PROMPT='%B%F{white}(%F{magenta}%n%F{yellow}@%F{green}%m %F{cyan}%~ %F{blue}${vcs_info_msg_0_}%F{white})%f%b%(?:%{$fg_bold[green]%}$%f:%{$fg_bold[red]%}$%f) '
 
 eval "$(starship init zsh)"
+fastfetch
