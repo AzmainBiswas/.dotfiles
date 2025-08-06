@@ -2,12 +2,13 @@
 import = [
     # "/home/azmain/.config/alacritty/themes/solarized_dark.toml"
     "/home/azmain/.config/alacritty/themes/GruvboxDarkHard.toml"
+    # "/home/azmain/.config/alacritty/themes/nord.toml"
     # "/home/azmain/.config/alacritty/themes/GruvboxDark.toml"
     # "/home/azmain/.config/alacritty/themes/DoomOne.toml"
 ]
 
 [window]
-opacity = 0.8
+opacity = 1
 padding = {x = 0, y = 0}
 dimensions = { columns = 150, lines = 35 }
 decorations = "Full"
@@ -34,7 +35,6 @@ bold_italic = { style = "Bold Italic" }
 size = 12
 
 [selection]
-semantic_escape_chars = ",│`|:\"' ()[]{}<>\\t"  # Default: ",│`|:\"' ()[]{}<>\\t"
 save_to_clipboard = true
 
 [cursor]

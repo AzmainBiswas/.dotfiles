@@ -78,7 +78,7 @@ bindsym $mod+Shift+w exec --no-startup-id rofi -show window
 # bindsym $mod+s exec $HOME/bin/script-launcher.sh
 bindsym $mod+v exec copyq menu
 bindsym $mod+period exec killall rofi || $HOME/bin/emoji
-bindsym $mod+c exec --no-startup-id $HOME/bin/x11-wallpaper
+bindsym $mod+c exec --no-startup-id $HOME/bin/x11-wall
 
 
 #####################################################################################################################
@@ -398,8 +398,8 @@ bar {
     strip_workspace_numbers on
 
     colors {
-            separator  #282828
-            background #282828
+            separator  #000000
+            background #000000
             statusline #ebdbb2
 
             #                   border  background text

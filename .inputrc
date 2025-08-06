@@ -27,7 +27,7 @@ TAB: menu-complete
 
 # "\C-f":"zi\n"
 # "\C-l":"clear\n"
-"\C-b":"cd ..\n"
+# "\C-b":"cd ..\n"
 "\C-h":"cd\n"
 "\es":"\C-asudo \C-e"
 "\C-y":yank
