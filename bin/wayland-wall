@@ -20,5 +20,7 @@ copy_wallpaper() {
 copy_wallpaper
 
 # set wallpaper
-pkill swaybg
-swaybg -m fill -i $HOME/.config/background &
+# pkill swaybg
+# swaybg -m fill -i $HOME/.config/background &
+pkill hyprpaper
+hyprpaper &
