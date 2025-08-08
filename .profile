@@ -35,7 +35,9 @@ export DATE=$(date "+%A, %B %e  %_I:%M%P")
 
 # fzf
 # export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --border'
-export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
+# export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 60% --preview='bat -p --color=always {}'"
+export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 60% --preview='[[ -d {} ]] &&\
+                                            eza -al --color=always {} || bat -p --color=always {}'"
 export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
