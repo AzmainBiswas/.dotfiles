@@ -3,7 +3,7 @@
 # read first
 
 # default programs
-export TERM="xterm-256color"
+export TERM="screen-256color"
 export EDITOR="nvim"
 export TERMINAL="ghostty"
 export BROWSER="firefox"
