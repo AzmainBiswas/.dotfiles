@@ -1,0 +1,18 @@
+#!/bin/env bash
+# set -ex
+set -e
+
+# toggle internal keyboard on and off
+DEVICE_ID=9  # fint this id with `xinput list` command
+
+if xinput list-props $DEVICE_ID | grep "Device Enabled (.*):.*1" > /dev/null
+then
+  xinput disable $DEVICE_ID
+  echo "Keyboard disabled"
+  notify-send "internal keyboard" "Keyboard disabled"
+else
+  xinput enable $DEVICE_ID
+  echo "Keyboard enabled"
+  notify-send "internal keyboard" "Keyboard enable"
+fi
+
