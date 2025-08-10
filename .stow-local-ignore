@@ -1,6 +1,7 @@
 \.git
 \.gitignore
 
+dconf
 setup
 pic
 ^/README.*

@@ -8,7 +8,7 @@ import = [
 ]
 
 [window]
-opacity = 0.9
+opacity = 1
 padding = {x = 0, y = 0}
 dimensions = { columns = 150, lines = 35 }
 decorations = "Full"
@@ -28,11 +28,11 @@ history = 10000
 multiplier = 8
 
 [font]
-normal = { family = "JetBrainsMono Nerd Font", style = "Ragular"}
+normal = { family = "IosevkaTerm Nerd Font", style = "Ragular"}
 bold = { style = "Medium" }
 italic = { style = "Light Italic" }
 bold_italic = { style = "Bold Italic" }
-size = 12
+size = 14
 
 [selection]
 save_to_clipboard = true

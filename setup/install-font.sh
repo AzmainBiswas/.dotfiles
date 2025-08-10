@@ -7,7 +7,7 @@ downloadFontDir="$HOME/Downloads/fonts"
 installFontDir="/usr/local/share/fonts"
 
 ## change if necessary
-nerdfontVersion="v3.2.1"
+nerdfontVersion="v3.4.0"
 firaCodeVersion="6.2"
 
 rm -rfv ${downloadFontDir}/*
@@ -39,7 +39,7 @@ fonts=(
 
 for font in ${fonts[@]}; do
     printf "\n${font} .... \n"
-    aria2c --dir=${downloadFontDir} ${font}
+    wget -c -q --show-progress -P ${downloadFontDir} ${font}
 done
 
 for font in "$downloadFontDir"/*; do

@@ -10,7 +10,7 @@ sudo apt install git stow eza bat curl wget aria2\
     ripgrep fd-find bash-completion tmux \
     xclip xsel sxiv feh pipx zoxide fzf
 
-pipx install trash-cli
+# pipx install trash-cli
 pipx install yt-dlp
 
 # fd-find to fd

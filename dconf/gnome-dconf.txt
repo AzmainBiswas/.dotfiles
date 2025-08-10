@@ -1,0 +1,288 @@
+[Characters]
+recent-characters=['🤕']
+
+[control-center]
+last-panel='keyboard'
+window-state=(1916, 1041, false)
+
+[desktop/app-folders]
+folder-children=['System', 'Utilities', 'YaST', 'Pardus', '5809b435-3d77-4ec9-83c3-a21896365898', '04c26565-2d8a-47c8-a28e-588165c193c8']
+
+[desktop/app-folders/folders/04c26565-2d8a-47c8-a28e-588165c193c8]
+apps=['org.flameshot.Flameshot.desktop', 'qt6ct.desktop', 'com.github.hluk.copyq.desktop']
+name='utils'
+translate=false
+
+[desktop/app-folders/folders/5809b435-3d77-4ec9-83c3-a21896365898]
+apps=['libreoffice-impress.desktop', 'libreoffice-draw.desktop', 'libreoffice-writer.desktop', 'libreoffice-calc.desktop']
+name='Office'
+
+[desktop/app-folders/folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
+[desktop/app-folders/folders/System]
+apps=['nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DiskUtility.desktop', 'im-config.desktop', 'org.gnome.Logs.desktop', 'org.freedesktop.MalcontentControl.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.SystemMonitor.desktop', 'com.mattjakeman.ExtensionManager.desktop']
+name='X-GNOME-Shell-System.directory'
+translate=true
+
+[desktop/app-folders/folders/Utilities]
+apps=['org.gnome.Connections.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.seahorse.Application.desktop']
+name='X-GNOME-Shell-Utilities.directory'
+translate=true
+
+[desktop/app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[desktop/background]
+picture-options='zoom'
+picture-uri='file:///home/azmain/.config/background'
+picture-uri-dark='file:///home/azmain/.config/background'
+
+[desktop/input-sources]
+sources=[('xkb', 'us')]
+
+[desktop/interface]
+accent-color='slate'
+color-scheme='prefer-dark'
+enable-hot-corners=false
+gtk-theme='Adwaita-dark'
+icon-theme='Numix-Circle'
+text-scaling-factor=1.1000000000000001
+
+[desktop/notifications]
+application-children=['org-gnome-evolution', 'org-gnome-nautilus', 'firefox', 'com-github-hluk-copyq', 'gnome-power-panel']
+
+[desktop/notifications/application/com-github-hluk-copyq]
+application-id='com.github.hluk.copyq.desktop'
+
+[desktop/notifications/application/firefox]
+application-id='firefox.desktop'
+
+[desktop/notifications/application/gnome-power-panel]
+application-id='gnome-power-panel.desktop'
+
+[desktop/notifications/application/org-gnome-evolution]
+application-id='org.gnome.Evolution.desktop'
+
+[desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
+[desktop/wm/keybindings]
+close=['<Shift><Super>q']
+minimize=@as []
+move-to-workspace-1=['<Shift><Super>1']
+move-to-workspace-2=['<Shift><Super>2']
+move-to-workspace-3=['<Shift><Super>3']
+move-to-workspace-4=['<Shift><Super>4']
+move-to-workspace-5=['<Shift><Super>5']
+move-to-workspace-6=['<Shift><Super>6']
+move-to-workspace-7=['<Shift><Super>7']
+move-to-workspace-8=['<Shift><Super>8']
+move-to-workspace-9=['<Shift><Super>9']
+switch-to-workspace-1=['<Super>1']
+switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
+switch-to-workspace-5=['<Super>5']
+switch-to-workspace-6=['<Super>6']
+switch-to-workspace-7=['<Super>7']
+switch-to-workspace-8=['<Super>8']
+switch-to-workspace-9=['<Super>9']
+toggle-fullscreen=['<Super>f']
+
+[desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
+num-workspaces=5
+
+[evolution-data-server]
+migrated=true
+
+[evolution]
+version='3.56.1'
+
+[evolution/calendar]
+week-start-day-name='monday'
+work-day-friday=true
+work-day-monday=true
+work-day-saturday=false
+work-day-sunday=false
+work-day-thursday=true
+work-day-tuesday=true
+work-day-wednesday=true
+
+[evolution/mail]
+browser-close-on-reply-policy='ask'
+forward-style-name='attached'
+image-loading-policy='never'
+paned-size=1117419
+reply-style-name='quoted'
+
+[evolution/shell]
+default-component-id='mail'
+
+[evolution/shell/window]
+height=900
+maximized=false
+width=1440
+x=26
+y=23
+
+[mutter]
+dynamic-workspaces=false
+
+[nautilus/preferences]
+default-folder-viewer='icon-view'
+migrated-gtk-settings=true
+search-filter-time-type='last_modified'
+
+[nautilus/window-state]
+initial-size=(957, 1041)
+maximized=false
+
+[settings-daemon/plugins/color]
+night-light-schedule-automatic=false
+
+[settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+screensaver=['<Control>Escape']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Super>v'
+command='copyq menu'
+name='copyq menu'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom1]
+binding='<Super>Return'
+command='alacritty'
+name='alacritty'
+
+[shell]
+app-picker-layout=[{'5809b435-3d77-4ec9-83c3-a21896365898': <{'position': <0>}>, 'org.gnome.Calendar.desktop': <{'position': <1>}>, 'org.gnome.Contacts.desktop': <{'position': <2>}>, 'org.gnome.Weather.desktop': <{'position': <3>}>, 'org.gnome.clocks.desktop': <{'position': <4>}>, 'org.gnome.Maps.desktop': <{'position': <5>}>, 'org.gnome.Music.desktop': <{'position': <6>}>, 'simple-scan.desktop': <{'position': <7>}>, 'org.gnome.Settings.desktop': <{'position': <8>}>, 'libreoffice-startcenter.desktop': <{'position': <9>}>, 'org.gnome.Totem.desktop': <{'position': <10>}>, 'org.gnome.Snapshot.desktop': <{'position': <11>}>, 'org.gnome.Characters.desktop': <{'position': <12>}>, 'Utilities': <{'position': <13>}>, 'System': <{'position': <14>}>, 'org.gnome.Tour.desktop': <{'position': <15>}>, 'org.gnome.Shotwell.desktop': <{'position': <16>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <17>}>, 'org.gnome.Terminal.desktop': <{'position': <18>}>, 'nvim.desktop': <{'position': <19>}>, 'org.gnome.TextEditor.desktop': <{'position': <20>}>, '04c26565-2d8a-47c8-a28e-588165c193c8': <{'position': <21>}>}]
+disabled-extensions=['blur-my-shell@aunetx']
+enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'forge@jmmaranan.com', 'dash-to-dock@micxgx.gmail.com']
+favorite-apps=['firefox.desktop', 'brave-browser.desktop', 'org.gnome.Nautilus.desktop', 'Alacritty.desktop', 'org.gnome.Software.desktop', 'org.gnome.Calculator.desktop', 'yelp.desktop']
+last-selected-power-profile='power-saver'
+welcome-dialog-last-shown-version='48.3'
+
+[shell/extensions/blur-my-shell]
+settings-version=2
+
+[shell/extensions/blur-my-shell/appfolder]
+brightness=0.59999999999999998
+sigma=30
+
+[shell/extensions/blur-my-shell/dash-to-dock]
+blur=true
+brightness=0.59999999999999998
+sigma=30
+static-blur=true
+style-dash-to-dock=0
+
+[shell/extensions/blur-my-shell/panel]
+brightness=0.59999999999999998
+sigma=30
+
+[shell/extensions/blur-my-shell/window-list]
+brightness=0.59999999999999998
+sigma=30
+
+[shell/extensions/caffeine]
+indicator-position-max=3
+
+[shell/extensions/dash-to-dock]
+apply-custom-theme=true
+background-opacity=0.80000000000000004
+custom-theme-shrink=true
+dash-max-icon-size=46
+dock-position='BOTTOM'
+height-fraction=0.90000000000000002
+hide-tooltip=false
+hot-keys=false
+intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+isolate-monitors=false
+isolate-workspaces=false
+preferred-monitor=-2
+preferred-monitor-by-connector='eDP-1'
+scroll-action='cycle-windows'
+show-apps-at-top=true
+show-mounts-network=false
+show-windows-preview=true
+
+[shell/extensions/forge]
+css-last-update=uint32 37
+css-updated='1754822252099'
+focus-border-toggle=true
+split-border-toggle=true
+window-gap-size=uint32 1
+workspace-skip-tile=''
+
+[shell/extensions/forge/keybindings]
+con-split-horizontal=['<Super>z']
+con-split-layout-toggle=['<Super>g']
+con-split-vertical=['<Super>v']
+con-stacked-layout-toggle=['<Shift><Super>s']
+con-tabbed-layout-toggle=['<Shift><Super>t']
+con-tabbed-showtab-decoration-toggle=['<Control><Alt>y']
+focus-border-toggle=['<Super>x']
+mod-mask-mouse-tile='Super'
+prefs-tiling-toggle=['<Super>w']
+window-focus-down=['<Super>j']
+window-focus-left=['<Super>h']
+window-focus-right=['<Super>l']
+window-focus-up=['<Super>k']
+window-gap-size-decrease=['<Control><Super>minus']
+window-gap-size-increase=['<Control><Super>plus']
+window-move-down=['<Shift><Super>j']
+window-move-left=['<Shift><Super>h']
+window-move-right=['<Shift><Super>l']
+window-move-up=['<Shift><Super>k']
+window-resize-bottom-decrease=['<Shift><Control><Super>i']
+window-resize-bottom-increase=['<Control><Super>u']
+window-resize-left-decrease=['<Shift><Control><Super>o']
+window-resize-left-increase=['<Control><Super>y']
+window-resize-right-decrease=['<Shift><Control><Super>y']
+window-resize-right-increase=['<Control><Super>o']
+window-resize-top-decrease=['<Shift><Control><Super>u']
+window-resize-top-increase=['<Control><Super>i']
+window-snap-center=['<Control><Alt>c']
+window-snap-one-third-left=['<Control><Alt>d']
+window-snap-one-third-right=['<Control><Alt>g']
+window-snap-two-third-left=['<Control><Alt>e']
+window-snap-two-third-right=['<Control><Alt>t']
+window-swap-down=['<Control><Super>j']
+window-swap-last-active=@as []
+window-swap-left=['<Control><Super>h']
+window-swap-right=['<Control><Super>l']
+window-swap-up=['<Control><Super>k']
+window-toggle-always-float=['<Shift><Super>space']
+window-toggle-float=['<Super>space']
+workspace-active-tile-toggle=['<Shift><Super>w']
+
+[shell/extensions/user-theme]
+name=''
+
+[shell/keybindings]
+switch-to-application-1=@as []
+switch-to-application-2=@as []
+switch-to-application-3=@as []
+switch-to-application-4=@as []
+switch-to-application-5=@as []
+switch-to-application-6=@as []
+switch-to-application-7=@as []
+switch-to-application-8=@as []
+switch-to-application-9=@as []
+toggle-message-tray=@as []
+
+[shell/world-clocks]
+locations=@av []
+
+[software]
+check-timestamp=int64 1754810152
+first-run=false
+
+[terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+audible-bell=false
