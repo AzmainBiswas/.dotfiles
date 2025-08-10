@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-action=$(printf "Shutdown\nLock\nLogout\nSuspend\nHibernate\nReboot" | rofi -dmenu -case-smart -sorting-method fzf -p "⏻")
+action=$(printf "Shutdown\nLock\nLogout\nSuspend\nHibernate\nReboot" | rofi -dmenu -i -sorting-method fzf -p "⏻")
 # action=$(printf "Shutdown\nLock\nLogout\nSuspend\nHibernate\nReboot" | dmenu -l 6-i -F -p "Choose option >")
 
 case "${action}" in
