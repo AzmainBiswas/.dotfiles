@@ -5,13 +5,15 @@ nm-applet --indicator &
 # syncthingtray --wait &
 blueman-applet &
 xfce4-power-manager &
-# dunst &
-swaync &
+dunst &
+# swaync &
 mpd &
 lxpolkit &
 kdeconnect-indicator &
-wl-paste --watch cliphist store &
+wl-paste --type text --watch cliphist store
+wl-paste --type image --watch cliphist store
 xrdb -load .Xresources &
+copyq --start-server &
 foot --server &
-notify-send "HELLO" "$(whoami) wellcome" &
+# notify-send "HELLO" "$(whoami) wellcome" &
 # /usr/bin/emacs --daemon &

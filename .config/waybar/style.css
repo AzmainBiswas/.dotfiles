@@ -15,7 +15,7 @@ window#waybar {
 }
 
 #workspaces button {
-  padding: 0.1rem 0.5rem;
+  padding: 0.1rem 0.3rem;
   margin: 0.1rem 0.2rem;
   border-radius: 1px;
   /* background-color: #181825; */
@@ -29,6 +29,11 @@ window#waybar {
 }
 
 #workspaces button.active {
+  background-color: #ebdbb2;
+  color: #282828;
+}
+
+#workspaces button.focused {
   background-color: #ebdbb2;
   color: #282828;
 }

@@ -1,13 +1,13 @@
 #### importent shit #####
 
-exec systemctl --user mask xdg-desktop-portal-gnome &
-exec systemctl --user mask xdg-desktop-portal-kde &
-exec systemctl --user unmask xdg-desktop-portal-wrl &
-exec systemctl --user start xdg-desktop-portal-wrl &
-exec systemctl --user start xdg-desktop-portal &
+# exec systemctl --user mask xdg-desktop-portal-gnome &
+# exec systemctl --user mask xdg-desktop-portal-kde &
+# exec systemctl --user unmask xdg-desktop-portal-wrl &
+# exec systemctl --user start xdg-desktop-portal-wrl &
+# exec systemctl --user start xdg-desktop-portal &
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK &
-exec hash dbus-update-activation-environment 2>/dev/null && \
-         dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK &
+# exec hash dbus-update-activation-environment 2>/dev/null && \
+#          dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK &
 #####################################################################################################################
 #################                          picom and wallpaper                                      #################
 #####################################################################################################################
@@ -47,7 +47,7 @@ set $down k
 set $left h
 set $right l
 
-font pango:FiraCode Nerd Font Propo 10
+font pango:JetBrainsMono Nerd Font 10
 
 ########################################### input method ##########################################################
 
@@ -70,10 +70,10 @@ input type:keyboard {
         xkb_numlock enabled
 }
 
-## Mouse ##
-
-input type:Mouse {
-        scroll_factor 0.5
+## internal keyboard ## 
+## get id with `swaymsg -t get_inputs`
+input "1:1:AT_Translated_Set_2_keyboard" {
+    # events disabled
 }
 #####################################################################################################################
 #################                          Single and Dual screen                                   #################
@@ -110,17 +110,11 @@ bindsym $mod+Shift+9 move container to workspace 9
 
 # start dmenu
 #bbindsym Ctrl+Space exec --no-startup-id rofi -show drun
-bindsym $mod+d exec killall rofi || rofi -show drun 
+bindsym $mod+d exec killall rofi || rofi -show run 
 # bindsym $mod+Shift+d exec rofi -show run
-bindsym $mod+Shift+d exec killall dmenu || dmenu_run -F -p "Launcher > " -l 14
+# bindsym $mod+Shift+d exec killall dmenu || dmenu_run -F -p "Launcher > " -l 14
 bindsym $mod+w exec killall rofi || "$HOME/bin/sway_window_switcher"
-
-#####################################################################################################################
-#################                          how to exit, logoff, suspend, ...                        #################
-#####################################################################################################################
-
-bindsym Ctrl+Escape exec --no-startup-id wlogout
-
+bindsym Ctrl+Escape exec $HOME/bin/sway-power-menu
 
 #####################################################################################################################
 #################                          reload changed configuration                             #################
@@ -139,7 +133,7 @@ bindsym $mod+Shift+c reload
 #####################################################################################################################
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill
 
 #####################################################################################################################
 #################                          Moving around in i3                                      #################
@@ -261,12 +255,13 @@ mode "resize" {
 #################                          applications keyboard shortcuts                          #################
 #####################################################################################################################
 
+set $ghostty ghostty --gtk-titlebar=false --window-decoration=false;focus
+
 # bindsym $mod+Return exec alacritty;focus
-bindsym $mod+Return exec foot
-bindsym Ctrl+Return exec wezterm
+bindsym $mod+Return exec alacritty
+bindsym Mod1+Return exec $ghostty
 bindsym $mod+period exec killall rofi || $HOME/bin/emoji
-bindsym $mod+v exec rofi -modi clipboard:/home/azmain/.config/rofi/scripts/cliphist-rofi -show clipboard
-bindsym $mod+s exec $HOME/bin/script-launcher.sh
+bindsym $mod+v exec killall rofi || rofi -modi Copy:~/.config/rofi/scripts/cliphist-rofi -show Copy
 bindsym $mod+n exec swaync-client -t
 
 #####################################################################################################################
@@ -309,10 +304,10 @@ bindsym End exec --no-startup-id $HOME/bin/audio-song
 #####################################################################################################################
 
 for_window [class="^.*"] border pixel 2
-gaps inner 5
-gaps outer 5
-# smart_gaps on
-# smart_borders on
+gaps inner 2
+gaps outer 2
+smart_gaps on
+smart_borders on
 
 
 
@@ -411,10 +406,10 @@ mode "$mode_gaps_outer" {
 # layer_effects "waybar" blur enable; shadows enable; corner_radius 0
 
 ########################### assigne ###################################
-# for_window [class="firefox"] move to workspace 2
-# for_window [class="Google-chrome"] move to workspace 2
-# for_window [class="Brave"] move to workspace 2
-# for_window [class="Emacs"] move to workspace 3
+for_window [class="firefox"] move to workspace 2
+for_window [class="Google-chrome"] move to workspace 2
+for_window [class="Brave"] move to workspace 2
+for_window [class="Emacs"] move to workspace 3
 
 ############ Rule #####################
 for_window [window_role="About"] floating enable
@@ -424,6 +419,7 @@ for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Shadow"] fullscreen enable
 for_window [app_id="pavucontrol"] floating enable
 for_window [title="Picture in picture" ] floating enable
+for_window [app_id="com.github.hluk.copyq"] floating enable
 
 # Zoom (😱?)
 # For pop up notification windows that don't use notifications api
@@ -434,6 +430,13 @@ for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_si
 # Open Zoom Meeting windows on a new workspace (a bit hacky)
 for_window [app_id="zoom" title="Zoom Meeting(.*)?"] workspace next_on_output --create, move container to workspace current, floating disable, inhibit_idle open
 
+
+# 🪟 Window Behavior Rules
+for_window [app_id="^launcher$"] floating enable, sticky enable
+for_window [app_id="^pavucontrol$"] floating enable, sticky enable
+for_window [app_id="blueman-manager"] floating enable, sticky enable
+for_window [app_id="galculator"] floating enable
+
 #### Opacity ####
 # for_window [class="Code"] opacity 0.95
 for_window [app_id="pcmanfm"] opacity 0.85
@@ -442,14 +445,14 @@ for_window [app_id="pcmanfm"] opacity 0.85
 
 ##########################################################################################
 ################################### gtk-theme ###############################################
-## set $gnome-schema org.gnome.desktop.interface
+set $gnome-schema org.gnome.desktop.interface
 ## 
 exec_always {
 ##     gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
 ##     gsettings set $gnome-schema icon-theme 'Tela-circle-black-dark'
 ##     gsettings set $gnome-schema cursor-theme 'macOS-Monterey-White'
 ##     gsettings set $gnome-schema font-name 'Cantarell 13'
-    gsettings set $gnome-schema cursor-size 35
+    gsettings set $gnome-schema cursor-size 25
 }
 
 ######################################################

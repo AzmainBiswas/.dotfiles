@@ -391,7 +391,7 @@ bar {
     # height 30
     mode dock # hide
     modifier $mod 
-	position bottom #bottom / top 
+	position top #bottom / top 
     font pango:JetBrainsMono Nerd Font 11
 	status_command i3status
     tray_padding 5

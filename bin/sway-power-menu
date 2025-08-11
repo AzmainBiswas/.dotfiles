@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+action=$(printf "Shutdown\nLock\nLogout\nSuspend\nHibernate\nReboot" | rofi -dmenu -i -sorting-method fzf -p "⏻")
+# action=$(printf "Shutdown\nLock\nLogout\nSuspend\nHibernate\nReboot" | dmenu -l 6-i -F -p "Choose option >")
+
+case "${action}" in
+	Shutdown)
+		systemctl poweroff
+		;;
+    Lock)
+        if command -v i3lock-fancy &>/dev/null; then
+            i3lock-fancy
+        else 
+            slock
+        fi
+		;;
+	Logout)
+		swaymsg exit
+		;;
+	Suspend)
+		slock systemctl suspend
+		;;
+	Hibernate)
+		slock systemctl hibernate
+		;;
+	Reboot)
+		systemctl reboot
+		;;
+	*)
+		exit 2
+		;;
+esac
+
+exit 0
