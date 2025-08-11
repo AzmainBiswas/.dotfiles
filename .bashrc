@@ -250,7 +250,12 @@ fi
 
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+
+# rust
 . "$HOME/.cargo/env"
+# zig 
+export PATH=${HOME}/.local/share/zig:${PATH}
+
 #
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
