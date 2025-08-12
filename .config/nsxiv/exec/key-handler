@@ -1,0 +1,36 @@
+#!/bin/sh
+
+while read file; do
+	case "$1" in
+	"d")
+		rm "$file"
+		;;
+	"c")
+        if [ "$XDG_SESSION_TYPE" = "wayland" ] 
+        then
+            echo -n "$file" | wl-copy
+        else 
+            echo -n "$file" | xclip -selection clipboard
+        fi
+		;;
+	"w")
+        if [ "$XDG_SESSION_TYPE" = "wayland" ] 
+        then
+            $HOME/bin/set-wall.sh  "$file"
+        else 
+            $HOME/bin/set-wall-x11.sh "$file"
+        fi
+		;;
+	"g")
+		gsettings set org.gnome.desktop.background picture-uri-dark file://$pwd/$file
+		;;
+	"p")
+        if [ "$XDG_SESSION_TYPE" = "wayland" ] 
+        then
+            cat $file | wl-copy --type image/png
+        else 
+            cat $file | xclip -selection clipboard -t image/png
+        fi
+		;;
+	esac
+done
