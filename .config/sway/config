@@ -52,7 +52,7 @@ font pango:JetBrainsMono Nerd Font 10
 ########################################### input method ##########################################################
 
 ## scaling fractor ##
-output eDP-1 scale 1
+output eDP-1 scale 1.1
 
 ## touchpad ##
 
@@ -262,7 +262,8 @@ bindsym $mod+Return exec alacritty
 bindsym Mod1+Return exec $ghostty
 bindsym $mod+period exec killall rofi || $HOME/bin/emoji
 bindsym $mod+v exec killall rofi || rofi -modi Copy:~/.config/rofi/scripts/cliphist-rofi -show Copy
-bindsym $mod+n exec swaync-client -t
+# bindsym $mod+n exec swaync-client -t
+bindsym $mod+c exec ~/bin/wayland-wall
 
 #####################################################################################################################
 #################                          screenshots                                              #################

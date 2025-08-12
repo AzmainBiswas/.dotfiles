@@ -30,7 +30,7 @@ clean_up
 # print info
 show_info() {
     printf "%s\n" "$1"
-    notify-send -i "sxiv" "wallhaven" "$1"
+    notify-send -i "nsxiv" "wallhaven" "$1"
     [[ -n "$2" ]] && clean_up && exit "$2" # 2nd argument must me integer
 }
 
@@ -41,7 +41,7 @@ check_dep() {
     done
 }
 
-check_dep curl wget sxiv jq
+check_dep curl wget nsxiv jq
 
 # make all the nessery directory
 mkdir -p $WALLDIR $CACHEDIR
@@ -145,7 +145,7 @@ for url in $thumbniles; do
 done
 wait
 
-image_names=$(sxiv -tpo -z 200 $CACHEDIR) # o is needed for selection,p Enable private mode, z Set zoom level to ZOOM percent
+image_names=$(nsxiv -tpo -z 200 $CACHEDIR) # o is needed for selection,p Enable private mode, z Set zoom level to ZOOM percent
 [[ -z "$image_names" ]] && show_info "image not found" 1
 
 show_info "downloading wallpaper ...."

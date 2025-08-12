@@ -1,5 +1,5 @@
-export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.cargo/bin:${PATH}
-export PATH=/usr/local/go/bin:${HOME}/go/bin:${PATH}
+export PATH=$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$PATH
+export PATH=/usr/local/go/bin:$HOME/go/bin:$PATH
 
 export BROWSER=firefox
 export EDITOR=nvim
@@ -31,7 +31,8 @@ export DATE=$(date "+%A, %B %e  %_I:%M%P")
 #    fi
 #fi
 
-[[ -f $HOME/.bashrc ]] && . ~/.bashrc
+[ -f $HOME/.bashrc ] && . ~/.bashrc
+[ -f ~/.Xresources ] && xrdb ~/.Xresources
 
 # fzf
 # export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --border'

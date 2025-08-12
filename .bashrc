@@ -232,7 +232,7 @@ function bash_prompt() {
 # fi
 
 bash_prompt
-eval "$(starship init bash)" #starship
+# eval "$(starship init bash)" #starship
 
 # fastfetch
 # if command -v fastfetch &>/dev/null; then

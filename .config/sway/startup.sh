@@ -10,9 +10,9 @@ dunst &
 mpd &
 lxpolkit &
 kdeconnect-indicator &
-wl-paste --type text --watch cliphist store
-wl-paste --type image --watch cliphist store
-xrdb -load .Xresources &
+wl-paste --type text --watch cliphist store &
+wl-paste --type image --watch cliphist store &
+# xrdb -load .Xresources &
 copyq --start-server &
 foot --server &
 # notify-send "HELLO" "$(whoami) wellcome" &

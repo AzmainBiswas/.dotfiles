@@ -8,7 +8,7 @@ import = [
 ]
 
 [window]
-opacity = 0.9
+opacity = 0.95
 padding = {x = 5, y = 5}
 dimensions = { columns = 150, lines = 35 }
 decorations = "Full"
@@ -32,7 +32,7 @@ normal = { family = "IosevkaTerm Nerd Font", style = "Ragular"}
 bold = { style = "Medium" }
 italic = { style = "Light Italic" }
 bold_italic = { style = "Bold Italic" }
-size = 15
+size = 14
 
 [selection]
 save_to_clipboard = true
