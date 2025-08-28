@@ -60,7 +60,7 @@ alias ...='cd ../..;pwd'
 # Move up three parent folders.
 alias ....='cd ../../..;pwd'
 
-alias cp="rsync --human-readable --verbose --progress --archive --whole-file"
+# alias cp="rsync --human-readable --verbose --progress --archive --whole-file"
 alias mv="mv -iv"
 alias mkdir="mkdir -vp"
 
@@ -69,7 +69,7 @@ alias ll="exa -alhF --group-directories-first"
 alias tree="exa -F --color=always --tree --icons"
 alias cat="bat --plain --theme OneHalfDark"
 
-alias cls="clear"
+# alias cls="clear"
 alias spdl="spotdl --bitrate=320k"
 
 alias grep='grep --color=auto'
@@ -231,8 +231,8 @@ function bash_prompt() {
 #     bash_prompt
 # fi
 
-bash_prompt
-# eval "$(starship init bash)" #starship
+# bash_prompt
+eval "$(starship init bash)" #starship
 
 # fastfetch
 # if command -v fastfetch &>/dev/null; then
@@ -252,7 +252,7 @@ fi
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # rust
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 # zig 
 export PATH=${HOME}/.local/share/zig:${PATH}
 

@@ -3,7 +3,7 @@
 set -ex
 
 # toggle internal keyboard on and off
-DEVICE_ID=14  # fint this id with `xinput list` command
+DEVICE_ID=10  # fint this id with `xinput list` command
 
 if xinput list-props $DEVICE_ID | grep "Device Enabled (.*):.*1" > /dev/null
 then

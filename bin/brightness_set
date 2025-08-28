@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-# set brightness in dwm
-
-if [ $1 = "-i" ]; then
-    brightnessctl set +10% && pkill -RTMIN+15 dwmblocks
-elif [ $1 = "-d" ]; then
-    brightnessctl set 10%- && pkill -RTMIN+15 dwmblocks
-fi
