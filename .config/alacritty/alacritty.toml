@@ -32,7 +32,7 @@ normal = { family = "JetBrainsMono Nerd Font", style = "Ragular"}
 bold = { style = "Medium" }
 italic = { style = "Light Italic" }
 bold_italic = { style = "Bold Italic" }
-size = 13
+size = 11
 
 [selection]
 save_to_clipboard = true

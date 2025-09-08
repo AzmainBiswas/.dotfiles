@@ -17,5 +17,5 @@ Sxiv.font: IosevkaTerm Nerd Font:size=13
 
 ! courser
 ! --------
-Xcursor.theme: Yaru
+Xcursor.theme: Breeze
 Xcursor.size: 20

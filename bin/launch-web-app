@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-BROWSER=/usr/bin/brave
+BROWSER=/usr/bin/brave-browser
 
 exec $BROWSER --app="$1" "${@:2}" 
