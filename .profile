@@ -1,44 +1,46 @@
 export PATH=$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$PATH
 export PATH=/usr/local/go/bin:$HOME/go/bin:$PATH
+# # zig 
+export PATH=${HOME}/.local/share/zig:${PATH}
+[ -f $HOME/.cargo/env ] . $HOME/.cargo/env
 
 export BROWSER=firefox
 export EDITOR=nvim
 export TERM=screen-256color
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-
-
-# follow XDG base dir specification
+# 
+# 
+# # follow XDG base dir specification
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-
-# history files
+# 
+# # history files
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"
-
+# 
 export DATE=$(date "+%A, %B %e  %_I:%M%P")
-
-# neovim as man page
-# export MANPAGER="nvim +Man!"
-# export MANPAGER="bat -l man -p"
-
-# if running bash
-# if [ -n "$BASH_VERSION" ]; then
-# include .bashrc if it exists
-#    if [ -f "$HOME/.bashrc" ]; then
-#	. "$HOME/.bashrc"
-#    fi
-#fi
-
-[ -f $HOME/.bashrc ] && . ~/.bashrc
+# 
+# # neovim as man page
+# # export MANPAGER="nvim +Man!"
+# # export MANPAGER="bat -l man -p"
+# 
+# # if running bash
+# # if [ -n "$BASH_VERSION" ]; then
+# # include .bashrc if it exists
+# #    if [ -f "$HOME/.bashrc" ]; then
+# #	. "$HOME/.bashrc"
+# #    fi
+# #fi
+# 
 [ -f ~/.Xresources ] && xrdb ~/.Xresources
-
-# fzf
-# export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --border'
-# export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 60% --preview='bat -p --color=always {}'"
+#
+# # fzf
+# # export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --border'
+# # export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 60% --preview='bat -p --color=always {}'"
 export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 60% --preview='[[ -d {} ]] &&\
-                                            eza -al --color=always {} || bat -p --color=always {}'"
+                                             eza -al --color=always {} || bat -p --color=always {}'"
 export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -58,4 +60,3 @@ if [ -e /home/azmain/.nix-profile/etc/profile.d/nix.sh ]; then . /home/azmain/.n
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
     export MOZ_ENABLE_WAYLAND=1
 fi
-. "$HOME/.cargo/env"

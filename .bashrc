@@ -251,10 +251,9 @@ fi
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
-# rust
 # . "$HOME/.cargo/env"
-# zig 
-export PATH=${HOME}/.local/share/zig:${PATH}
+# # zig 
+# export PATH=${HOME}/.local/share/zig:${PATH}
 
 #
 # export NVM_DIR="$HOME/.nvm"
