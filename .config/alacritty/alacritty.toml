@@ -8,7 +8,7 @@ import = [
 ]
 
 [window]
-opacity = 0.95
+opacity = 1
 padding = {x = 5, y = 5}
 dimensions = { columns = 150, lines = 35 }
 decorations = "Full"

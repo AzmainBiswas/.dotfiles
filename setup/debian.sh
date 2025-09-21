@@ -19,7 +19,7 @@ ln -s $(which fdfind) ~/.local/bin/fd
 ln -s $(which batcat) ~/.local/bin/bat
 
 # install fzf
-# install_fzf
+install_fzf
 
 # install zoxide
 # install_zoxide
