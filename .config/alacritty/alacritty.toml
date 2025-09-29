@@ -8,8 +8,8 @@ import = [
 ]
 
 [window]
-opacity = 1
-padding = {x = 5, y = 5}
+opacity = 0.9
+padding = {x = 5, y = 10}
 dimensions = { columns = 150, lines = 35 }
 decorations = "Full"
 decorations_theme_variant = "Dark" # "Light"

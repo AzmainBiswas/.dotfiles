@@ -2,7 +2,7 @@ export PATH=$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$PATH
 export PATH=/usr/local/go/bin:$HOME/go/bin:$PATH
 # # zig 
 export PATH=${HOME}/.local/share/zig:${PATH}
-[ -f $HOME/.cargo/env ] . $HOME/.cargo/env
+[ -f ${HOME}/.cargo/env ] &&  . $HOME/.cargo/env
 
 export BROWSER=firefox
 export EDITOR=nvim
