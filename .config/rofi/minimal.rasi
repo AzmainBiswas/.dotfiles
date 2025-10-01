@@ -8,74 +8,89 @@
  */
 
 configuration {
-  font: "JetBrainsMono Nerd Font 15";
+    font: "JetBrainsMono Nerd Font 16";
+    show-icons: true;
+    disable-history: false;
 
-  drun {
-    display-name: "[^.^]";
-  }
+    combi-modes: [drun, run];
+    show-combi-modes: false;
+    dpi: 90;
 
-  run {
-    display-name: "[°.°]";
-  }
+    drun {
+        display-name: "[^.^]";
+    }
 
-  window {
-    display-name: "[*.*]";
-  }
+    run {
+        display-name: "[°.°]";
+    }
 
-  timeout {
-    delay: 10;
-    action: "kb-cancel";
-  }
+    combi {
+        display-name: "[^o^]";
+    }
+
+    window {
+        display-name: "[*.*]";
+    }
+
+    timeout {
+        delay: 10;
+        action: "kb-cancel";
+    }
 }
 
 * {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  spacing: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
 
-  bg: #151515;
-  bg-alt: #232323;
-  fg: #FFFFFF;
-  fg-alt: #424242;
+    bg: #151515;
+    bg-alt: #232323;
+    fg: #FFFFFF;
+    fg-alt: #424242;
 
-  background-color: @bg;
-  text-color: @fg;
+    background-color: @bg;
+    text-color: @fg;
 }
 
 window {
-  transparency: "real";
+    transparency: "real";
 }
 
 mainbox {
-  children: [inputbar, listview];
+    children: [inputbar, listview];
 }
 
 inputbar {
-  children: [prompt, entry];
+    children: [prompt, entry];
 }
 
 entry {
-  padding: 12px 0;
+    padding: 12px 0;
 }
 
 prompt {
-  padding: 12px;
+    padding: 12px;
 }
 
 listview {
-  lines: 8;
+    lines: 8;
 }
 
 element {
-  children: [element-text];
+    children: [element-icon, element-text];
 }
 
 element-text {
-  padding: 8px;
-  text-color: @fg-alt;
+    padding: 8px;
+    text-color: @fg-alt;
 }
 
 element-text selected {
-  text-color: @fg;
+    text-color: @fg;
+}
+
+element-icon {
+    size: 25px;
+    padding: 8px;
 }
