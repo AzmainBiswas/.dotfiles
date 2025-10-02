@@ -194,6 +194,16 @@ rga-fzf() {
         xdg-open "$file"
 }
 
+print_scripts() {
+    local script_dir="${HOME}/bin/print-scripts/"
+    local scripts=( "$script_dir"/* )
+    local count=${#scripts[@]}
+    if (( count > 0 )); then
+        index=$(( $RANDOM % count ))
+        [ -f "${scripts[${index}]}" ] && "${scripts[${index}]}"
+    fi
+}
+
 # bash parameter completion for the dotnet CLI
 
 function _dotnet_bash_complete() {
@@ -231,8 +241,9 @@ function bash_prompt() {
 #     bash_prompt
 # fi
 
-# bash_prompt
-eval "$(starship init bash)" #starship
+bash_prompt
+# eval "$(starship init bash)" #starship
+print_scripts 
 
 # fastfetch
 # if command -v fastfetch &>/dev/null; then
