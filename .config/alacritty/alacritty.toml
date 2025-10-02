@@ -28,7 +28,8 @@ history = 10000
 multiplier = 8
 
 [font]
-normal = { family = "JetBrainsMono Nerd Font", style = "Ragular"}
+# normal = { family = "JetBrainsMono Nerd Font", style = "Ragular"}
+normal = { family = "IosevkaTerm Nerd Font", style = "Ragular"}
 bold = { style = "Medium" }
 italic = { style = "Light Italic" }
 bold_italic = { style = "Bold Italic" }

@@ -1,18 +1,27 @@
 #!/usr/bin/env bash
 # get volume for dwm_bar
 dwm_volume() {
-    mute=$(pactl -f "json" list sinks | jq '.[-1].mute')
-    device_name=$(pactl -f "json" list sinks | jq '.[-1].description' | sed "s/\"//g")
-    volume_percent=$(pactl -f "json" list sinks | jq '.[-1].volume["front-left"].value_percent' | sed "s/\"//g")
+    # Get amixer output for the default sink (usually 'Master')
+    amixer_output=$(amixer get Master)
+
+    # Extract mute status
+    if echo "$amixer_output" | grep -q '\[off\]'; then
+        mute=true
+    else
+        mute=false
+    fi
+
+    # Extract volume percentage (e.g., "70%")
+    volume_percent=$(echo "$amixer_output" | grep -oP '\[\d+%]' | head -1 | tr -d '[]')
+
+    # Device name is not directly available via amixer, so we'll simulate it
+    # Replace this string with your actual device name if needed
+    device_name="Analog Stereo"
 
     if [ "$mute" = true ]; then
         msg="🔇 mute"
     else
-        if [[ $device_name = "Family 17h/19h HD Audio Controller Analog Stereo" ]]; then
-            msg="🔊 ${volume_percent}"
-        else
-            msg="🫐 🔊 ${volume_percent}"
-        fi
+        msg="🔊 ${volume_percent}"
     fi
 
     printf "%s" "$msg"

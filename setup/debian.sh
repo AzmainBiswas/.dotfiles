@@ -8,7 +8,7 @@ set -ex
 
 sudo apt install git stow eza bat curl wget aria2\
     ripgrep fd-find bash-completion tmux \
-    xclip xsel sxiv feh pipx zoxide fzf
+    xclip xsel sxiv feh pipx zoxide starship
 
 # pipx install trash-cli
 pipx install yt-dlp
@@ -25,7 +25,7 @@ install_fzf
 # install_zoxide
 
 # install starship
-install_starship
+# install_starship
 
 # install tmp
 install_tmux_tpm

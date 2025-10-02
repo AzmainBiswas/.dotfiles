@@ -1,6 +1,6 @@
 ! Font options - ~/.fonts.conf seems to override this
 ! Resolution for Xft in dots per inch (e.g. 96)
-Xft.dpi:       115
+! Xft.dpi:       115
 ! Type of subpixel antialiasing (none, rgb, bgr, vrgb or vbgr)
 Xft.rgba:      rgb
 Xft.antialias: true

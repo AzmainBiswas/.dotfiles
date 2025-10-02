@@ -394,7 +394,7 @@ bar {
     mode dock # hide
     modifier $mod 
 	position top #bottom / top 
-    font pango:JetBrainsMono Nerd Font 11
+    font pango:JetBrainsMono Nerd Font 14
 	status_command i3status
     tray_padding 5
     strip_workspace_numbers on
