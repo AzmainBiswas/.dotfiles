@@ -1,0 +1,14 @@
+@theme "./android_notification.rasi"
+
+configuration {
+  font: "JetBrainsMono Nerd Font Medium 16";
+  show-icons: false;
+  disable-history: false;
+  dpi: 90;
+}
+
+element-icon {
+  padding: 0 10px 0 0;
+  size: 25px;
+}
+

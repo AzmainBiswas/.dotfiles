@@ -262,7 +262,7 @@ fi
 # fzf
 # [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash #download from git.
 eval "$(fzf --bash)"
-
+eval "$(zed --completions bash)"
 # . "$HOME/.cargo/env"
 # # zig
 # export PATH=${HOME}/.local/share/zig:${PATH}

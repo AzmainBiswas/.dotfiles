@@ -64,12 +64,12 @@ window#waybar.chromium {
 #pulseaudio,
 #wireplumber,
 #custom-media,
-#tray,
 #mode,
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
 #custom-power,
+#tray,
 #mpd {
     background-color: @normal-bg;
     color: @normal-fg;
@@ -134,6 +134,10 @@ window#waybar.chromium {
 #pulseaudio.muted {
     background-color: #960006;
     color: #000000;
+}
+
+#tray {
+    background-color: @normal-fg;
 }
 
 #tray>.passive {

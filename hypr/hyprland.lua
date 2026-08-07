@@ -78,6 +78,11 @@ hl.window_rule({
     float = true
 })
 
+hl.window_rule({
+    name = "waypaper",
+    match = { class = "waypaper" },
+    float = true
+})
 
 -- Layer rules also return a handle.
 -- local overlayLayerRule = hl.layer_rule({
