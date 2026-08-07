@@ -1,0 +1,139 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top", // Waybar at top layer
+  // "position": "bottom", // Waybar position (top|bottom|left|right)
+  "height": 20, // Waybar height (to be removed for auto height)
+  "spacing": 2, // Gaps between modules (4px)
+  "modules-left": ["hyprland/workspaces", "hyprland/submap", "hyprland/window"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "idle_inhibitor",
+    "pulseaudio",
+    "network",
+    "power-profiles-daemon",
+    "memory",
+    "backlight",
+    "battery",
+    "custom/power",
+    "tray",
+  ],
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{id}",
+    "workspace-taskbar": false,
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({workspace=\"e+1\"})' ",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({workspace=\"e-1\"})' ",
+    "on-click-window": "hyprctl dispatch 'hl.dsp.focus({workspace={id}})'",
+  },
+  "hyprland/mode": {
+    "format": "<span style=\"italic\">{}</span>",
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 30,
+    "icon": true,
+    "separate-outputs": true,
+  },
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": ["", ""],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}",
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "",
+    },
+    "tooltip": true,
+    "tooltip-format-activated": "Idle inhibitor active (Keep awake)",
+    "tooltip-format-deactivated": "Idle inhibitor inactive",
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 5,
+  },
+  "clock": {
+    "tooltip-format": "<big>{:%D}</big>\n<tt><big>{calendar}</big></tt>",
+    "format-alt": "{:%d-%B-%Y}",
+    "format": "{:%I:%M %p %d/%m/%Y}",
+  },
+  "memory": {
+    "format": "{}% ",
+    "on-click": "kitty -e htop",
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""],
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""],
+  },
+  "battery#bat2": {
+    "bat": "BAT2",
+  },
+  "power-profiles-daemon": {
+    "format": "<span style=\"italic\">{icon}</span>",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "B",
+      "performance": "P",
+      "balanced": "B",
+      "power-saver": "L",
+    },
+  },
+  "network": {
+    "format-wifi": "({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{essid}",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": " {icon}",
+    "format-muted": "󰝟",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
+    },
+    "on-click": "pavucontrol-qt",
+  },
+  "custom/power": {
+    "format": "⏻",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+    "menu-actions": {
+      "shutdown": "systemctl poweroff",
+      "reboot": "systemctl reboot",
+      "suspend": "swaylock -f -c 282828 && systemctl suspend",
+      "hibernate": "swaylock -f -c 282828 && systemctl hibernate",
+      "logout": "hyprctl dispatch 'hl.dsp.exit()'",
+      "lock": "swaylock -f -c 282828",
+    },
+  },
+}

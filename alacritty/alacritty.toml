@@ -1,0 +1,46 @@
+[general]
+import = [
+    "./gruvbox_dark.toml"
+]
+
+[window]
+opacity = 0.9
+padding = {x = 5, y = 10}
+dimensions = { columns = 140, lines = 30 }
+decorations = "Full"
+decorations_theme_variant = "Dark" # "Light"
+
+# Window title
+title = "Alacritty"  # Default: "Alacritty"
+# Dynamic title
+dynamic_title = true  # Default: true
+# Window class (Linux/BSD only)
+class = { instance = "Alacritty", general = "Alacritty" }
+
+[scrolling]
+# Maximum number of lines in the scrollback buffer
+history = 10000
+# Number of lines scrolled for every input scroll increment
+multiplier = 8
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Ragular"}
+# normal = { family = "IosevkaTerm Nerd Font", style = "Ragular"}
+bold = { style = "Medium" }
+italic = { style = "Light Italic" }
+bold_italic = { style = "Bold Italic" }
+size = 14
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }  # Default: shape = "Block", blinking = "Off"
+vi_mode_style = "Block"  # Default: "None"
+
+[mouse]
+hide_when_typing = true  # Default: false
+bindings = [{ mouse = "Right", action = "Paste" }]
+
+[colors]
+draw_bold_text_with_bright_colors = true
