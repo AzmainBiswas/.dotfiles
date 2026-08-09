@@ -21,9 +21,11 @@
     "all-outputs": true,
     "format": "{id}",
     "workspace-taskbar": false,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({workspace={id}})'",
+    // "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({workspace=\"e+1\"})' ",
     "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({workspace=\"e-1\"})' ",
-    "on-click-window": "hyprctl dispatch 'hl.dsp.focus({workspace={id}})'",
+    // "on-click-window": "hyprctl dispatch 'hl.dsp.focus({workspace={id}})'",
   },
   "hyprland/mode": {
     "format": "<span style=\"italic\">{}</span>",

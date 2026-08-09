@@ -69,7 +69,7 @@ alias ll="eza -alhF --group-directories-first"
 alias tree="eza -F --color=always --tree --icons"
 # alias cat="bat --plain --theme OneHalfDark"
 
-# alias cls="clear"
+alias cls="clear"
 alias spdl="spotdl --bitrate=320k"
 
 alias grep='grep --color=auto'
@@ -262,7 +262,7 @@ fi
 # fzf
 # [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash #download from git.
 eval "$(fzf --bash)"
-eval "$(zed --completions bash)"
+# eval "$(zed --completions bash)"
 # . "$HOME/.cargo/env"
 # # zig
 # export PATH=${HOME}/.local/share/zig:${PATH}

@@ -1,6 +1,7 @@
 local terminal    = "kitty"
 local fileManager = "thunar"
-local browser     = "brave-origin"
+-- local browser     = "brave-origin"
+local browser     = "firefox"
 
 
 local mainMod = "SUPER"
@@ -18,7 +19,10 @@ hl.bind(mainMod .. " + SHIFT" .. "+ L", hl.dsp.exec_cmd("command -v hyprshutdown
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("swaylock -f -c 282828"))
 hl.bind(mainMod .. "+ SHIFT + C", hl.dsp.layout("colresize +conf"))
 
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("waypaper"))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("copyq menu"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("waypaper --random"))
+hl.bind(mainMod .. " + Period", hl.dsp.exec_cmd("rofimoji --action type copy --typer wtype"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
