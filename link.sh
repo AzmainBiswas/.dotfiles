@@ -25,4 +25,8 @@ ln -sfn "$PWD/hypr" "$HOME/.config/hypr"
 ln -sfn "$PWD/waybar" "$HOME/.config/waybar"
 ln -sfn "$PWD/starship" "$HOME/.config/starship"
 
+###########
+# .local
+###########
+ln -sfn "$PWD/.local/share/applications/Gebruikwall.desktop" "/home/azmain/.local/share/applications/Gebruikwall.desktop"
 
