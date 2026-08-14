@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 IMAGE_URL="$(realpath "$1")"
 
-/usr/lib/qt6/bin/qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
-var allDesktops = desktopsForActivity(currentActivity());
-for (var i = 0; i < allDesktops.length; i++) {
-    var d = allDesktops[i];
-    d.wallpaperPlugin = 'org.kde.image';
-    d.currentConfigGroup = ['Wallpaper', 'org.kde.image', 'General'];
-    d.writeConfig('Image', '${IMAGE_URL}');
-}
-"
+plasma-apply-wallpaperimage "${IMAGE_URL}"
+
+# /usr/lib/qt6/bin/qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
+# var allDesktops = desktopsForActivity(currentActivity());
+# for (var i = 0; i < allDesktops.length; i++) {
+#     var d = allDesktops[i];
+#     d.wallpaperPlugin = 'org.kde.image';
+#     d.currentConfigGroup = ['Wallpaper', 'org.kde.image', 'General'];
+#     d.writeConfig('Image', '${IMAGE_URL}');
+# }
+# "
