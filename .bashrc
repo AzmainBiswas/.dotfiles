@@ -232,9 +232,9 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1    # '%' if there are untracked files
 export GIT_PS1_SHOWUPSTREAM="auto"     # '<' behind, '>' ahead, '<>' diverged
 
 function bash_prompt() {
-    # PS1=${cyn}'\w'${ylw}"\$(__git_ps1)"${grn}'  '${clr}
-    # PS1=${cyn}'\W'${ylw}"\$(__git_ps1 ' (%s)')"${grn}' ➜ '${clr}
-    PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\W\[$(tput setaf 226)\]\$(__git_ps1 ' (%s)') \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "
+    # PS1=${cyn}'\w'${ylw}"\$(__git_ps1 ' %s')"\\n${grn}'  '${clr}
+    PS1=${cyn}'\w'${pur}"\$(__git_ps1 ' (%s)')"\\n${grn}'➜ '${clr}
+    # PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\W\[$(tput setaf 226)\]\$(__git_ps1 ' (%s)') \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "
 }
 
 # bash_prompt
