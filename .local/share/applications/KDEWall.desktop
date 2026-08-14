@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Gebruikwall
+Name=KDEWall
 Comment=Set selected image as KDE Plasma wallpaper
 Exec=$HOME/bin/change-wall-kde %u
 Icon=background

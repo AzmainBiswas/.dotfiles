@@ -28,5 +28,5 @@ ln -sfn "$PWD/starship" "$HOME/.config/starship"
 ###########
 # .local
 ###########
-ln -sfn "$PWD/.local/share/applications/Gebruikwall.desktop" "/home/azmain/.local/share/applications/Gebruikwall.desktop"
+ln -sfn "$PWD/.local/share/applications/KDEWall.desktop" "/home/azmain/.local/share/applications/KDEWall.desktop"
 
