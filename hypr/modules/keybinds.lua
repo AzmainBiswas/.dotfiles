@@ -35,8 +35,8 @@ hl.bind(mainMod .. "+ SHIFT " .. " + right", hl.dsp.window.swap({ direction = "r
 hl.bind(mainMod .. "+ SHIFT " .. " + up", hl.dsp.window.swap({ direction = "up" }))
 hl.bind(mainMod .. "+ SHIFT " .. " + down", hl.dsp.window.swap({ direction = "down" }))
 
-hl.bind("Print", hl.dsp.exec_cmd("flameshot full --path=$HOME/Pictures/Screenshots/"))
-hl.bind(mainMod .. "+ Print", hl.dsp.exec_cmd("flameshot gui --clipboard --path=$HOME/Pictures/Screenshots/"))
+hl.bind("Print", hl.dsp.exec_cmd("take-screensort-wayland "))
+hl.bind(mainMod .. "+ SHIFT + S", hl.dsp.exec_cmd("take-screensort-wayland -a"))
 
 hl.bind("SUPER + Tab", function()
     hl.dispatch(hl.dsp.window.cycle_next())
@@ -60,8 +60,8 @@ hl.define_submap("resize", function()
 end)
 
 -- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+-- hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
+-- hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))

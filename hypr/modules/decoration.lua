@@ -1,7 +1,7 @@
 hl.config({
     general = {
-        gaps_in          = 2,
-        gaps_out         = 2,
+        gaps_in          = 5,
+        gaps_out         = 5,
 
         border_size      = 2,
 
@@ -14,9 +14,12 @@ hl.config({
         layout           = "scrolling",
     },
 
+})
+
+hl.config({
     decoration = {
-        rounding         = 0,
-        rounding_power   = 0,
+        rounding         = 5,
+        rounding_power   = 5,
         active_opacity   = 1.0,
         inactive_opacity = 1.0,
         shadow           = {
@@ -25,15 +28,21 @@ hl.config({
             render_power = 3,
             color        = "0xee1a1a1a",
         },
+    },
+})
 
-        blur             = {
+hl.config({
+    decoration = {
+        blur = {
             enabled  = true,
             size     = 5,
             passes   = 1,
             vibrancy = 0.1696,
         },
-    },
+    }
+})
 
+hl.config({
     animations = {
         enabled = false,
     },
@@ -62,6 +71,6 @@ hl.config({
 hl.config({
     misc = {
         disable_hyprland_logo = true,
-        disable_splash_rendering=true,
+        disable_splash_rendering = true,
     }
 })

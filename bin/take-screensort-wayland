@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+MODE="${1:---full}"
+
+SCREENSORT_DIR="${HOME}/Pictures/Screenshots"
+[[ -d ${SCREENSORT_DIR} ]] || mkdir -p ${SCREENSORT_DIR} 
+FILE="${SCREENSORT_DIR}/$(date +'%Y-%m-%d_%H-%M-%S').png"
+
+case ${MODE} in
+    -f|--full)
+        grim "${FILE}"
+        ;;
+    -a|--area)
+        GEOM=$(slurp)
+        [ -z "${GEOM}" ] && exit 0
+        grim -g "${GEOM}" "${FILE}"
+        ;;
+    *)
+        printf "Usage: %s [--area|-a | --full|-f]\n" ${0}
+        ;;
+esac
+
+wl-copy < "${FILE}"
+
+ACTION=$(notify-send --app-name="Screensort" --icon="$FILE" --action="annotate=Annotate" \
+        "Screensort Captured" "Copied to clipboard. Click to annotate")
+
+if [ "${ACTION}" = "annotate" ]; then
+    satty --filename "${FILE}" --output-filename "${FILE}"
+    wl-copy < "${FILE}"
+fi
