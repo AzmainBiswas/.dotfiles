@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from random import choice
+import getpass
 import subprocess
 import sys
 from dataclasses import dataclass
@@ -181,28 +181,85 @@ def change_dns():
 
         for connection in connections:
             if ipv4 == "auto":
-                _ = run_cmd( ["nmcli", "connection", "modify", connection, "ipv4.dns", ""])
-                _ = run_cmd( [ "nmcli", "connection", "modify", connection, "ipv4.ignore-auto-dns", "no", ])
+                _ = run_cmd(
+                    ["nmcli", "connection", "modify", connection, "ipv4.dns", ""]
+                )
+                _ = run_cmd(
+                    [
+                        "nmcli",
+                        "connection",
+                        "modify",
+                        connection,
+                        "ipv4.ignore-auto-dns",
+                        "no",
+                    ]
+                )
             else:
-                _ = run_cmd( ["nmcli", "connection", "modify", connection, "ipv4.dns", ipv4])
-                _ = run_cmd( [ "nmcli", "connection", "modify", connection, "ipv4.ignore-auto-dns", "yes", ])
+                _ = run_cmd(
+                    ["nmcli", "connection", "modify", connection, "ipv4.dns", ipv4]
+                )
+                _ = run_cmd(
+                    [
+                        "nmcli",
+                        "connection",
+                        "modify",
+                        connection,
+                        "ipv4.ignore-auto-dns",
+                        "yes",
+                    ]
+                )
 
             _ = run_cmd(["nmcli", "connection", "up", connection])
         print(f"Dns changed to {choice}")
+        send_notification(f"DNS {choice}", f"DNS changed sucessfully to {choice}")
         return
+
 
 def draw_bar(num: int, max: int, max_bar: int = 10) -> str:
     p = int((max_bar / max) * num)
     return "#" * p + "-" * (max_bar - p)
 
 
+def send_notification(summary: str, body: str = ""):
+    _ = run_cmd(
+        [
+            "notify-send",
+            "--app-name=network-tui",
+            "--icon=network-wireless",
+            summary,
+            body,
+        ]
+    )
+
+
 def connect_wifi():
+    delimiter = "\u200b"
     wifi_lists = get_list_of_network(True)
-    wifi_names = [ f"{w[0]} ({w[1].signal})" for w in wifi_lists.items() ]
+    wifi_names = [
+        f"{w[0]} {delimiter} ({w[1].signal}) {delimiter} {'*' if w[1].in_use else ''} "
+        for w in wifi_lists.items()
+    ]
     prompt = " [ Select Network ] > "
     choice = menu_picker(wifi_names, prompt)
     if choice is None:
         return
+    ssid = choice.split(delimiter)[0].strip()
+    wifi = wifi_lists[ssid]
+    saved = run_cmd(["nmcli", "-t", "-f", "NAME", "connection"]).stdout.splitlines()
+    if wifi.ssid in saved:
+        _ = run_cmd(["nmcli", "connection", "up", ssid])
+    else:
+        password = getpass.getpass(
+            "Enter Password (Keep Empty for no password): ", echo_char="*"
+        ).strip()  # change for rofi
+        if password:
+            _ = run_cmd(
+                ["nmcli", "device", "wifi", "connect", wifi.ssid, "password", password]
+            )
+        else:
+            _ = run_cmd(["nmcli", "device", "wifi", "connect", wifi.ssid])
+    print(f"Connected to {wifi.ssid}.")
+    send_notification(f"{wifi.ssid}", f"Connected to {wifi.ssid}")
 
 
 MAIN_MENU = [
@@ -215,7 +272,7 @@ MAIN_MENU = [
 
 
 def main():
-    try: 
+    try:
         while True:
             nds = get_network_devices()
             active_nds = [
@@ -223,7 +280,9 @@ def main():
             ]
             active_networks = ", ".join(n.connection for n in active_nds)
             prompt = (
-                f" [ {active_networks} ] >  " if active_networks != "" else " [ Select ] > "
+                f" [ {active_networks} ] >  "
+                if active_networks != ""
+                else " [ Select ] > "
             )
             choice = menu_picker(MAIN_MENU, prompt)
             if choice is None or choice == MAIN_MENU[-1]:
