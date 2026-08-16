@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import curses
+from random import choice
 import subprocess
 import sys
 from dataclasses import dataclass
@@ -26,6 +26,7 @@ DNS_PROFILES = {
         "ipv4": "auto",
         "ipv6": "auto",
     },
+    "Back": {},
 }
 
 
@@ -49,7 +50,6 @@ class NetworkDevice:
 class WifiNetwork:
     in_use: bool
     ssid: str
-    band: str
     signal: int
     security: str
 
@@ -72,9 +72,37 @@ def run_cmd(args: str | list[str]) -> subprocess.CompletedProcess[str]:
     return rep
 
 
+def menu_picker(options: list[str], prompt: str, backend: str = "fzf") -> str | None:
+    if backend == "fzf":
+        cmd = [
+            "fzf",
+            "--prompt",
+            f"{prompt}",
+            "--height",
+            "40%",
+            "--reverse",
+            "--border",
+        ]
+    else:
+        return None
+
+    proc = subprocess.run(
+        cmd, input="\n".join(options), capture_output=True, text=True, check=False
+    )
+    if proc.returncode == 0 and proc.stdout:
+        return proc.stdout.strip()
+    return None
+
+
 def get_active_interface(target_ip: str = "8.8.8.8") -> str | None:
     """Get the active network interface name"""
-    rep = run_cmd(["ip", "route", "get", target_ip])
+    rep = subprocess.run(
+        ["ip", "route", "get", target_ip], capture_output=True, text=True, check=False
+    )
+
+    if rep.stderr:
+        return None
+
     tokens = rep.stdout.split()
     if "dev" in tokens:
         return tokens[tokens.index("dev") + 1]
@@ -99,7 +127,7 @@ def get_list_of_network(rescan: bool = True) -> dict[str, WifiNetwork]:
             "nmcli",
             "-t",
             "-f",
-            "IN-USE,SSID,BAND,SIGNAL,SECURITY",
+            "IN-USE,SSID,SIGNAL,SECURITY",
             "device",
             "wifi",
             "list",
@@ -109,98 +137,108 @@ def get_list_of_network(rescan: bool = True) -> dict[str, WifiNetwork]:
     )
     wifi_networks: dict[str, WifiNetwork] = {}
     for line in out.stdout.splitlines():
-        in_use, ssid, band, signal, security = line.split(":", 5)
+        in_use, ssid, signal, security = line.split(":", 4)
         if not ssid:
             continue
         in_use = "*" == in_use
         signal = int(signal)
-        wifi_networks[ssid] = WifiNetwork(in_use, ssid, band, signal, security)
+        wifi_networks[ssid] = WifiNetwork(in_use, ssid, signal, security)
     return wifi_networks
 
-def toggle_wifi_network():
+
+def toggle_wifi_device():
     proc = run_cmd(["nmcli", "radio", "wifi"])
     if proc.stdout.splitlines()[0] == "enabled":
         _ = run_cmd(["nmcli", "radio", "wifi", "off"])
     else:
         _ = run_cmd(["nmcli", "radio", "wifi", "on"])
 
-# TODO: handle is window size is less then the text
-def text_box(
-    stdscr: curses.window,
-    txt: str,
-    begin_y: int,
-    begin_x: int,
-    pad_h: int = 0,
-    pad_w: int = 2,
-) -> curses.window:
-    height = 1 + 2 + (pad_h * 2)
-    weidth = len(txt) + 2 + (pad_w * 2)
-    win = stdscr.derwin(height, weidth, begin_y, begin_x)
-    win.box()
-    txt_y = height // 2
-    txt_x = (weidth - len(txt)) // 2
-    win.addstr(txt_y, txt_x, txt)
-    win.refresh()
-    return win
+
+def disconnect_wifi_conection():
+    active_intervace = get_active_interface()
+    if not active_intervace:
+        return
+    _ = run_cmd(["nmcli", "device", "disconnect", active_intervace])
+    return
 
 
-def draw_menu(stdscr: curses.window, titel: str, options: list[str], selected_idx: int):
-    stdscr.clear()
-    max_h, max_w = stdscr.getmaxyx()
-    pad_w = 10
-    start_h = 1
-    start_w = max_w // 2 - (len(titel) + pad_w * 2 + 2) // 2
-    win = text_box(stdscr, titel, start_h, start_w, pad_w=pad_w)
-    w_y, _ = win.getmaxyx()
-    m = max(len(f"  {o}  ") for o in options)
-    for i, opt in enumerate(options):
-        x = max_w // 2 - m // 2
-        if i == selected_idx:
-            stdscr.attron(curses.color_pair(1) | curses.A_BOLD)
-            stdscr.addstr(w_y + 1 + i, x , f"> {opt}  ")
-            stdscr.attroff(curses.color_pair(1) | curses.A_BOLD)
-        else:
-            stdscr.addstr(w_y + 1 + i, x, f"  {opt}  ")
-    stdscr.refresh()
+def change_dns():
+    options = [d[0] for d in DNS_PROFILES.items()]
+    prompt = " [ Select DNS provider ] > "
+    choice = menu_picker(options, prompt)
+    if choice is None or choice == options[-1]:
+        return
+    else:
+        nds = get_network_devices()
+        connections = [
+            nd[1].connection
+            for nd in nds.items()
+            if nd[1].is_connected and nd[1].is_physical
+        ]
+        provider = DNS_PROFILES[choice]
+        ipv4 = provider["ipv4"]
+        ipv6 = provider["ipv6"]
 
-def select_item(stdscr: curses.window, titel: str, options: list[str], selected: int = 0) -> int | None:
-    if not options:
-        return None
-    while True:
-        draw_menu(stdscr, titel, options, selected)
-        key = stdscr.getch()
-        if key in [curses.KEY_UP, ord('k')]:
-            selected = (selected - 1) % len(options)
-        elif key in [curses.KEY_DOWN, ord('j')]:
-            selected = (selected + 1) % len(options)
-        elif key in [curses.KEY_ENTER, 10, 13]:
-            return selected
-        elif key in [27, ord('q')]:
-            return None
+        for connection in connections:
+            if ipv4 == "auto":
+                _ = run_cmd( ["nmcli", "connection", "modify", connection, "ipv4.dns", ""])
+                _ = run_cmd( [ "nmcli", "connection", "modify", connection, "ipv4.ignore-auto-dns", "no", ])
+            else:
+                _ = run_cmd( ["nmcli", "connection", "modify", connection, "ipv4.dns", ipv4])
+                _ = run_cmd( [ "nmcli", "connection", "modify", connection, "ipv4.ignore-auto-dns", "yes", ])
+
+            _ = run_cmd(["nmcli", "connection", "up", connection])
+        print(f"Dns changed to {choice}")
+        return
+
+def draw_bar(num: int, max: int, max_bar: int = 10) -> str:
+    p = int((max_bar / max) * num)
+    return "#" * p + "-" * (max_bar - p)
+
+
+def connect_wifi():
+    wifi_lists = get_list_of_network(True)
+    wifi_names = [ f"{w[0]} ({w[1].signal})" for w in wifi_lists.items() ]
+    prompt = " [ Select Network ] > "
+    choice = menu_picker(wifi_names, prompt)
+    if choice is None:
+        return
 
 
 MAIN_MENU = [
-    "1. 󰤨 Connect to Wi-Fi",
-    "2. 󰌘 Change DNS Settings",
-    "3. 󰤭 Disconnect Current Connection",
-    "4.  Toggle Wi-Fi Radio (on|off)",
-    "5. 󰈆 Exit"
+    "1. 󰤨  Connect to Wi-Fi",
+    "2. 󰌘  Change DNS Settings",
+    "3. 󰤭  Disconnect Current Connection",
+    "4.   Toggle Wi-Fi Radio (on|off)",
+    "5. 󰈆  Exit",
 ]
 
-def main(stdscr: curses.window):
-    _ = curses.curs_set(0)
-    curses.use_default_colors()
-    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_CYAN)
-    curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK)
-    stdscr.nodelay(False)
-    selected = 0
-    while True:
-        selected = select_item(stdscr, "NetWork Manager", MAIN_MENU, selected)
-        if selected == None or selected + 1 == 5:
-            break
-        elif selected + 1 == 4:
-            toggle_wifi_network()
+
+def main():
+    try: 
+        while True:
+            nds = get_network_devices()
+            active_nds = [
+                nd[1] for nd in nds.items() if nd[1].is_physical and nd[1].is_connected
+            ]
+            active_networks = ", ".join(n.connection for n in active_nds)
+            prompt = (
+                f" [ {active_networks} ] >  " if active_networks != "" else " [ Select ] > "
+            )
+            choice = menu_picker(MAIN_MENU, prompt)
+            if choice is None or choice == MAIN_MENU[-1]:
+                return
+            if choice == MAIN_MENU[3]:
+                toggle_wifi_device()
+            if choice == MAIN_MENU[2]:
+                disconnect_wifi_conection()
+            if choice == MAIN_MENU[1]:
+                change_dns()
+            if choice == MAIN_MENU[0]:
+                connect_wifi()
+    except KeyboardInterrupt:
+        sys.exit(0)
 
 
 if __name__ == "__main__":
-    curses.wrapper(main)
+    main()
