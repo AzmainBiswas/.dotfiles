@@ -1,7 +1,7 @@
 local terminal    = "kitty"
 local fileManager = "thunar"
 -- local browser     = "brave-origin"
-local browser     = "firefox"
+local browser     = "chromium"
 
 
 local mainMod = "SUPER"
@@ -37,6 +37,7 @@ hl.bind(mainMod .. "+ SHIFT " .. " + down", hl.dsp.window.swap({ direction = "do
 
 hl.bind("Print", hl.dsp.exec_cmd("take-screensort-wayland "))
 hl.bind(mainMod .. "+ SHIFT + S", hl.dsp.exec_cmd("take-screensort-wayland -a"))
+hl.bind(mainMod .. "+ CTRL + Print", hl.dsp.exec_cmd("extract-txt"))
 
 hl.bind("SUPER + Tab", function()
     hl.dispatch(hl.dsp.window.cycle_next())

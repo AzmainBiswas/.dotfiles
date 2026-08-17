@@ -64,7 +64,7 @@
   },
   "memory": {
     "format": "{}% ",
-    "on-click": "kitty -e htop",
+    "on-click": "kitty --app-id=float-term -e btop",
   },
   "backlight": {
     "device": "intel_backlight",
@@ -100,11 +100,12 @@
   },
   "network": {
     "format-wifi": "({signalStrength}%) ",
-    "format-ethernet": "{ipaddr}/{cidr} ",
-    "tooltip-format": "{essid}",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "format-ethernet": "{cidr} ",
+    // "tooltip-format": "{essid}",
+    // "format-linked": "{ifname} (No IP) ",
+    // "format-disconnected": "Disconnected ⚠",
+    // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "on-click": "kitty --app-id=float-term -e network-tui"
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
