@@ -1,7 +1,7 @@
-local terminal    = "kitty"
+local terminal    = "alacritty"
 local fileManager = "thunar"
 -- local browser     = "brave-origin"
-local browser     = "chromium"
+local browser     = "firefox"
 
 
 local mainMod = "SUPER"
