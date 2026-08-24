@@ -1,5 +1,5 @@
 local terminal    = "alacritty"
-local fileManager = "thunar"
+local fileManager = "dolphin"
 -- local browser     = "brave-origin"
 local browser     = "firefox"
 
@@ -8,8 +8,10 @@ local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT" .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("pkill rofi || rofi -Show drun"), {release = true})
-hl.bind(mainMod .. " + SHIFT" .. " + D", hl.dsp.exec_cmd("pkill rofi || rofi -Show run"), {release = true})
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("pkill rofi || rofi -Show drun"), {release = false})
+hl.bind(mainMod .. " + SHIFT" .. " + D", hl.dsp.exec_cmd("pkill rofi || rofi -Show run"), {release = false})
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("pkill rofi || rofi -Show window"), {release = false})
+
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. "+ SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
@@ -21,7 +23,7 @@ hl.bind(mainMod .. "+ SHIFT + C", hl.dsp.layout("colresize +conf"))
 
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("copyq menu"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("waypaper --random"))
+hl.bind(mainMod .. "+ SHIFT + W", hl.dsp.exec_cmd("waypaper --random"))
 hl.bind(mainMod .. " + Period", hl.dsp.exec_cmd("rofimoji --action type copy --typer wtype"))
 
 -- Move focus with mainMod + arrow keys
@@ -30,10 +32,11 @@ hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
-hl.bind(mainMod .. "+ SHIFT " .. " + left", hl.dsp.window.swap({ direction = "left" }))
-hl.bind(mainMod .. "+ SHIFT " .. " + right", hl.dsp.window.swap({ direction = "right" }))
-hl.bind(mainMod .. "+ SHIFT " .. " + up", hl.dsp.window.swap({ direction = "up" }))
-hl.bind(mainMod .. "+ SHIFT " .. " + down", hl.dsp.window.swap({ direction = "down" }))
+-- can be changed with swap
+hl.bind(mainMod .. "+ SHIFT " .. " + left", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. "+ SHIFT " .. " + right", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. "+ SHIFT " .. " + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. "+ SHIFT " .. " + down", hl.dsp.window.move({ direction = "down" }))
 
 hl.bind("Print", hl.dsp.exec_cmd("take-screensort-wayland "))
 hl.bind(mainMod .. "+ SHIFT + S", hl.dsp.exec_cmd("take-screensort-wayland -a"))

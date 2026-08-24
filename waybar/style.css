@@ -1,59 +1,60 @@
-@define-color normal-fg #000000;
-@define-color normal-bg #b0adad;
+@define-color bar-bg rgba(28, 28, 28, 0.82);
+@define-color module-bg rgba(176, 173, 173, 0.85);
+@define-color module-fg #000000;
+@define-color white #ffffff;
 
 * {
-    font-family: 'JetBrainsMono Nerd Font';
-    font-size: 12px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 15px;
 }
+
+/* =========================
+   Waybar
+   ========================= */
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 1);
-    color: rgba(255, 255, 255, 1);
+    background: @bar-bg;
+    color: @white;
+
+    /* Keep the bar completely square */
+    border-radius: 0;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
+/* =========================
+   Workspaces
+   ========================= */
 
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
+#workspaces {
+    margin-left: 4px;
 }
 
 #workspaces button {
     margin: 5px 2px;
-    padding: 0 8px;
-    background-color: transparent;
-    border-radius: 5px;
-    color: #ffffff;
+    padding: 0 9px;
+
+    background: transparent;
+    color: @white;
+
+    border-radius: 7px;
+    border: none;
 }
 
 #workspaces button:hover {
-    background: rgba(177, 177, 177, 0.2);
+    background: rgba(255, 255, 255, 0.12);
 }
 
-#workspaces button.focused,
 #workspaces button.active {
-    background-color: #4c5052;
-    /* box-shadow: inset 0px -3px #ffffff; */
+    background: rgba(255, 255, 255, 0.20);
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background: #eb4d4b;
+    color: #ffffff;
 }
 
-#submap {
-    margin: 5px 2px;
-    background-color: #303438;
-    padding: 0px 10px;
-    border: 2px solid #ffffff;
-    border-radius: 5px;
-    /* box-shadow: inset 0 -3px #ffffff; */
-}
+/* =========================
+   Modules
+   ========================= */
 
 #clock,
 #battery,
@@ -71,92 +72,88 @@ window#waybar.chromium {
 #scratchpad,
 #power-profiles-daemon,
 #custom-power,
-#tray,
-#mpd {
-    background-color: @normal-bg;
-    color: @normal-fg;
-    border-radius: 5px;
-    padding: 2px 10px;
+#tray {
     margin: 5px 2px;
+    padding: 2px 10px;
+
+    background: @module-bg;
+    color: @module-fg;
+
+    border-radius: 7px;
+    border: none;
 }
+
+/* =========================
+   Window title
+   ========================= */
 
 #window {
-    margin: 0 2px;
+    margin: 0 6px;
     padding: 2px 10px;
+
+    color: rgba(255, 255, 255, 0.85);
 }
 
-/* #battery { */
-    /* background-color: #ffffff; */
-    /* color: #000000; */
-/* } */
+/* =========================
+   Battery
+   ========================= */
 
 #battery.charging,
 #battery.plugged {
+    background: #26a65b;
     color: #ffffff;
-    background-color: #26A65B;
 }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-/* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#power-profiles-daemon.performance {
-    background-color: #cc241d;
+    background: #f53c3c;
     color: #ffffff;
 }
 
-#power-profiles-daemon.balanced {
-    background-color: #458588;
-    color: #ffffff;
-}
-
-#power-profiles-daemon.power-saver {
-    background-color: #689d6a;
-    color: #ffffff;
-}
+/* =========================
+   Network
+   ========================= */
 
 #network.disconnected {
-    background-color: #960006;
+    background: #960006;
+    color: #ffffff;
 }
+
+/* =========================
+   Audio
+   ========================= */
 
 #pulseaudio.muted {
-    background-color: #960006;
-    color: #000000;
+    background: #960006;
+    color: #ffffff;
 }
+
+/* =========================
+   Tray
+   ========================= */
 
 #tray {
-    background-color: @normal-fg;
+    background: transparent;
+    color: #ffffff;
+
+    padding-left: 10px;
+    padding-right: 6px;
 }
 
-#tray>.passive {
+#tray > .passive {
     -gtk-icon-effect: dim;
 }
 
-#tray>.needs-attention {
+#tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background: #eb4d4b;
+    border-radius: 7px;
 }
 
-#idle_inhibitor {
-    background-color: @normal-bg;
-    color: @normal-fg;
-}
+/* =========================
+   Idle inhibitor
+   ========================= */
 
 #idle_inhibitor.activated {
-    background-color: #26A65B;
+    background: #26a65b;
     color: #ffffff;
 }

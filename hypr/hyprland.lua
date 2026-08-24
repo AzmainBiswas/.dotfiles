@@ -69,18 +69,18 @@ hl.window_rule({
 
 hl.window_rule({
     name = "pavucontrol",
-    match = { class = "pavucontrol-qt" },
+    match = { class = "^pavucontrol-qt" },
     float = true
 })
 hl.window_rule({
     name = "easy effect",
-    match = { class = "org.kde.easyeffects" },
+    match = { class = "^(org.kde.easyeffects|com.github.wwmm.easyeffects)" },
     float = true
 })
 
 hl.window_rule({
     name = "waypaper",
-    match = { class = "waypaper" },
+    match = { class = "^waypaper" },
     float = true
 })
 hl.window_rule({
@@ -90,13 +90,18 @@ hl.window_rule({
 })
 hl.window_rule({
     name = "pip",
-    match = { title = "Picture in picture" },
+    match = { title = "^Picture in picture" },
     float = true
 })
 hl.window_rule({
     name = "floating terminal",
     match = { class = "float-term" },
     float = true
+})
+hl.window_rule({
+    name = "waybar blur", 
+    match = {class = "waybar"},
+    no_blur = false,
 })
 
 -- Layer rules also return a handle.

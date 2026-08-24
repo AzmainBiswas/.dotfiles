@@ -1,5 +1,5 @@
-theme = iTerm2 Solarized Dark
-# theme = Gruvbox Dark Hard
+# theme = iTerm2 Solarized Dark
+theme = Gruvbox Dark Hard
 # theme = nord
 
 # font-family = JetBrainsMono Nerd Font
@@ -7,7 +7,7 @@ theme = iTerm2 Solarized Dark
 # font-family = FiraCode Nerd Font
 font-family = ComicShannsMono Nerd Font Mono
 font-style = Regular
-font-size = 13
+font-size = 14
 
 window-width = 130
 window-height = 30

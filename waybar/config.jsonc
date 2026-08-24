@@ -1,10 +1,18 @@
 // -*- mode: jsonc -*-
 {
   "layer": "top", // Waybar at top layer
-  // "position": "bottom", // Waybar position (top|bottom|left|right)
+  "position": "bottom", // Waybar position (top|bottom|left|right)
   "height": 20, // Waybar height (to be removed for auto height)
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "margin-bottom": 0,
   "spacing": 2, // Gaps between modules (4px)
-  "modules-left": ["hyprland/workspaces", "hyprland/submap", "hyprland/window"],
+  "modules-left": [
+    "hyprland/workspaces", 
+    "hyprland/submap"
+    // "hyprland/window"
+  ],
   "modules-center": ["clock"],
   "modules-right": [
     "idle_inhibitor",
@@ -15,7 +23,7 @@
     "backlight",
     "battery",
     "custom/power",
-    "tray",
+    "tray"
   ],
   "hyprland/workspaces": {
     "all-outputs": true,
@@ -46,8 +54,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": "",
-      "deactivated": "",
+      "activated": " ",
+      "deactivated": " ",
     },
     "tooltip": true,
     "tooltip-format-activated": "Idle inhibitor active (Keep awake)",
@@ -82,7 +90,7 @@
     "format-charging": "{capacity}% ",
     "format-plugged": "{capacity}% ",
     "format-alt": "{time} {icon}",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": [" ", " ", " ", " ", " "],
   },
   "battery#bat2": {
     "bat": "BAT2",
@@ -92,20 +100,20 @@
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
     "tooltip": true,
     "format-icons": {
-      "default": "  ",
+      "default": "   ",
       "performance": " 󱐌 ",
-      "balanced": "  ",
+      "balanced": "   ",
       "power-saver": " 󱈏 ",
     },
   },
   "network": {
     "format-wifi": "({signalStrength}%)  ",
     "format-ethernet": "{cidr}  ",
-    // "tooltip-format": "{essid}",
+    "tooltip-format": "{essid}",
     // "format-linked": "{ifname} (No IP) ",
-    // "format-disconnected": "Disconnected ⚠",
+    "format-disconnected": "Disconnected ⚠",
     // "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    "on-click": "alacritty --class=float-term -e network-tui"
+    "on-click": "network-tui -r"
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",

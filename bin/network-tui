@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
+import argparse
 import getpass
 import subprocess
 import sys
 from dataclasses import dataclass
+from turtle import back
 
 DNS_PROFILES = {
     "Cloudflare": {
@@ -72,7 +74,7 @@ def run_cmd(args: str | list[str]) -> subprocess.CompletedProcess[str]:
     return rep
 
 
-def menu_picker(options: list[str], prompt: str, backend: str = "fzf") -> str | None:
+def menu_picker(options: list[str], prompt: str, backend: str) -> str | None:
     if backend == "fzf":
         cmd = [
             "fzf",
@@ -83,8 +85,10 @@ def menu_picker(options: list[str], prompt: str, backend: str = "fzf") -> str | 
             "--reverse",
             "--border",
         ]
+    elif backend == "rofi":
+        cmd = ["rofi", "-dmenu", "-p", prompt, "-l", "5", "-i"]
     else:
-        return None
+        raise ValueError("Unknown Selector")
 
     proc = subprocess.run(
         cmd, input="\n".join(options), capture_output=True, text=True, check=False
@@ -162,10 +166,10 @@ def disconnect_wifi_conection():
     return
 
 
-def change_dns():
+def change_dns(backend: str):
     options = [d[0] for d in DNS_PROFILES.items()]
     prompt = " [ Select DNS provider ] > "
-    choice = menu_picker(options, prompt)
+    choice = menu_picker(options, prompt, backend)
     if choice is None or choice == options[-1]:
         return
     else:
@@ -231,8 +235,21 @@ def send_notification(summary: str, body: str = ""):
         ]
     )
 
+def get_password(backend: str) -> str:
+    password: str = ""
+    if backend == "fzf":
+        password = getpass.getpass(
+            "Enter Password (Keep Empty for no password): ", echo_char="*"
+        ).strip()  # change for rofi
+    elif backend == "rofi":
+       res = run_cmd(["rofi", "-dmenu", "-l", "0", "-password"])
+       password = res.stdout.splitlines()[0].strip()
 
-def connect_wifi():
+    return password
+
+
+
+def connect_wifi(backend: str):
     delimiter = "\u200b"
     wifi_lists = get_list_of_network(True)
     wifi_names = [
@@ -240,7 +257,7 @@ def connect_wifi():
         for w in wifi_lists.items()
     ]
     prompt = " [ Select Network ] > "
-    choice = menu_picker(wifi_names, prompt)
+    choice = menu_picker(wifi_names, prompt, backend)
     if choice is None:
         return
     ssid = choice.split(delimiter)[0].strip()
@@ -249,9 +266,7 @@ def connect_wifi():
     if wifi.ssid in saved:
         _ = run_cmd(["nmcli", "connection", "up", ssid])
     else:
-        password = getpass.getpass(
-            "Enter Password (Keep Empty for no password): ", echo_char="*"
-        ).strip()  # change for rofi
+        password = get_password(backend)
         if password:
             _ = run_cmd(
                 ["nmcli", "device", "wifi", "connect", wifi.ssid, "password", password]
@@ -270,8 +285,19 @@ MAIN_MENU = [
     "5. 󰈆  Exit",
 ]
 
+def parse_argument() -> argparse.Namespace:
+    parser = argparse.ArgumentParser("network-tui")
+    _ = parser.add_argument("-r", action="store_true", help="use rofi")
+    return parser.parse_args() 
+
 
 def main():
+    backend = "fzf"
+    
+    cmd = parse_argument()
+    if cmd.r:
+        backend = "rofi"
+
     try:
         while True:
             nds = get_network_devices()
@@ -284,7 +310,7 @@ def main():
                 if active_networks != ""
                 else " [ Select ] > "
             )
-            choice = menu_picker(MAIN_MENU, prompt)
+            choice = menu_picker(MAIN_MENU, prompt, backend)
             if choice is None or choice == MAIN_MENU[-1]:
                 return
             if choice == MAIN_MENU[3]:
@@ -292,9 +318,11 @@ def main():
             if choice == MAIN_MENU[2]:
                 disconnect_wifi_conection()
             if choice == MAIN_MENU[1]:
-                change_dns()
+                change_dns(backend)
+                return
             if choice == MAIN_MENU[0]:
-                connect_wifi()
+                connect_wifi(backend)
+                return
     except KeyboardInterrupt:
         sys.exit(0)
 
