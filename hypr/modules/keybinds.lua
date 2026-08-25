@@ -1,4 +1,5 @@
-local terminal    = "alacritty"
+-- local terminal    = "alacritty"
+local terminal    = "foot"
 local fileManager = "dolphin"
 -- local browser     = "brave-origin"
 local browser     = "firefox"
@@ -25,6 +26,8 @@ hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("copyq menu"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. "+ SHIFT + W", hl.dsp.exec_cmd("waypaper --random"))
 hl.bind(mainMod .. " + Period", hl.dsp.exec_cmd("rofimoji --action type copy --typer wtype"))
+
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("sh -c $HOME/bin/change_profile"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))

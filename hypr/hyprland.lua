@@ -77,6 +77,11 @@ hl.window_rule({
     match = { class = "^(org.kde.easyeffects|com.github.wwmm.easyeffects)" },
     float = true
 })
+hl.window_rule({
+    name = "file-managers",
+    match = { class = "^(org.kde.dolphin|thunar)" },
+    float = true
+})
 
 hl.window_rule({
     name = "waypaper",

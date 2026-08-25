@@ -1,11 +1,12 @@
-@define-color bar-bg rgba(28, 28, 28, 0.82);
-@define-color module-bg rgba(176, 173, 173, 0.85);
-@define-color module-fg #000000;
-@define-color white #ffffff;
+@define-color bar-bg rgba(0, 0, 0, 0.8);
+@define-color module-bg rgba(0, 0, 0, 0.85);
+@define-color module-fg #95B8E6;
+@define-color white #95B8E6;
 
 * {
     font-family: "JetBrainsMono Nerd Font";
-    font-size: 15px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 /* =========================
@@ -29,8 +30,8 @@ window#waybar {
 }
 
 #workspaces button {
-    margin: 5px 2px;
-    padding: 0 9px;
+    margin: 5px 1px;
+    padding: 0 5px;
 
     background: transparent;
     color: @white;
@@ -76,7 +77,8 @@ window#waybar {
     margin: 5px 2px;
     padding: 2px 10px;
 
-    background: @module-bg;
+    /*background: @module-bg;*/
+    background: transparent;
     color: @module-fg;
 
     border-radius: 7px;
@@ -133,7 +135,7 @@ window#waybar {
 
 #tray {
     background: transparent;
-    color: #ffffff;
+    /*color: #ffffff;*/
 
     padding-left: 10px;
     padding-right: 6px;
@@ -147,6 +149,21 @@ window#waybar {
     -gtk-icon-effect: highlight;
     background: #eb4d4b;
     border-radius: 7px;
+}
+
+/* ==============================
+    Power Profile Daemon
+   ============================== */
+#power-profiles-daemon.balanced {
+    color: #A1E695;
+}
+
+ #power-profiles-daemon.performance {
+    color: #F74040;
+}
+
+#power-profiles-daemon.power-saver  {
+    color: #E4ED8A;
 }
 
 /* =========================

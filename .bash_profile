@@ -44,7 +44,7 @@ export MANPAGER="less -R --use-color -Dd+r -Du+b" # colored man pages
 
 # export SDL_VIDEODRIVER=wayland
 export _JAVA_AWT_WM_NONREPARENTING=1
-export QT_QPA_PLATFORMTHEME=qt5ct
+# export QT_QPA_PLATFORMTHEME=qt5ct
 # export QT_STYLE_OVERRIDE=kvantum
 # export QT_QPA_PLATFORM=gtk2
 # export XDG_CURRENT_DESKTOP=sway

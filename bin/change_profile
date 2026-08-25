@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -e
+
+PROFILES=("power-saver" "balanced" "performance")
+
+ACTIVE_PROFILE=$(powerprofilesctl get | xargs)
+
+NEXT_PROFILE="${PROFILES[0]}"
+for i in "${!PROFILES[@]}"; do
+    if [ "${PROFILES[$i]}" == "${ACTIVE_PROFILE}" ]; then
+        NEXT_INDEX=$(( (i + 1) % ${#PROFILES[@]} ))
+        NEXT_PROFILE="${PROFILES[$NEXT_INDEX]}"
+    fi
+done
+
+powerprofilesctl set "$NEXT_PROFILE"
+notify-send -i preferences-system-power "Power profile" "Changed the profile to <b>${NEXT_PROFILE}</b>"

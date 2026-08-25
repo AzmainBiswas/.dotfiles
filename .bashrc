@@ -94,8 +94,8 @@ alias gcm="git commit -m"
 alias gp="git push"
 
 # clipboard
-alias pbcopy="xsel --input --clipboard"
-alias pbpaste="xsel --output --clipboard"
+# alias pbcopy="xsel --input --clipboard"
+# alias pbpaste="xsel --output --clipboard"
 
 
 # devour
@@ -232,8 +232,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1    # '%' if there are untracked files
 export GIT_PS1_SHOWUPSTREAM="auto"     # '<' behind, '>' ahead, '<>' diverged
 
 function bash_prompt() {
-    # PS1=${cyn}'\w'${ylw}"\$(__git_ps1 ' %s')"\\n${grn}'  '${clr}
-    PS1=${cyn}'\w'${pur}"\$(__git_ps1 ' (%s)')"\\n${grn}'➜ '${clr}
+    PS1=${pur}'[$?] '${cyn}'\w'${pur}"\$(__git_ps1 ' (%s)')"\\n${grn}' ➜ '${clr}
     # PS1="\[$(tput setaf 196)\][ \[$(tput setaf 165)\]\u\[$(tput setaf 220)\]@\[$(tput setaf 214)\]\H \[$(tput setaf 33)\]\W\[$(tput setaf 226)\]\$(__git_ps1 ' (%s)') \[$(tput setaf 196)\]]\[$(tput sgr0)\]$ "
 }
 
