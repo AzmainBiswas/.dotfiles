@@ -1,5 +1,5 @@
 [global]
-font = JetBrainsMono Nerd Font 10
+font = JetBrainsMono Nerd Font 12
 markup = yes
 plain_text = no
 
@@ -75,19 +75,19 @@ history = ctrl+grave
 context = ctrl+shift+period
 
 [urgency_low]
-frame_color = "#fbf1c6"
-foreground = "#fbf1c6"
-background = "#282828"
+# frame_color = "#95B8E6"
+foreground = "#95B8E6"
+background = "#000000"
 timeout = 4
 
 [urgency_normal]
-frame_color = "#fbf1c6"
-foreground = "#fbf1c6"
-background = "#282828"
+# frame_color = "#95B8E6"
+foreground = "#95B8E6"
+background = "#000000"
 timeout = 6
 
 [urgency_critical]
 frame_color = "#cc241d"
 foreground = "#cc241d"
-background = "#282828"
+background = "#000000"
 timeout = 8

@@ -1,5 +1,5 @@
--- local terminal    = "alacritty"
-local terminal    = "foot"
+local terminal    = "alacritty"
+-- local terminal    = "foot"
 local fileManager = "dolphin"
 -- local browser     = "brave-origin"
 local browser     = "firefox"

@@ -35,7 +35,7 @@ hl.config({
     decoration = {
         blur = {
             enabled  = true,
-            size     = 8,
+            size     = 5,
             passes   = 2,
             new_optimizations = true,
             vibrancy = 0.1696,

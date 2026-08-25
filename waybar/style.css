@@ -1,7 +1,7 @@
-@define-color bar-bg rgba(0, 0, 0, 0.8);
-@define-color module-bg rgba(0, 0, 0, 0.85);
-@define-color module-fg #95B8E6;
-@define-color white #95B8E6;
+@define-color bar-bg rgba(30, 30, 46, 0.9);
+@define-color module-bg rgba(30, 30, 46, 0.9);
+@define-color module-fg #CDD6F4;
+@define-color white #CDD6F4;
 
 * {
     font-family: "JetBrainsMono Nerd Font";
