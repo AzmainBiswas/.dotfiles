@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-grim -g "$(slurp)" - |\
-    tesseract - stdout -l eng |\
-    wl-copy && notify-send "OCR" "Text copied to clipboard!"
+text=$(grim -g "$(slurp)" - | tesseract - stdout -l eng)
+
+wl-copy "${text}"
+notify-send "OCR" "\"${text}\" copied to clipboard!"

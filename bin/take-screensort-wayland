@@ -26,6 +26,7 @@ ACTION=$(notify-send --app-name="Screensort" --icon="$FILE" --action="annotate=A
         "Screensort Captured" "Copied to clipboard. Click to annotate")
 
 if [ "${ACTION}" = "annotate" ]; then
-    satty --filename "${FILE}" --output-filename "${FILE}"
+    # satty --filename "${FILE}" --output-filename "${FILE}"
+    ksnip -o "${FILE}" -p "${FILE}"
     wl-copy < "${FILE}"
 fi
