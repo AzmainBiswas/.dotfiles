@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 
 WALL_DIR="${HOME}/Pictures/Wallpapers/"
-url=$(rofi -dmenu -l 0 -p "past url")
+# url=$(rofi -dmenu -l 0 -p "past url")
+url=$(wl-paste)
 [ -z $url ] && exit 1
 wallpaper_name=$(basename ${url%%\?*})
 
-curl -fssl -O $url --output-dir "$WALL_DIR" || exit 1
+curl -fssl -O $url --output-dir "$WALL_DIR"
+status=$?
+if [ $status -ne 0 ]; then
+    notify-send "ERROR" "url: \"${url}\" Not Found"
+    exit 1
+fi
+
 ACTION=$(notify-send -i "$WALL_DIR/$wallpaper_name" "Wall Download" \
     "Wallpaper is downloaded as $wallpaper_name" --action="set=Set")
 

@@ -1,4 +1,4 @@
-local terminal    = "alacritty"
+local terminal    = "kitty"
 -- local terminal    = "foot"
 local fileManager = "dolphin"
 -- local browser     = "brave-origin"
