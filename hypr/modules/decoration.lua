@@ -11,7 +11,9 @@ hl.config({
         },
         resize_on_border = false,
         allow_tearing    = false,
-        layout           = "scrolling",
+        -- layout           = "scrolling",
+        layout           = "master",
+        -- layout           = "dwindle",
     },
 
 })
@@ -34,11 +36,11 @@ hl.config({
 hl.config({
     decoration = {
         blur = {
-            enabled  = true,
-            size     = 5,
-            passes   = 2,
+            enabled           = true,
+            size              = 5,
+            passes            = 2,
             new_optimizations = true,
-            vibrancy = 0.1696,
+            vibrancy          = 0.1696,
         },
     }
 })
@@ -57,15 +59,15 @@ hl.config({
 
 hl.config({
     master = {
-        new_status = "master",
+        new_status = "slave",
     },
-})
-
-hl.config({
     scrolling = {
         column_width = 0.5,
         explicit_column_widths = "0.5, 0.75, 1.0",
         fullscreen_on_one_column = true,
+    },
+    dwindle = {
+        force_split = 2,
     },
 })
 

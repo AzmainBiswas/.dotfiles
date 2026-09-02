@@ -25,8 +25,9 @@ wl-copy < "${FILE}"
 ACTION=$(notify-send --app-name="Screensort" --icon="$FILE" --action="annotate=Annotate" \
         "Screensort Captured" "Copied to clipboard. Click to annotate")
 
+# take a look at swappy
 if [ "${ACTION}" = "annotate" ]; then
-    # satty --filename "${FILE}" --output-filename "${FILE}"
-    ksnip -o "${FILE}" -p "${FILE}"
+    satty --filename "${FILE}" --output-filename "${FILE}"
+    # ksnip -o "${FILE}" -p "${FILE}"
     wl-copy < "${FILE}"
 fi

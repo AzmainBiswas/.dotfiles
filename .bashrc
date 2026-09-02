@@ -66,7 +66,7 @@ alias mkdir="mkdir -vp"
 
 alias ls="eza -ahF --group-directories-first"
 alias ll="eza -alhF --group-directories-first"
-alias tree="eza -F --color=always --tree --icons"
+# alias tree="eza -F --color=always --tree --icons"
 # alias cat="bat --plain --theme OneHalfDark"
 
 alias cls="clear"
@@ -276,3 +276,7 @@ eval "$(fzf --bash)"
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/azmain/.local/bin:$PATH"

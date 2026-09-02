@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+WALL_DIR="${HOME}/Pictures/Wallpapers/"
+url=$(rofi -dmenu -l 0 -p "past url")
+[ -z $url ] && exit 1
+wallpaper_name=$(basename ${url%%\?*})
+
+curl -fssl -O $url --output-dir "$WALL_DIR" || exit 1
+ACTION=$(notify-send -i "$WALL_DIR/$wallpaper_name" "Wall Download" \
+    "Wallpaper is downloaded as $wallpaper_name" --action="set=Set")
+
+if [ "$ACTION" = "set" ]; then
+    waypaper --fill fill --wallpaper "$WALL_DIR/${wallpaper_name}"
+fi

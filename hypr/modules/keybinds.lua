@@ -27,9 +27,10 @@ hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. "+ SHIFT + W", hl.dsp.exec_cmd("waypaper --random"))
 hl.bind(mainMod .. " + Period", hl.dsp.exec_cmd("rofimoji --action type copy --typer wtype"))
 
-hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("sh -c $HOME/bin/change_profile"))
-hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("sh -c $HOME/.config/waybar/scripts/launch.sh"))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("bash -c $HOME/bin/change_profile"))
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("bash -c $HOME/.config/waybar/scripts/launch.sh"))
 
+hl.bind("CTRL + ALT + SHIFT + W", hl.dsp.exec_cmd("bash -c $HOME/bin/wall-download"))
 
 hl.bind(mainMod .. "+ F", hl.dsp.window.fullscreen({action="toggle"}))
 
