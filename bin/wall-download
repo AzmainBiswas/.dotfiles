@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -ex
+
 WALL_DIR="${HOME}/Pictures/Wallpapers/"
 # url=$(rofi -dmenu -l 0 -p "past url")
 url=$(wl-paste)
@@ -17,5 +19,13 @@ ACTION=$(notify-send -i "$WALL_DIR/$wallpaper_name" "Wall Download" \
     "Wallpaper is downloaded as $wallpaper_name" --action="set=Set")
 
 if [ "$ACTION" = "set" ]; then
-    waypaper --fill fill --wallpaper "$WALL_DIR/${wallpaper_name}"
+    # Convert XDG_CURRENT_DESKTOP to lowercase for easier matching
+    CURRENT_DESKTOP="${XDG_CURRENT_DESKTOP,,}"
+    if [[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]] || [[ "$CURRENT_DESKTOP" == *"hyprland"* ]]; then
+        waypaper --fill fill --wallpaper "$WALL_DIR/${wallpaper_name}"
+    elif [[ "$KDE_FULL_SESSION" == "true" ]] || [[ "$CURRENT_DESKTOP" == *"kde"* ]]; then
+        plasma-apply-wallpaperimage "$WALL_DIR/${wallpaper_name}"
+    else
+        notify-send "ERROR" "Unable to set wallpaper\n Unknown or unsupported environment: ${XDG_CURRENT_DESKTOP:-unset}"
+    fi
 fi
