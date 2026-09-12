@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -e
+
+[ -z $BROWSER_CHROMIUM ] && printf "BROWSER_CHROMIUM is not set in profile.\n" && exit 1
+
+app_name=$(gum input --placeholder="App name")
+app_url=$(gum input --placeholder="App url")
+app_icon=$(gum input --placeholder="Icon path")
+
+slug=$(echo "${app_name}" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+desktopfile="${HOME}/.local/share/applications/${slug}.desktop"
+
+if [ -z $app_icon ]; then
+    icon_dir="$HOME/.local/share/icons"
+    mkdir -p $icon_dir
+    default_icon_path="${icon_dir}/${slug}.png"
+    curl -fsSL $app_url -o $default_icon_path
+    app_icon=$default_icon_path
+fi
+
+mkdir -p "$HOME/.local/share/applications"
+
+cat > "$desktopfile" <<EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=${app_name}
+Exec=bash -c 'source ~/.bash_profile 2>/dev/null; exec "\$BROWSER_CHROMIUM" --app=${app_url}'
+Icon=${app_icon:-web-browser}
+Terminal=false
+Categories=Network;
+EOF
+
+update-desktop-database ~/.local/share/applications 2>/dev/null || true
+

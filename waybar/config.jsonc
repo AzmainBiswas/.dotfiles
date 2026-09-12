@@ -141,7 +141,7 @@
     "menu-actions": {
       "shutdown": "systemctl poweroff",
       "reboot": "systemctl reboot",
-      "suspend": "swaylock -f -c 282828 && systemctl suspend",
+      "sleep": "swaylock -f -c 282828 && systemctl sleep",
       "hibernate": "swaylock -f -c 282828 && systemctl hibernate",
       "logout": "hyprctl dispatch 'hl.dsp.exit()'",
       "lock": "swaylock -f -c 282828"
