@@ -1,8 +1,8 @@
 export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.cargo/bin:${PATH}
 export PATH=/usr/local/go/bin:${HOME}/go/bin:${PATH}
 
-export BROWSER=brave-origin
-export BROWSER_CHROMIUM=brave-origin
+export BROWSER=firefox
+export BROWSER_CHROMIUM=chromium
 export EDITOR=nvim
 export TERM=screen-256color
 

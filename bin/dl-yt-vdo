@@ -8,10 +8,14 @@ function usage() {
     printf "$0 [OPTION] url\n"
     printf "\t-h\thelp\n" 
     printf "\t-s\tsub-folder name\n" 
+    printf "\t-m\tsub-folder musics\n" 
 }
 
-while getopts "s:h" opt; do
+while getopts "s:hm" opt; do
     case "$opt" in
+        m)
+            SUBFOLDER="musics"
+            ;;
         s)
             SUBFOLDER="${OPTARG}"
             ;;

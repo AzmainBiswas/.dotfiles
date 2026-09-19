@@ -30,5 +30,7 @@ ln -sfn "$PWD/starship" "$HOME/.config/starship"
 ###########
 # .local
 ###########
-ln -sfn "$PWD/.local/share/applications/KDEWall.desktop" "/home/azmain/.local/share/applications/KDEWall.desktop"
+ln -sfn "$PWD/.local/share/applications/KDEWall.desktop" "$HOME/.local/share/applications/KDEWall.desktop"
+ln -sfn "$PWD/.local/share/applications/mpv-audio.desktop" "$HOME/.local/share/applications/mpv-audio.desktop"
+
 
