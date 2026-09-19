@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+SUBFOLDER=""
+VDO_EXT="mkv"
+VDO_FORMAT="ba+bv"
+
+function usage() {
+    printf "$0 [OPTION] url\n"
+    printf "\t-h\thelp\n" 
+    printf "\t-s\tsub-folder name\n" 
+}
+
+while getopts "s:h" opt; do
+    case "$opt" in
+        s)
+            SUBFOLDER="${OPTARG}"
+            ;;
+        h)
+            usage
+            exit 0
+            ;;
+        \?)
+            usage
+            exit 1
+            ;;
+    esac
+done
+shift "$((OPTIND - 1))"
+
+URL=$@
+
+if [[ -z "$URL" ]];then
+    usgae
+    exit 1
+fi
+
+json=$(yt-dlp --dump-single-json --skip-download $URL)
+title=$(jq -r .title <<< $json)
+channel=$(jq -r .channel <<< $json)
+
+title=$(echo $title | tr "[:upper:]" "[:lower:]")
+channel=$(echo $channel | tr "[:upper:]" "[:lower:]" | tr " " "-")
+
+if [[ -z "$SUBFOLDER" ]]; then
+    dl_dir="$HOME/Videos/$channel"
+else
+    dl_dir="$HOME/Videos/$SUBFOLDER/$channel"
+
+fi
+
+yt-dlp -q --progress --format "$VDO_FORMAT" -t $VDO_EXT $URL --output "$dl_dir/$title.$VDO_EXT"
