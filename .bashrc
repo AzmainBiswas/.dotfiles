@@ -261,6 +261,10 @@ if command -v zoxide &>/dev/null; then
     eval "$(zoxide init bash)" && alias cd="z"
 fi
 
+if command -v mise &>/dev/null; then
+    eval "$(mise activate bash)"
+fi
+
 
 # $HOME/bin/print-scripts/unix
 
@@ -277,6 +281,3 @@ eval "$(fzf --bash)"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# Added by Antigravity CLI installer
-export PATH="/home/azmain/.local/bin:$PATH"

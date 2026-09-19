@@ -2,17 +2,106 @@
 
 set -e
 
-PROFILES=("power-saver" "balanced" "performance")
+# Detect power management backend
+if [ -n "$POWER_PROFILE_BACKEND" ]; then
+    BACKEND="$POWER_PROFILE_BACKEND"
+elif command -v powerprofilesctl >/dev/null 2>&1 && powerprofilesctl get >/dev/null 2>&1; then
+    BACKEND="powerprofilesctl"
+elif command -v tuned-adm >/dev/null 2>&1 && tuned-adm active >/dev/null 2>&1; then
+    BACKEND="tuned"
+elif command -v powerprofilesctl >/dev/null 2>&1; then
+    BACKEND="powerprofilesctl"
+elif command -v tuned-adm >/dev/null 2>&1; then
+    BACKEND="tuned"
+else
+    notify-send -u critical -i dialog-error "Power Profile" "Neither powerprofilesctl nor tuned is available."
+    echo "Error: Neither powerprofilesctl nor tuned is available." >&2
+    exit 1
+fi
 
-ACTIVE_PROFILE=$(powerprofilesctl get | xargs)
+cycle_profile() {
+    local active="$1"
+    shift
+    local profiles=("$@")
+    local next="${profiles[0]}"
 
-NEXT_PROFILE="${PROFILES[0]}"
-for i in "${!PROFILES[@]}"; do
-    if [ "${PROFILES[$i]}" == "${ACTIVE_PROFILE}" ]; then
-        NEXT_INDEX=$(( (i + 1) % ${#PROFILES[@]} ))
-        NEXT_PROFILE="${PROFILES[$NEXT_INDEX]}"
-    fi
-done
+    for i in "${!profiles[@]}"; do
+        if [ "${profiles[$i]}" = "$active" ]; then
+            local next_index=$(( (i + 1) % ${#profiles[@]} ))
+            next="${profiles[$next_index]}"
+            break
+        fi
+    done
+    echo "$next"
+}
 
-powerprofilesctl set "$NEXT_PROFILE"
+case "$BACKEND" in
+    powerprofilesctl)
+        if [ -n "$POWER_PROFILES" ]; then
+            read -r -a DEFAULT_PROFILES <<< "$POWER_PROFILES"
+        else
+            DEFAULT_PROFILES=("power-saver" "balanced" "performance")
+        fi
+
+        AVAILABLE=$(powerprofilesctl list 2>/dev/null | grep -E '^\*? +[a-z0-9-]+:' | tr -d '* :' || true)
+
+        PROFILES=()
+        if [ -n "$AVAILABLE" ]; then
+            for p in "${DEFAULT_PROFILES[@]}"; do
+                if echo "$AVAILABLE" | grep -qw "$p"; then
+                    PROFILES+=("$p")
+                fi
+            done
+        fi
+        if [ ${#PROFILES[@]} -eq 0 ]; then
+            PROFILES=("${DEFAULT_PROFILES[@]}")
+        fi
+
+        ACTIVE_PROFILE=$(powerprofilesctl get 2>/dev/null | xargs)
+        NEXT_PROFILE=$(cycle_profile "$ACTIVE_PROFILE" "${PROFILES[@]}")
+
+        powerprofilesctl set "$NEXT_PROFILE"
+        ;;
+
+    tuned)
+        if [ -n "$TUNED_PROFILES" ]; then
+            read -r -a DEFAULT_TUNED <<< "$TUNED_PROFILES"
+        else
+            DEFAULT_TUNED=("powersave" "balanced" "throughput-performance")
+        fi
+
+        AVAILABLE=$(tuned-adm list 2>/dev/null | grep -E '^- +[a-z0-9_-]+' | awk '{print $2}' || true)
+
+        PROFILES=()
+        if [ -n "$AVAILABLE" ]; then
+            for p in "${DEFAULT_TUNED[@]}"; do
+                if echo "$AVAILABLE" | grep -qw "$p"; then
+                    PROFILES+=("$p")
+                fi
+            done
+        fi
+        if [ ${#PROFILES[@]} -eq 0 ]; then
+            PROFILES=("${DEFAULT_TUNED[@]}")
+        fi
+
+        ACTIVE_PROFILE=$(tuned-adm active 2>/dev/null | sed -n 's/^Current active profile: //p' | awk '{print $1}' | tr -d ',')
+        NEXT_PROFILE=$(cycle_profile "$ACTIVE_PROFILE" "${PROFILES[@]}")
+
+        if ! tuned-adm profile "$NEXT_PROFILE" 2>/dev/null; then
+            if sudo -n true 2>/dev/null; then
+                sudo tuned-adm profile "$NEXT_PROFILE"
+            elif command -v pkexec >/dev/null 2>&1; then
+                pkexec tuned-adm profile "$NEXT_PROFILE"
+            else
+                sudo tuned-adm profile "$NEXT_PROFILE"
+            fi
+        fi
+        ;;
+
+    *)
+        echo "Unknown backend: $BACKEND" >&2
+        exit 1
+        ;;
+esac
+
 notify-send -i preferences-system-power "Power profile" "Changed the profile to <b>${NEXT_PROFILE}</b>"

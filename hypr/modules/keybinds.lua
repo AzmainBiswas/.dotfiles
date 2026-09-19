@@ -1,8 +1,8 @@
 local terminal    = "kitty"
 -- local terminal    = "foot"
 local fileManager = "dolphin"
-local browser     = "brave-origin"
--- local browser     = "firefox"
+-- local browser     = "brave-origin"
+local browser     = "firefox"
 
 
 local mainMod = "SUPER"
@@ -19,7 +19,7 @@ hl.bind(mainMod .. "+ SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" })
 -- hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + SHIFT" .. "+ L", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("swaylock -f -c 282828"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. "+ SHIFT + C", hl.dsp.layout("colresize +conf"))
 
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("copyq menu"))
