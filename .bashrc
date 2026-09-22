@@ -46,7 +46,7 @@ fi
 #
 # aliases
 #
-alias vim=nvim
+alias vivm=nvim
 alias v=nvim
 
 alias ebash='nvim ~/.bashrc'
@@ -257,9 +257,9 @@ bash_prompt
 
 # conditional alias
 # zoxide
-if command -v zoxide &>/dev/null; then
-    eval "$(zoxide init bash)" && alias cd="z"
-fi
+# if command -v zoxide &>/dev/null; then
+#     eval "$(zoxide init bash)" && alias cd="z"
+# fi
 
 if command -v mise &>/dev/null; then
     eval "$(mise activate bash)"

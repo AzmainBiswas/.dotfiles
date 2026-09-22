@@ -1,7 +1,7 @@
 // -*- mode: jsonc -*-
 {
   "layer": "top", // Waybar at top layer
-  "position": "top", // Waybar position (top|bottom|left|right)
+  "position": "bottom", // Waybar position (top|bottom|left|right)
   "height": 20, // Waybar height (to be removed for auto height)
   "exclusive": true,
   "margin-top": 0,
@@ -141,8 +141,8 @@
     "menu-actions": {
       "shutdown": "systemctl poweroff",
       "reboot": "systemctl reboot",
-      "sleep": "hyperlock && systemctl sleep",
-      "hibernate": "hyperlock && systemctl hibernate",
+      "sleep": "hyperlock; systemctl sleep",
+      "hibernate": "hyperlock; systemctl hibernate",
       "logout": "hyprctl dispatch 'hl.dsp.exit()'",
       "lock": "hyperlock"
     }

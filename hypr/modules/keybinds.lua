@@ -1,5 +1,5 @@
--- local terminal    = "kitty"
-local terminal    = "alacritty"
+local terminal    = "kitty"
+-- local terminal    = "alacritty"
 local fileManager = "dolphin"
 -- local browser     = "brave-origin"
 local browser     = "firefox"
@@ -10,6 +10,7 @@ local mainMod = "SUPER"
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT" .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("pkill rofi || rofi -Show drun"), {release = false})
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("pkill rofi || rofi -Show drun"), {release = false})
 hl.bind(mainMod .. " + SHIFT" .. " + D", hl.dsp.exec_cmd("pkill rofi || rofi -Show run"), {release = false})
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("pkill rofi || rofi -Show window"), {release = false})
 
