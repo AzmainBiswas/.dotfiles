@@ -32,11 +32,11 @@ hl.window_rule({
     match = { class = "^(org.kde.easyeffects|com.github.wwmm.easyeffects)" },
     float = true
 })
-hl.window_rule({
-    name = "file-managers",
-    match = { class = "^(org.kde.dolphin|thunar)" },
-    float = true
-})
+-- hl.window_rule({
+--     name = "file-managers",
+--     match = { class = "^(org.kde.dolphin|thunar)" },
+--     float = true
+-- })
 
 hl.window_rule({
     name = "waypaper",
@@ -52,6 +52,13 @@ hl.window_rule({
     name = "pip",
     match = { title = "^Picture in picture" },
     float = true
+})
+
+hl.window_rule({
+    name = "mpv pip",
+    match = { class = "^(mpv-pip)" },
+    float = true,
+    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
 })
 hl.window_rule({
     name = "floating terminal",

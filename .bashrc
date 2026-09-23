@@ -97,6 +97,7 @@ alias gp="git push"
 # alias pbcopy="xsel --input --clipboard"
 # alias pbpaste="xsel --output --clipboard"
 
+alias mpv-pip='mpv --wayland-app-id=mpv-pip'
 
 # devour
 # alias mpv='devour mpv'

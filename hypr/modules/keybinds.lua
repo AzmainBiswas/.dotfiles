@@ -24,9 +24,16 @@ hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. "+ SHIFT + C", hl.dsp.layout("colresize +conf"))
 
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("copyq menu"))
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
+-- hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. "+ SHIFT + W", hl.dsp.exec_cmd("waypaper --random"))
 hl.bind(mainMod .. " + Period", hl.dsp.exec_cmd("rofimoji --action type copy --typer wtype"))
+
+hl.bind(
+  mainMod .. "+ SHIFT + Y",
+  hl.dsp.exec_cmd(
+    [[sh -c 'url=$(wl-paste); notify-send -a "mpv" "Buffering stream..." "$url" && mpv --wayland-app-id=mpv-pip --loop-playlist=yes --script-opts=pip=yes "$url"']]
+  )
+)
 
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("bash -c $HOME/bin/change_profile"))
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("bash -c $HOME/.config/waybar/scripts/launch.sh"))
@@ -73,8 +80,8 @@ hl.define_submap("resize", function()
 end)
 
 -- Example special workspace (scratchpad)
--- hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
--- hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mainMod .. " + CTRL + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))

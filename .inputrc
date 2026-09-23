@@ -4,7 +4,7 @@ set colored-completion-prefix On
 # Show auto-completion list automatically, without double tab
 set show-all-if-ambiguous On
 set completion-ignore-case On # case insensitive search 
-set completion-display-width 0
+set completion-display-width 100
 set completion-query-items 1000
 
 set echo-control-characters on
