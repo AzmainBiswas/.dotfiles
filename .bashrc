@@ -39,9 +39,12 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # complition
-[[ -f /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
-[[ -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
-[[ -f /etc/bash_completion ]] && . /etc/bash_completion
+if [ -z "$BASH_COMPLETION_VERSINFO" ] && [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+fi
+# [[ -f /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
+# [[ -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
+# [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
 #
 # aliases
@@ -207,16 +210,16 @@ print_scripts() {
 
 # bash parameter completion for the dotnet CLI
 
-function _dotnet_bash_complete() {
-    local cur="${COMP_WORDS[COMP_CWORD]}" IFS=$'\n' # On Windows you may need to use use IFS=$'\r\n'
-    local candidates
-
-    read -d '' -ra candidates < <(dotnet complete --position "${COMP_POINT}" "${COMP_LINE}" 2>/dev/null)
-
-    read -d '' -ra COMPREPLY < <(compgen -W "${candidates[*]:-}" -- "$cur")
-}
-
-complete -f -F _dotnet_bash_complete dotnet
+# function _dotnet_bash_complete() {
+#     local cur="${COMP_WORDS[COMP_CWORD]}" IFS=$'\n' # On Windows you may need to use use IFS=$'\r\n'
+#     local candidates
+#
+#     read -d '' -ra candidates < <(dotnet complete --position "${COMP_POINT}" "${COMP_LINE}" 2>/dev/null)
+#
+#     read -d '' -ra COMPREPLY < <(compgen -W "${candidates[*]:-}" -- "$cur")
+# }
+#
+# complete -f -F _dotnet_bash_complete dotnet
 
 ###------------------- PROMPT -----------------------###
 
@@ -269,10 +272,26 @@ fi
 
 # $HOME/bin/print-scripts/unix
 
-# fzf
-# [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash #download from git.
-eval "$(fzf --bash)"
-# eval "$(zed --completions bash)"
+# fzf keybindings & completion (cached)
+fzf_cache="${XDG_CACHE_HOME:-$HOME/.cache}/fzf_bash.bash"
+if command -v fzf &>/dev/null; then
+    # Generate if cache does not exist or if fzf binary is newer than cache
+    if [[ ! -f "$fzf_cache" || "$(type -p fzf)" -nt "$fzf_cache" ]]; then
+        mkdir -p "${fzf_cache%/*}"
+        fzf --bash > "$fzf_cache"
+    fi
+    source "$fzf_cache"
+fi
+
+# zed completion (lazy-loaded by bash-completion on Tab)
+if command -v zed &>/dev/null; then
+    zed_comp="${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion/completions/zed"
+    # Generate once if missing or if zed was updated
+    if [[ ! -f "$zed_comp" || "$(type -p zed)" -nt "$zed_comp" ]]; then
+        mkdir -p "${zed_comp%/*}"
+        zed --completions bash > "$zed_comp" 2>/dev/null
+    fi
+fi
 # . "$HOME/.cargo/env"
 # # zig
 # export PATH=${HOME}/.local/share/zig:${PATH}

@@ -26,6 +26,7 @@ ln -sfn "$PWD/hypr" "$HOME/.config/hypr"
 ln -sfn "$PWD/waybar" "$HOME/.config/waybar"
 ln -sfn "$PWD/dunst" "$HOME/.config/dunst"
 ln -sfn "$PWD/starship" "$HOME/.config/starship"
+ln -sfn "$PWD/pipewire" "$HOME/.config/pipewire"
 
 ###########
 # .local

@@ -1,4 +1,4 @@
-set colored-stats on
+set colored-stats off
 set colored-completion-prefix On
 
 # Show auto-completion list automatically, without double tab

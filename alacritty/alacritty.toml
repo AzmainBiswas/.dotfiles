@@ -7,7 +7,7 @@ import = [
 opacity = 0.95
 padding = {x = 5, y = 10}
 dimensions = { columns = 140, lines = 30 }
-decorations = "None"
+decorations = "full"
 decorations_theme_variant = "Dark" # "Light"
 
 # Window title

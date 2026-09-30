@@ -3,8 +3,9 @@
 -------------------
 hl.on("hyprland.start", function()
     hl.exec_cmd("waybar &")
-    hl.exec_cmd("/usr/libexec/polkit-mate-authentication-agent-1 &")
     hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1 &")
+    hl.exec_cmd("/usr/libexec/kf6/polkit-kde-authentication-agent-1 &")
+    -- hl.exec_cmd("lxpolkit &")
     hl.exec_cmd("nm-applet &")
     hl.exec_cmd("copyq --start-server &")
     hl.exec_cmd("waypaper --restore &")
