@@ -57,16 +57,20 @@ def print_song_list(conn: sqlite3.Connection, args: argparse.Namespace):
         if args.url:  # pyright: ignore[reportAny]
             filds.append(u)  # pyright: ignore[reportUnknownMemberType, reportAny]
 
-        if not args.title and not args.artist and not args.url:  # pyright: ignore[reportAny]
+        if (
+            not args.title and not args.artist and not args.url
+        ):  # pyright: ignore[reportAny]
             filds.append(u)  # pyright: ignore[reportUnknownMemberType, reportAny]
-        parts.append("|".join(filds))  # pyright: ignore[reportUnknownArgumentType, reportUnknownMemberType]
+        parts.append(
+            "|".join(filds)
+        )  # pyright: ignore[reportUnknownArgumentType, reportUnknownMemberType]
     print("\n".join(parts), flush=True)  # pyright: ignore[reportUnknownArgumentType]
     # TODO: need to remove the print here store the output.
 
 
 def db_add_song(
-        conn: sqlite3.Connection, *song_data: tuple[str, str, str]
-        ) -> list[int] | None:
+    conn: sqlite3.Connection, *song_data: tuple[str, str, str]
+) -> list[int] | None:
     paths = [d[2] for d in song_data]
     with conn:
         _ = conn.executemany(
@@ -77,7 +81,9 @@ def db_add_song(
         placeholders = ", ".join("?" for _ in paths)
         quary = f"SELECT id FROM songs WHERE path IN ({placeholders})"
         rows = conn.execute(quary, paths).fetchall()
-    return [row[0] for row in rows if row is not None] if rows is not None else None  # pyright: ignore[reportUnnecessaryComparison, reportAny]
+    return (
+        [row[0] for row in rows if row is not None] if rows is not None else None
+    )  # pyright: ignore[reportUnnecessaryComparison, reportAny]
 
 
 def create_playlist(conn: sqlite3.Connection, playlist_name: str) -> int | None:
@@ -88,7 +94,9 @@ def create_playlist(conn: sqlite3.Connection, playlist_name: str) -> int | None:
         row = conn.execute(
             "SELECT id FROM playlists WHERE name = ?", (playlist_name,)
         ).fetchall()
-    return row[0][0] if row is not None else None  # pyright: ignore[reportUnnecessaryComparison]
+    return (
+        row[0][0] if row is not None else None
+    )  # pyright: ignore[reportUnnecessaryComparison]
 
 
 def add_song_to_playlist(conn: sqlite3.Connection, pll_id: int, *song_ids: int):
@@ -96,7 +104,7 @@ def add_song_to_playlist(conn: sqlite3.Connection, pll_id: int, *song_ids: int):
     with conn:
         _ = conn.executemany(
             "INSERT OR IGNORE INTO playlist_songs (playlist_id, song_id) VALUES (?, ?)",
-            payload
+            payload,
         )
 
 
