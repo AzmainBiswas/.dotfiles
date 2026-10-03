@@ -1,5 +1,5 @@
--- local terminal    = "kitty"
-local terminal    = "alacritty"
+local terminal    = "kitty"
+-- local terminal    = "alacritty"
 local fileManager = "dolphin"
 -- local browser     = "brave-origin"
 -- local browser     = "chromium-browser --password-store=kwallet6"

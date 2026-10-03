@@ -244,14 +244,8 @@ function bash_prompt() {
 
 # starship
 # install: curl -sS https://starship.rs/install.sh | sh
-# if command -v starship &>/dev/null; then
-# eval "$(starship init bash)" #starship
-# else
-#     bash_prompt
-# fi
-
-bash_prompt
-# eval "$(starship init bash)" #starship
+# bash_prompt
+eval "$(starship init bash)" #starship
 # print_scripts
 
 # fastfetch

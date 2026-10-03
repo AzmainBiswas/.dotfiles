@@ -1,6 +1,7 @@
 [general]
 import = [
-    "./ganbaru_matcha.toml"
+    # "./moonfly-default.toml"
+    "./tomorrow-night-bright.toml"
 ]
 
 [window]
