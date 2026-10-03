@@ -16,7 +16,7 @@ if [ $status -ne 0 ]; then
 fi
 
 ACTION=$(notify-send -i "$WALL_DIR/$wallpaper_name" "Wall Download" \
-    "Wallpaper is downloaded as $wallpaper_name" --action="set=Set")
+    "Wallpaper is downloaded as $wallpaper_name" --action="set=Apply")
 
 if [ "$ACTION" = "set" ]; then
     # Convert XDG_CURRENT_DESKTOP to lowercase for easier matching

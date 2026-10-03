@@ -1,4 +1,4 @@
-@define-color bar-bg rgba(21, 21, 21, 0.8);
+@define-color bar-bg rgba(21, 21, 21, 1);
 @define-color module-bg rgba(21, 21, 21, 0.9);
 @define-color module-fg #FAFAFA;
 @define-color white #FAFAFA;

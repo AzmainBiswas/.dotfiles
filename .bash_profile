@@ -2,7 +2,8 @@ export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.cargo/bin:${PATH}
 export PATH=/usr/local/go/bin:${HOME}/go/bin:${PATH}
 
 export BROWSER=firefox
-export BROWSER_CHROMIUM=chromium
+# export BROWSER=chromium-browser
+export BROWSER_CHROMIUM=chromium-browser
 export EDITOR=nvim
 export TERM=screen-256color
 
