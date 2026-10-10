@@ -3,7 +3,8 @@ export PATH=/usr/local/go/bin:${HOME}/go/bin:${PATH}
 
 export BROWSER=firefox
 # export BROWSER=chromium-browser
-export BROWSER_CHROMIUM=chromium-browser
+# export BROWSER_CHROMIUM=chromium-browser
+export BROWSER_CHROMIUM=chromium
 export EDITOR=nvim
 export TERM=screen-256color
 

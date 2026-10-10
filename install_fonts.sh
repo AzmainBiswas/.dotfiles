@@ -10,7 +10,7 @@ NERD_FONTS=(
     "JetBrainsMono"
     "Meslo"
 )
-NERD_FONTS_VERSION="v3.4.0"
+NERD_FONTS_VERSION="v3.5.1"
 
 
 # Define color codes
