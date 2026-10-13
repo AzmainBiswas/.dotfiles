@@ -6,14 +6,15 @@ DB_PATH = "./mupy.db"
 import argparse
 import sqlite3
 import subprocess
-import sys
+
+CONNECTION: sqlite3.Connection
 
 
-def init_db(conn: sqlite3.Connection):
+def init_db():
     """Initilize the database, create all the tables"""
-    with conn:
-        _ = conn.execute("PRAGMA foreign_keys = ON;")
-        _ = conn.execute("""
+    with CONNECTION:
+        _ = CONNECTION.execute("PRAGMA foreign_keys = ON;")
+        _ = CONNECTION.execute("""
             CREATE TABLE IF NOT EXISTS songs (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,
@@ -21,13 +22,13 @@ def init_db(conn: sqlite3.Connection):
                 path TEXT NOT NULL UNIQUE
             );
         """)
-        _ = conn.execute("""
+        _ = CONNECTION.execute("""
             CREATE TABLE IF NOT EXISTS playlists (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL UNIQUE
             );
         """)
-        _ = conn.execute("""
+        _ = CONNECTION.execute("""
             CREATE TABLE IF NOT EXISTS playlist_songs (
                 playlist_id INTEGER NOT NULL,
                 song_id INTEGER NOT NULL,
@@ -43,72 +44,79 @@ def init_db(conn: sqlite3.Connection):
         """)
 
 
-def print_song_list(conn: sqlite3.Connection, args: argparse.Namespace):
-    with conn:
-        cur = conn.execute("SELECT title, artist, path FROM songs")
+def print_song_list(args: argparse.Namespace):
+    with CONNECTION:
+        cur = CONNECTION.execute("SELECT title, artist, path FROM songs")
     rows = cur.fetchall()
     parts = []
-    for t, a, u in rows:  # pyright: ignore[reportAny]
+    for t, a, u in rows:
         filds = []
-        if args.title:  # pyright: ignore[reportAny]
-            filds.append(t)  # pyright: ignore[reportUnknownMemberType, reportAny]
-        if args.artist:  # pyright: ignore[reportAny]
-            filds.append(a)  # pyright: ignore[reportUnknownMemberType, reportAny]
-        if args.url:  # pyright: ignore[reportAny]
-            filds.append(u)  # pyright: ignore[reportUnknownMemberType, reportAny]
+        if args.title:
+            filds.append(t)
+        if args.artist:
+            filds.append(a)
+        if args.url:
+            filds.append(u)
 
-        if (
-            not args.title and not args.artist and not args.url
-        ):  # pyright: ignore[reportAny]
-            filds.append(u)  # pyright: ignore[reportUnknownMemberType, reportAny]
-        parts.append(
-            "|".join(filds)
-        )  # pyright: ignore[reportUnknownArgumentType, reportUnknownMemberType]
-    print("\n".join(parts), flush=True)  # pyright: ignore[reportUnknownArgumentType]
+        if not args.title and not args.artist and not args.url:
+            filds.append(u)
+        parts.append("|".join(filds))
+    print("\n".join(parts), flush=True)
     # TODO: need to remove the print here store the output.
 
 
-def db_add_song(
-    conn: sqlite3.Connection, *song_data: tuple[str, str, str]
-) -> list[int] | None:
+def db_add_song(*song_data: tuple[str, str, str]) -> list[int] | None:
     paths = [d[2] for d in song_data]
-    with conn:
-        _ = conn.executemany(
+    with CONNECTION:
+        _ = CONNECTION.executemany(
             "INSERT OR IGNORE INTO songs (title, artist, path) VALUES (?, ?, ?)",
             song_data,
         )
 
         placeholders = ", ".join("?" for _ in paths)
         quary = f"SELECT id FROM songs WHERE path IN ({placeholders})"
-        rows = conn.execute(quary, paths).fetchall()
-    return (
-        [row[0] for row in rows if row is not None] if rows is not None else None
-    )  # pyright: ignore[reportUnnecessaryComparison, reportAny]
+        rows = CONNECTION.execute(quary, paths).fetchall()
+    return [row[0] for row in rows if row is not None] if rows is not None else None
 
 
-def create_playlist(conn: sqlite3.Connection, playlist_name: str) -> int | None:
-    with conn:
-        _ = conn.execute(
+def db_create_playlist(playlist_name: str) -> int | None:
+    with CONNECTION:
+        _ = CONNECTION.execute(
             "INSERT OR IGNORE INTO playlists (name) VALUES (?)", (playlist_name,)
         )
-        row = conn.execute(
+        row = CONNECTION.execute(
             "SELECT id FROM playlists WHERE name = ?", (playlist_name,)
         ).fetchall()
-    return (
-        row[0][0] if row is not None else None
-    )  # pyright: ignore[reportUnnecessaryComparison]
+    return row[0][0] if row is not None else None
 
 
-def add_song_to_playlist(conn: sqlite3.Connection, pll_id: int, *song_ids: int):
+def db_add_song_to_playlist(pll_id: int, *song_ids: int):
     payload = [(pll_id, s) for s in song_ids]
-    with conn:
-        _ = conn.executemany(
+    with CONNECTION:
+        _ = CONNECTION.executemany(
             "INSERT OR IGNORE INTO playlist_songs (playlist_id, song_id) VALUES (?, ?)",
             payload,
         )
 
 
-def extract_youtube_songs_data(*song_url: str):
+def db_add_to_playlist(
+    user_pll: str | None,
+    *playlist_data: tuple[str, str, str, str],
+):
+    pll_ids: dict[str, int] = {}
+    for pll_name, title, artist, url in playlist_data:
+        if user_pll is not None:
+            pll_name = user_pll
+        if pll_name not in pll_ids:
+            pll_id = db_create_playlist(pll_name)
+            assert pll_id, "playlist id not found"
+            pll_ids[pll_name] = pll_id
+        song_ids = db_add_song((title, artist, url))
+        assert song_ids, "song id not found"
+        db_add_song_to_playlist(pll_ids[pll_name], *song_ids)
+
+
+def extract_youtube_songs_data(*song_url: str) -> list[tuple[str, str, str]]:
     proparties = "%(title)s\t%(channel)s\t%(webpage_url)s"
     result = subprocess.run(
         [
@@ -123,10 +131,36 @@ def extract_youtube_songs_data(*song_url: str):
         capture_output=True,
         text=True,
     )
-    return [
-        tuple(d for d in line.strip().split("\t"))
-        for line in result.stdout.splitlines()
-    ]
+    songs = []
+    for line in result.stdout.splitlines():
+        title, artist, url = line.split("\t", 2)
+        songs.append((title, artist, url))
+    return songs
+
+
+def extract_youtube_playlist_data(
+    *playlist_url: str,
+) -> list[tuple[str, str, str, str]]:
+    proparties = "%(playlist)s\t%(title)s\t%(channel)s\t%(webpage_url)s"
+    result = subprocess.run(
+        [
+            "yt-dlp",
+            "--skip-download",
+            "--no-warnings",
+            "--flat-playlist",
+            "--print",
+            proparties,
+            *playlist_url,
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    songs = []
+    for line in result.stdout.splitlines():
+        pll, title, artist, url = line.split("\t", 3)
+        songs.append((pll, title, artist, url))
+    return songs
 
 
 def parse_commandline() -> argparse.Namespace:
@@ -144,7 +178,10 @@ def parse_commandline() -> argparse.Namespace:
         nargs="+",
     )
     _ = song.add_argument(
-        "--pll", "-p", help="add songs to a particuler playlist. Works only with --add"
+        "--pl",
+        "-p",
+        dest="pll",
+        help="add songs to a particuler playlist. Works only with --add",
     )
     _ = song.add_argument(
         "--list", "-l", help="List all songs (default is -u)", action="store_true"
@@ -187,8 +224,8 @@ def parse_commandline() -> argparse.Namespace:
 
     # TODO: handle playlist
     pll = subparsers.add_parser("pll", help="operatation on playlist")
-    _ = pll.add_argument("name", help="find with playlist note")
-    _ = pll.add_argument("--add", "-a", help="add playlist")
+    _ = pll.add_argument("name", nargs="?", help="find with playlist note")
+    _ = pll.add_argument("--add", "-a", help="add songs to playlist by id (<id>, <id>)")
     _ = pll.add_argument(
         "--add-url",
         "-u",
@@ -199,43 +236,78 @@ def parse_commandline() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def process_song_command(conn: sqlite3.Connection, args: argparse.Namespace):
-    if args.list == True:  # pyright: ignore[reportAny]
-        print_song_list(conn, args)
-    elif args.path:  # pyright: ignore[reportAny]
-        songs_data = extract_youtube_songs_data(*args.path)  # pyright: ignore[reportAny]
-        song_id = db_add_song(conn, *songs_data)  # pyright: ignore[reportArgumentType]
+def process_song_command(args: argparse.Namespace):
+    if args.list == True:
+        print_song_list(args)
+    elif args.path:
+        songs_data = extract_youtube_songs_data(*args.path)
+        song_id = db_add_song(*songs_data)
         assert song_id, "did't find songs"
-        if args.pll:  # pyright: ignore[reportAny]
-            pll_id = create_playlist(conn, args.pll)  # pyright: ignore[reportAny]
+        if args.pll:
+            pll_id = db_create_playlist(args.pll)
             assert pll_id, "did't find playlist"
-            add_song_to_playlist(conn, pll_id, *song_id)
+            db_add_song_to_playlist(pll_id, *song_id)
 
 
-def process_artist_command(conn: sqlite3.Connection, args: argparse.Namespace):
+def process_artist_command(args: argparse.Namespace):
     raise NotImplementedError("artist sub command is not yes implemented")
 
 
-def process_playlist_command(conn: sqlite3.Connection, args: argparse.Namespace):
-    if args.url:
-        print(args.url)
-        print(args)
+def process_playlist_command(args: argparse.Namespace):
+    if args.url is not None:
+        playlist_data = extract_youtube_playlist_data(args.url)
+        db_add_to_playlist(args.name, *playlist_data)
+    elif args.add is not None:
+        pass
     else:
         raise NotImplementedError()
 
 
+# TODO: add fuzzy search with builtin difflib get_close_match
 def main():
-    with sqlite3.connect(f"file:{DB_PATH}?mode=rwc", uri=True) as conn:
-        init_db(conn)
+    global CONNECTION
+    with sqlite3.connect(f"file:{DB_PATH}?mode=rwc", uri=True) as CONNECTION:
+        init_db()
         args = parse_commandline()
         # print(args) #DEBUG:
-        if args.subcommand == "song":  # pyright: ignore[reportAny]
-            process_song_command(conn, args)
+        if args.subcommand == "song":
+            process_song_command(args)
         if args.subcommand == "artist":
-            process_artist_command(conn, args)
+            process_artist_command(args)
         if args.subcommand == "pll":
-            process_playlist_command(conn, args)
-
+            process_playlist_command(args)
 
 if __name__ == "__main__":
     main()
+
+
+### code dump
+# def songs_in_playlist(name: str):
+#   return CONNECTION.execute(
+#       """
+#       SELECT songs.id, songs.title, songs.artist, songs.path
+#       FROM songs
+#       JOIN playlist_songs ON playlist_songs.song_id = songs.id
+#       JOIN playlists ON playlists.id = playlist_songs.playlist_id
+#       WHERE playlists.name = ?
+#       ORDER BY songs.title
+#       """,
+#       (name,),
+#   ).fetchall()
+
+# def songs_by_artist(name: str):
+#     return CONNECTION.execute(
+#         """
+#         SELECT id, title, artist, path
+#         FROM songs
+#         WHERE artist = ?
+#         ORDER BY title
+#         """,
+#         (name,),
+#     ).fetchall()
+
+
+# from difflib import SequenceMatcher
+#
+# def similarity(query: str, text: str) -> float:
+#     return SequenceMatcher(None, query.casefold(), text.casefold()).ratio()
