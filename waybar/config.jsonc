@@ -131,7 +131,7 @@
       "headphone": "",
       "default": ["", "", ""]
     },
-    "on-click": "pavucontrol-qt"
+    "on-click": "pavucontrol || pavucontrol-qt"
   },
   "custom/power": {
     "format": "⏻",

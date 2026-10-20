@@ -1,11 +1,12 @@
 [general]
 import = [
     # "./moonfly-default.toml"
-    "./tomorrow-night-bright.toml"
+    # "./tomorrow-night-bright.toml"
+    "./tokyo_night.toml"
 ]
 
 [window]
-opacity = 0.90
+opacity = 0.95
 padding = {x = 5, y = 10}
 dimensions = { columns = 140, lines = 30 }
 decorations = "full"

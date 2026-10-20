@@ -27,6 +27,12 @@ hl.window_rule({
     match = { class = "^pavucontrol-qt" },
     float = true
 })
+
+hl.window_rule({
+    name = "pavucontrol",
+    match = { class = "org.pulseaudio.pavucontrol" },
+    float = true
+})
 hl.window_rule({
     name = "easy effect",
     match = { class = "^(org.kde.easyeffects|com.github.wwmm.easyeffects)" },
