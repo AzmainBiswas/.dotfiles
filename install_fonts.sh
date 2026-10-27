@@ -5,8 +5,8 @@ NERD_FONTS=(
     "ComicShannsMono"
     "DaddyTimeMono"
     "FiraCode"
-    "Iosevka"
-    "IosevkaTerm"
+    # "Iosevka"
+    # "IosevkaTerm"
     "JetBrainsMono"
     "Meslo"
 )
