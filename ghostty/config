@@ -1,11 +1,14 @@
+theme = One Double Dark
+# theme = Doom One
+# theme = TokyoNight Night
 # theme = iTerm2 Solarized Dark
-theme = Gruvbox Dark Hard
+# theme = Gruvbox Dark Hard
 # theme = nord
 
 # font-family = JetBrainsMono Nerd Font
 # font-family = IosevkaTerm Nerd Font
-# font-family = FiraCode Nerd Font
-font-family = ComicShannsMono Nerd Font Mono
+# font-family = ComicShannsMono Nerd Font Mono
+font-family = FiraCode Nerd Font
 font-style = Regular
 font-size = 14
 
@@ -19,9 +22,16 @@ mouse-scroll-multiplier = 10
 copy-on-select = true
 right-click-action = copy-or-paste
 
-background-opacity = 0.95
-gtk-titlebar = false
-# window-decoration = false
+background-blur=true
+background-opacity = 1
+# gtk-titlebar = true
+# window-decoration = true
+
+window-save-state = always
 
 #keybuild
 keybind = ctrl+a>n=new_window
+keybind = ctrl+alt+shift+arrow_left=resize_split:left,20
+keybind = ctrl+alt+shift+arrow_right=resize_split:right,20
+keybind = ctrl+alt+shift+arrow_down=resize_split:down,20
+keybind = ctrl+alt+shift+arrow_up=resize_split:up,20
