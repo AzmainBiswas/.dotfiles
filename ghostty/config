@@ -23,7 +23,7 @@ copy-on-select = true
 right-click-action = copy-or-paste
 
 background-blur=true
-background-opacity = 1
+background-opacity = 0.95
 # gtk-titlebar = true
 # window-decoration = true
 
