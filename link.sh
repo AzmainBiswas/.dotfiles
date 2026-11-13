@@ -10,6 +10,7 @@ ln -sfn "$PWD/.bash_profile" "$HOME/.bash_profile"
 ln -sfn "$PWD/.bashrc" "$HOME/.bashrc"
 ln -sfn "$PWD/.inputrc" "$HOME/.inputrc"
 ln -sfn "$PWD/.tmux.conf" "$HOME/.tmux.conf"
+ln -sfn "$PWD/.vimrc" "$HOME/.vimrc"
 ln -sfn "$PWD/bin" "$HOME/bin"
 
 ###########
