@@ -28,6 +28,7 @@ ln -sfn "$PWD/waybar" "$HOME/.config/waybar"
 ln -sfn "$PWD/dunst" "$HOME/.config/dunst"
 ln -sfn "$PWD/starship" "$HOME/.config/starship"
 ln -sfn "$PWD/pipewire" "$HOME/.config/pipewire"
+ln -sfn "$PWD/chromium-flags.conf" "$HOME/.config/chromium-flags.conf"
 
 ###########
 # .local

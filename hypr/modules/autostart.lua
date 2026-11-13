@@ -15,7 +15,7 @@ hl.on("hyprland.start", function()
     -- hl.exec_cmd("flameshot &")
     -- hl.exec_cmd("swaync &") --too big in ram
     hl.exec_cmd("/usr/lib/pam_kwallet_init &")
-    hl.exec_cmd("kwalletd6 &")
+    -- hl.exec_cmd("kwalletd6 &")
     hl.exec_cmd("blueman-applet &")
     hl.exec_cmd("tailscale systray &")
     hl.exec_cmd("dunst &")
