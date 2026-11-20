@@ -1,5 +1,5 @@
-local terminal    = "kitty"
--- local terminal    = "alacritty"
+-- local terminal    = "kitty"
+local terminal    = "alacritty"
 local fileManager = "dolphin"
 -- local browser     = "brave-origin"
 -- local browser     = "chromium-browser --password-store=kwallet6"
@@ -50,17 +50,17 @@ hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
 -- can be changed with swap
-hl.bind(mainMod .. "+ SHIFT " .. " + left", hl.dsp.window.move({ direction = "left" }))
-hl.bind(mainMod .. "+ SHIFT " .. " + right", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mainMod .. "+ SHIFT " .. " + up", hl.dsp.window.move({ direction = "up" }))
-hl.bind(mainMod .. "+ SHIFT " .. " + down", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mainMod .. "+ SHIFT + left", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. "+ SHIFT + right", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. "+ SHIFT + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. "+ SHIFT + down", hl.dsp.window.move({ direction = "down" }))
 
 hl.bind("Print", hl.dsp.exec_cmd("take-screensort-wayland "))
 hl.bind(mainMod .. "+ SHIFT + S", hl.dsp.exec_cmd("take-screensort-wayland -a"))
 hl.bind(mainMod .. "+ CTRL + Print", hl.dsp.exec_cmd("extract-txt"))
 
-hl.bind("SUPER + Tab", function()
-    hl.dispatch(hl.dsp.window.cycle_next())
+hl.bind("ALT + Tab", function()
+    hl.dispatch(hl.dsp.window.cycle_next({ tiled = true } ))
     hl.dispatch(hl.dsp.window.bring_to_top())
 end)
 

@@ -15,9 +15,11 @@ clr='\[\033[00m\]'    # Reset
 
 # shell options
 
+shopt -s cdspell
 shopt -s autocd
-# Check the window size after each command and, if necessary, update the values of LINES and COLUMNS
 shopt -s checkwinsize
+shopt -s extglob
+shopt -s dirspell
 
 # vim mode
 # set -o vi

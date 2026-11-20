@@ -12,15 +12,16 @@ hl.config({
         resize_on_border = false,
         allow_tearing    = false,
         -- layout           = "scrolling",
-        layout           = "master",
-        -- layout           = "dwindle",
+        -- layout           = "master",
+        -- layout           = "monocle",
+        layout           = "dwindle",
     },
 
 })
 
 hl.config({
     decoration = {
-        rounding         = 5,
+        rounding         = 0,
         rounding_power   = 8,
         active_opacity   = 1.0,
         inactive_opacity = 1.0,
@@ -52,12 +53,6 @@ hl.config({
 })
 
 hl.config({
-    dwindle = {
-        preserve_split = true,
-    },
-})
-
-hl.config({
     master = {
         new_status = "slave",
     },
@@ -68,6 +63,8 @@ hl.config({
     },
     dwindle = {
         force_split = 2,
+        preserve_split = true,
+        default_split_ratio = 1.1,
     },
 })
 

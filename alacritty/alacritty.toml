@@ -27,7 +27,7 @@ multiplier = 8
 
 [font]
 # normal = { family = "JetBrainsMono Nerd Font", style = "Ragular"}
-normal = { family = "FiraCode Nerd Font", style = "Ragular"}
+normal = { family = "FiraMono Nerd Font", style = "Ragular"}
 # normal = { family = "IosevkaTerm Nerd Font", style = "Ragular"}
 bold = { style = "Medium" }
 italic = { style = "Light Italic" }
